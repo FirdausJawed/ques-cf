@@ -58,12 +58,16 @@ void solve(){
     int count = 0;
     
     
-    for (int i = 0; i <= 1000; i++)
+    for (int i = 0; i <= 2000; i++)
     {
-        if ((i+((n-(i*i))*(n-(i*i))))==m)
+     for (int j = 0; j <= 2000; j++)
+     {
+        if ((i*i + j ==n) && (i + j*j ==m))
         {
             count++;
         }
+        
+     }
         
     }
     
