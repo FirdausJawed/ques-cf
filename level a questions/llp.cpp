@@ -54,14 +54,20 @@ double eps = 1e-12;
 int main()
 {
  fast_cin();
- map<char,int>m;
  string s;
  cin>>s;
- for (int i = 0; i < s.length(); i++)
+ string ans;
+ int n = s.length();
+ sort(s.begin(),s.end());
+
+ for (int i = 0; i < n; i++)
  {
-    m[s[i]]++;
+   if (s[i]==s[n-1])
+   {
+      ans+=s[n-1];
+   }
  }
-  
+ cout<<ans<<endl;
 
  return 0;
 }
