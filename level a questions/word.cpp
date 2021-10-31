@@ -53,38 +53,31 @@ double eps = 1e-12;
  
 int main()
 {
- fast_cin();
- string s;
- cin>>s;
- int n = s.length();
- int count1=0,count2=0;
- for (int i = 0; i < n; i++)
- {
-    if (s[i]>=97 && s[i]<=90)
-    {
-        count1++;
+fast_cin();
+string s;
+cin>>s;
+int upper = 0;
+int lower = 0;
+ 
+for(int i = 0;i<s.size();i++){
+    if(s[i]>='A'&&s[i]<='Z'){
+        upper++;
     }
-    else if (s[i]>=97 && s[i]<=122){
-        count2++;
+    else if(s[i]>='a'&&s[i]<='z'){
+        lower++;
     }
-    if (count1 > count2)
-    {
-        if (s[i]>=97 && s[i]<=122)
-        {
-            s[i]-=32;
-        }
+}
+if(upper>lower){
+    for(int i = 0;i<s.size();i++){
+        s[i] = toupper(s[i]);
     }
-    else if (count2 >= count1){
-        if (s[i]>=65 && s[i]<=90)
-        {
-            s[i]+=32;
-        }
+}
+else{
+    for(int i = 0;i<s.size();i++){
+        s[i] = tolower(s[i]);
     }
- }
- for (int i = 0; i < n; i++)
- {
-    cout<<s[i];
- }
- cout<<ln;
+}
+ 
+cout<<s<<endl;
  return 0;
 }
