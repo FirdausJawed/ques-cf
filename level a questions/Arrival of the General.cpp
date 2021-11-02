@@ -54,38 +54,28 @@ double eps = 1e-12;
 int main()
 {
  fast_cin();
- int n;
- cin>>n;
- int arr[n];
-
- for (int i = 0; i < n; i++)
- {
-    cin>>arr[i];
- }
-
- int x = *min_element(arr,arr+n);
- int y = *max_element(arr,arr+n);
-
- int key=0,flag=0;
- for (int i = 0; i < n; i++)
- {
-    if (arr[i]==y)
+int a;
+    cin>>a;
+    int arr[a],ma=0,mi=101,maxi,mini;
+    for(int i=0; i<a; i++)
     {
-        key=i;
-        break;
+        cin>>arr[i];
+        if(arr[i]>ma)
+        {
+            ma=arr[i];
+            maxi=i;
+        }
+        if(arr[i]<=mi)
+        {
+            mi=arr[i];
+            mini=i;
+        }
     }
- }
-
- for (int i = n-1; i >= 0; i--)
- {
-    if(arr[i]==x){
-        flag=i;
-        break;
+    if(maxi>mini)
+    {
+        mini++;
     }
- }
- 
- cout<<key+((n-1)-flag);
- 
+    cout<<maxi+(a-1)-mini;
  
  return 0;
 }
