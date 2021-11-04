@@ -52,23 +52,26 @@ double eps = 1e-12;
 #define sz(x) ((ll)(x).size())
  
 
+void solve(){
+    string s;
+    cin>>s;
+    int n = s.length();
+
+    if (n<=10)
+    {
+        cout<<s<<endl;
+    }
+    else{
+        cout<<s[0]<<n-2<<s[n-1]<<endl;
+    }
+}
 int main()
 {
  fast_cin();
-
- string s1,s2;
- cin>>s1>>s2;
- int n = s1.length();
-
- for (int i = 0; i < n; i++)
- {
-    if (s1[i] != s2[i])
-    {
-        cout<<1;
-    }
-    else{
-        cout<<0;
-    }
+ ll t;
+ cin >> t;
+ for(int it=1;it<=t;it++) {
+ solve();
  }
  return 0;
 }
