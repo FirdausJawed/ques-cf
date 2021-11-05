@@ -53,15 +53,32 @@ double eps = 1e-12;
  
 
 void solve(){
+    int n;
+    cin>>n;
+
+    int a[n],b[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        cin>>a[i]>>b[i];
+    }
+
+    int p = *max_element(b,b+n);
+    int q = 0,ans=0;
+    for (int i = 0; i < n; i++)
+    {
+       if (b[i]==p)
+       {
+           q=i;
+       }
+    }
+    ans = p+(b[q-1]-a[q]);
+    cout<<ans<<endl;
+    
 }
 int main()
 {
  fast_cin();
- ll t;
- cin >> t;
- for(int it=1;it<=t;it++) {
- cout << "Case #" << it+1 << ": ";
  solve();
- }
  return 0;
 }
