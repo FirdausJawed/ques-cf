@@ -53,6 +53,49 @@ double eps = 1e-12;
  
 
 void solve(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin>>arr[i];
+    }
+
+    int even=0,odd=0,fine=0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (i%2==0)
+        {
+            if (arr[i]%2==0)
+            {
+                fine++;
+            }
+            else{
+                even++;
+            }
+        }
+        else{
+            if (arr[i]%2==1)
+            {
+                fine++;
+            }
+            else{
+                odd++;
+            }
+        }
+    }
+    if (fine==n)
+    {
+        cout<<0<<ln;
+    }
+    else if (odd==even){
+        cout<<odd<<ln;
+    }
+    else{
+        cout<<-1<<ln;
+    }
+    
 }
 int main()
 {
@@ -60,7 +103,6 @@ int main()
  ll t;
  cin >> t;
  for(int it=1;it<=t;it++) {
- cout << "Case #" << it+1 << ": ";
  solve();
  }
  return 0;
