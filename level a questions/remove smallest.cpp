@@ -53,6 +53,28 @@ double eps = 1e-12;
  
 
 void solve(){
+    int n,flag=0;
+    cin>>n;
+    int arr[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin>>arr[i];
+    }
+    sort(arr,arr+n);
+    for (int i = 1; i < n; i++)
+    {
+        if (abs(arr[i]-arr[i-1])>1)
+        {
+            cout<<"NO"<<ln;
+            flag=1;
+            break;
+        }
+    }
+    if (flag==0)
+    {
+        cout<<"YES"<<ln;
+    }
+    
 }
 int main()
 {
