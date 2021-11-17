@@ -53,39 +53,17 @@ double eps = 1e-12;
  
 
 void solve(){
-    int d,c;
-    cin>>d>>c;
-    int a1,a2,a3,b1,b2,b3;
-    cin>>a1>>a2>>a3>>b1>>b2>>b3;
-    
-    int cost_without_coupon=2*d+a1+a2+a3+b1+b2+b3;
-    int cost_with_coupon=2*d+a1+a2+a3+b1+b2+b3+c;
-
-    if (a1+a2+a3>=150)
-    {
-        cost_with_coupon=cost_with_coupon-d;
-    }
-    if (b1+b2+b3>=150)
-    {
-        cost_with_coupon=cost_with_coupon-d;
-    }
-
-    if (cost_with_coupon<cost_without_coupon)
-    {
-        cout<<"YES"<<ln;
-    }
-    else{
-        cout<<"NO"<<ln;
-    }
-
+    int m,n;
+    cin>>m>>n;
+  cout<<m*n/2;
 }
 int main()
 {
  fast_cin();
- ll t;
- cin >> t;
- for(int it=1;it<=t;it++) {
+//  ll t;
+//  cin >> t;
+//  for(int it=1;it<=t;it++) {
  solve();
- }
+ //}
  return 0;
 }
