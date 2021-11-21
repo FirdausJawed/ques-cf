@@ -50,28 +50,36 @@ double eps = 1e-12;
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
- 
- int prime(int n){
-     int sum=0;
-     for (int i = 2; i < n; i++)
-     {
-        if (n%i==0)
-        {
-            sum++;
+ void solve(){
+        int n;
+        cin>>n;
+        int a=n,b=n,c=n;
+        for(int i=2; i*i<=n;i++){
+            if(n%i==0){
+                a=i;
+                break;
+            }
         }
-     }
-     if (sum>=3)
-     {
-         
-     }
- }
-
-void solve(){
-    int a,b,c;
-    cin>>a>>b>>c;
-
-
+        
+        n=n/a;
+        for(int i=2;i*i<=n;i++)
+        {
+            if(n%i==0 && i!=a)
+            {
+                b=i;
+                break;
+            }
+        }
+        
+        c=(n/b);
+        
+        if(a!=b && b!=c && c>2){
+            cout<<"YES"<<ln;
+            cout<<a<<" "<<b<<" "<<c<<ln;
+        }
+        else cout<<"NO"<<ln;
 }
+
 int main()
 {
  fast_cin();
