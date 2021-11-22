@@ -53,41 +53,24 @@ double eps = 1e-12;
  
 
 void solve(){
-    ll n,sum=0;
-    cin>>n;
-    ll arr[n];
-    for (ll i = 0; i < n; i++)
+    int x,y,i,j;
+    string a,b;
+    cin>>a>>b;
+    x=a.length();
+    y=b.length();
+
+    int sum=x+y;
+    for (i=x-1,j=y-1; i>=0&&j>=0; i--,j--)
     {
-        cin>>arr[i];
-        sum+=arr[i];
-    }
-    sort(arr,arr+n);
-    double no = 4.5*n;
-    if (sum>=no)
-    {
-        cout<<0<<ln;
-        return ;
-    }
-    ll count=0,a=0,r=0;
-    for (int i = 0; i < n; i++)
-    {
-        a=5-arr[i];
-        if (a>0)
+        if (a[i]!=b[j])
         {
-            sum+=a;
-            count++;
-        }
-        if (sum>=no)
-        {
-            r=1;
             break;
         }
+        else{
+            sum-=2;
+        }
     }
-    if (r==1)
-    {
-        cout<<count<<ln; 
-    }
-   
+    cout<<sum<<ln;
 }
 int main()
 {
@@ -95,7 +78,7 @@ int main()
 //  ll t;
 //  cin >> t;
 //  for(int it=1;it<=t;it++) {
- //cout << "Case #" << it+1 << ": ";
+//  cout << "Case #" << it+1 << ": ";
  solve();
 //  }
  return 0;

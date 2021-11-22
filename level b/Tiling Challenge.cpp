@@ -53,41 +53,45 @@ double eps = 1e-12;
  
 
 void solve(){
-    ll n,sum=0;
+    int n;
     cin>>n;
-    ll arr[n];
-    for (ll i = 0; i < n; i++)
-    {
-        cin>>arr[i];
-        sum+=arr[i];
-    }
-    sort(arr,arr+n);
-    double no = 4.5*n;
-    if (sum>=no)
-    {
-        cout<<0<<ln;
-        return ;
-    }
-    ll count=0,a=0,r=0;
+    vector<string>v;
     for (int i = 0; i < n; i++)
     {
-        a=5-arr[i];
-        if (a>0)
-        {
-            sum+=a;
-            count++;
-        }
-        if (sum>=no)
-        {
-            r=1;
-            break;
-        }
+        cin>>v[i];
     }
-    if (r==1)
+    
+    
+    for (int i = 1; i < n-1; i++)
     {
-        cout<<count<<ln; 
+        for (int j=1; j<n-1; j++)
+        {
+            if (v[i][j]=='.' && v[i][j-1]=='.' && v[i][j+1]=='.' && v[i+1][j]=='.' && v[i-1][j]=='.')
+            {
+                v[i][j]=='a';
+                v[i][j-1]=='a';
+                v[i][j+1]=='a';
+                v[i-1][j]=='a';
+                v[i+1][j]=='a';
+            }
+        }
+        
     }
-   
+    for (int i = 0; i < n; i++)
+    {
+        for (int j=0; j<n; j++)
+        {
+           if (v[i][j]=='.')
+           {
+               cout<<"NO"<<ln;
+               return;
+           }
+           else{
+               cout<<"YES"<<ln;
+           }
+        }
+    }
+  
 }
 int main()
 {
@@ -95,7 +99,7 @@ int main()
 //  ll t;
 //  cin >> t;
 //  for(int it=1;it<=t;it++) {
- //cout << "Case #" << it+1 << ": ";
+//  cout << "Case #" << it+1 << ": ";
  solve();
 //  }
  return 0;
