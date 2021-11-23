@@ -56,29 +56,41 @@ void solve(){
     int n;
     cin>>n;
     int arr[n];
-    int cnt = n/2;
+    int cnt = 0,even=0,odd=0;
     for (int i = 0; i < n; i++)
     {
         cin>>arr[i];
+        if (arr[i]%2==0)
+        {
+            even++;
+        }
+        else{
+            odd++;
+        }
     }
 
     sort(arr,arr+n);
-    for (int i = 0; i < n; i+=2)
-    {
-        if (arr[i+1]-arr[i]==1)
-        {
-            cnt--;
-            continue;
-        }
-        else if (arr[i+1]%2==arr[i]%2)
-        {
-            cnt--;
-            continue;
-        }
-    }
-    if (cnt==0)
+
+    if (even%2==0 && odd%2==0)
     {
         cout<<"YES"<<ln;
+        return;
+    }
+    else{
+        for (int i = 0; i < n-1; i++)
+        {
+            if (arr[i+1]-arr[i]==1)
+            {
+                cnt++;
+            }
+        }
+        
+    }
+    
+    if (cnt!=0 && even%2 != 0 && odd%2 != 0)
+    {
+        cout<<"YES"<<ln;
+        return;
     }
     else{
 
