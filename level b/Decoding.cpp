@@ -53,15 +53,57 @@ double eps = 1e-12;
  
 
 void solve(){
+    int n;
+    cin>>n;
+    string s,k;
+    char st[50000]={'0'};
+    cin>>s;
+    k=s;
+
+    if (n%2 != 0)
+    {
+        reverse(k.begin(),k.end());
+        for (int i = 1; i <= n; i++)
+        {
+            if (i%2 == 0)
+            {
+                cout<<k[i-1];
+            }
+        }
+        for (int i = 1; i <= n ; i++)
+        {
+            if (i%2 != 0)
+            {
+                cout<<s[i-1];
+            }
+        }  
+    }
+    else{
+        int mid = (n/2) - 1;
+        st[mid]=s[0];
+        st[mid+1]=s[1];
+        int cnt = mid-1;
+        for (int i = 2; i < n; i=i+2)
+        {
+           st[cnt--]=s[i];
+        }
+        int cnt1 = mid+2;
+        for (int i = 3; i < n; i=i+2)
+        {
+            st[cnt1++]=s[i];
+        }
+        cout<<st<<ln;
+    }
+      
 }
 int main()
 {
  fast_cin();
- ll t;
- cin >> t;
- for(int it=1;it<=t;it++) {
- cout << "Case #" << it+1 << ": ";
+//  ll t;
+//  cin >> t;
+//  for(int it=1;it<=t;it++) {
+//  cout << "Case #" << it+1 << ": ";
  solve();
- }
+//  }
  return 0;
 }
