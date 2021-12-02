@@ -53,46 +53,16 @@ double eps = 1e-12;
  
 
 void solve(){
-    int n,k;
-    cin>>n>>k;
-    int arr[n];
-    for (int i = 0; i < n; i++)
-    {
-       cin>>arr[i];
-    }
-
-    sort(arr,arr+n);
     
-    int p = arr[0];
-    cout<<p<<ln;
-    for (int i = 1; i < k; i++)
-    {
-        if (i >= n)
-        {
-            cout<<0<<ln;
-            continue;
-        }
-        if (arr[i] - p > 0)
-        {
-            cout<<arr[i] - p<<ln;
-        }
-        else{
-            k++;
-            continue;
-        }
-        p = arr[i]-arr[i-1];
-    }
-    
-     
 }
 int main()
 {
  fast_cin();
-//  ll t;
-//  cin >> t;
-//  for(int it=1;it<=t;it++) {
+ ll t;
+ cin >> t;
+ for(int it=1;it<=t;it++) {
 //  cout << "Case #" << it+1 << ": ";
  solve();
-//  }
+ }
  return 0;
 }
