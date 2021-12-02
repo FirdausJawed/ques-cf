@@ -53,36 +53,37 @@ double eps = 1e-12;
  
 
 void solve(){
-    int n,k;
-    cin>>n>>k;
-    int arr[n];
-    for (int i = 0; i < n; i++)
-    {
-       cin>>arr[i];
+    int n, k;
+    cin >> n >> k;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++){
+        cin >> v[i];
     }
-
-    sort(arr,arr+n);
-    
-    int p = arr[0];
-    cout<<p<<ln;
+ 
+    sort(v.begin(), v.end());
+ 
+    int num = v[0];
+    cout << num << "\n";
     for (int i = 1; i < k; i++)
     {
         if (i >= n)
         {
-            cout<<0<<ln;
+            cout << 0 << "\n";
             continue;
         }
-        if (arr[i] - p > 0)
+        if (v[i] - num > 0)
         {
-            cout<<arr[i] - p<<ln;
+            cout << v[i] - num << "\n";
         }
-        else{
+        else
+        {
             k++;
             continue;
+ 
         }
-        p = arr[i]-arr[i-1];
+        num += v[i] - v[i - 1];
+ 
     }
-    
      
 }
 int main()
