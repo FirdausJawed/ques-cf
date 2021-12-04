@@ -53,26 +53,27 @@ double eps = 1e-12;
  
 
 void solve(){
-    int n,count=1;
-    int h[n],m[n];
+    int n;
     cin>>n;
-    for (int i = 0; i < n; i++)
-    {
-        cin>>h[i]>>m[i];
-    }
+    map<pair<int,int>,int>m;
 
     for (int i = 0; i < n; i++)
     {
-       for (int j = 0; j < n; j++)
-       {
-          if (h[i]==h[j] && m[i]==m[j])
-          {
-              count++;
-          }
-       }
-       
+        pair<int,int> p;
+        cin>>p.first>>p.second;
+
+        m[p]++;
     }
-    cout<<count<<ln;
+    
+    int max = 0;
+    for (auto x:m)
+    {
+        if (x.second > max)
+        {
+            max = x.second;
+        }
+    }
+    cout<<max;
 }
 int main()
 {
