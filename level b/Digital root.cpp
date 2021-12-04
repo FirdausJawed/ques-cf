@@ -53,7 +53,10 @@ double eps = 1e-12;
  
 
 void solve(){
-    
+    ll k,x;
+    cin>>k>>x;
+
+    cout<<9*(k-1)+x<<ln;
 }
 int main()
 {
