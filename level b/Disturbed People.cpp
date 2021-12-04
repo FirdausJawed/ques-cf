@@ -53,20 +53,24 @@ double eps = 1e-12;
  
 
 void solve(){
-    int n,cnt=0;
+    ll n; 
     cin>>n;
-    string s;
-    cin>>s;
+	ll a[n+1];
 
-    for (int i = -1; i < n+1; i++)
-    {
-        if (s[i+1]==s[i-1]==1 && s[i]==0)
-        {
-            cnt++;
-        }
+	for (ll i=1; i<=n; i++){
+	   cin>>a[i];
     }
-    cout<<cnt;
+
+	ll ans=0;
+
+	for (ll i=2; i<n; i++){
+		if (a[i-1]==1 && a[i+1]==1 && a[i]==0) {
+			ans++;
+			a[i+1]=0;
+		}
+	}
     
+	cout<<ans;
 }
 int main()
 {
