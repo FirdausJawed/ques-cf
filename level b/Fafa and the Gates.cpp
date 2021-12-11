@@ -70,7 +70,11 @@ void solve()
 
      if (x==y)
      {
-        if((s[i]=='U' && s[i+1]=='R') || (s[i]=='R' && s[i+1]=='U') ){
+        if((s[i]=='U' && s[i+1]=='U') ){
+            cnt++;
+        }
+        else if ((s[i]=='R' && s[i+1]=='R'))
+        {
             cnt++;
         }
      }
