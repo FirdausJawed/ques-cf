@@ -55,17 +55,51 @@ double eps = 1e-12;
 
 void solve()
 { 
- int n,m;
- cin>>n>>m;
- int arr[n][m];
+ int n,m,x,y;
+ cin>>n>>m>>x>>y;
+ int count = 0;
+ int cost = 0;
 
- forn(i,m)
- {
-    forn(i,n){
-        
-    }
- }
- 
+ if (y/2 >= x)
+  {
+      for (int i = 0; i < n; i++)
+      {
+         string s;
+         cin>>s;
+         
+         for (int j = 0; j < m; j++)
+         {       
+            if (s[j]=='.')
+            {
+            count++;
+            }
+         } 
+      }
+      cout<<count*x<<ln;
+      return;
+  }
+
+else{
+   for (int i = 0; i < n; i++)
+   {
+      string s;
+      cin>>s;
+      
+      for (int j = 0; j < m; j++)
+      {
+         if (s[j]==s[j+1]=='.')
+         {
+            cost+=y;
+            j++;
+         }
+         else{
+            cost+=x;
+         }
+      }
+      cout<<cost<<ln;
+   }
+}
+
 }
 int main()
 {
