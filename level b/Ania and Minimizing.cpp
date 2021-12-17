@@ -52,7 +52,6 @@ double eps = 1e-12;
 #define al(arr,n) arr,arr+n
 #define sz(x) ((ll)(x).size())
  
-
 void solve()
 { 
  int q,k;
@@ -60,24 +59,35 @@ void solve()
  string s;
  cin>>s;
  int n = s.length();
-
- if (s[0]!=1)
+ 
+ if (n==1 && k>0)
  {
-    s[0]=1;
-    k--;
+    cout<<0<<ln;
  }
-
- while(!k){
-    for (int i = 0; i < n; i++)
+ else if (n==1 && k==0)
+ {
+    cout<<s;
+ }
+ else if(s[0] != '1'){
+    if (k>0)
     {
-        if (s[i]!=0)
-        {
-            s[i]=0;
-            k--;
-        }
+        s[0]='1';
+        k--;
     }
  }
+
+ int i = 1;
+ while (k != 0 && i<n)
+ {
+     if (s[i]!='0')
+     {
+         s[i]='0';
+         k--;
+     }
+     i++;
+ }
  cout<<s<<ln;
+
 }
 int main()
 {
