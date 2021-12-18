@@ -57,12 +57,24 @@ double eps = 1e-12;
 
 void solve()
 {
-    double h, l;
-    cin >> h >> l;
-
-    double x = (l * l - h * h) / (2 * h);
-    cout << fixed << setprecision(6) << x << ln;
+    int n, count = 1;
+    cin >> n;
+    int arr[n];
+    forn(i, n)
+    {
+        cin >> arr[i];
+    }
+    sort(arr, arr + n);
+    forn(i, n)
+    {
+        if (arr[i] != arr[i + 1])
+        {
+            count++;
+        }
+    }
+    cout << count << ln;
 }
+
 int main()
 {
     fast_cin();
