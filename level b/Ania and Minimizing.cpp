@@ -63,10 +63,12 @@ void solve()
  if (n==1 && k>0)
  {
     cout<<0<<ln;
+    return;
  }
  else if (n==1 && k==0)
  {
     cout<<s;
+    return;
  }
  else if(s[0] != '1'){
     if (k>0)
@@ -86,6 +88,7 @@ void solve()
      }
      i++;
  }
+
  cout<<s<<ln;
 
 }
