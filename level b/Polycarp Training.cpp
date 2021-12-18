@@ -57,7 +57,7 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, count = 1;
+    ll n;
     cin >> n;
     int arr[n];
     forn(i, n)
@@ -65,14 +65,23 @@ void solve()
         cin >> arr[i];
     }
     sort(arr, arr + n);
-    forn(i, n)
+
+    ll i = 0, day = 0, j = 1;
+    while (i < n)
     {
-        if (arr[i] != arr[i + 1])
+        if (arr[i] >= j)
         {
-            count++;
+            day++;
+            i++;
+            j++;
+        }
+        else
+        {
+            i++;
         }
     }
-    cout << count << ln;
+
+    cout << day << ln;
 }
 
 int main()
