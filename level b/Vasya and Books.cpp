@@ -57,22 +57,38 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, d;
-    cin >> n >> d;
+    int n;
+    cin >> n;
     int arr[n];
+    map<int, int> m;
     forn(i, n)
     {
-        cin >> arr[i];
-        arr[i]-=d;
+        int x;
+        cin >> x;
+        m[x] = i + 1;
     }
 
-    
+    int a = 0, b = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+        b = m[arr[i]];
+        if (b - a > 0)
+        {
+            cout << b - a << " ";
+            b = a;
+        }
+        else
+        {
+            cout << "0" << " ";
+        }
+    }
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    //cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
