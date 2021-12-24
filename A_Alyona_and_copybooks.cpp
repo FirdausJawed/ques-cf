@@ -57,28 +57,21 @@ void solve()
 { 
  ll n,a,b,c;
  cin>>n>>a>>b>>c;
- int k = n%4;
-
- if (k==0)
+ 
+ if (n%4==0)
  {
-     cout<<"0"<<ln;
-     return;
+     cout<<0<<ln;
  }
- if (k==3)
+ else if (n%4==1)
  {
-     cout<<a<<ln;
-     return;
+     cout<<min({3*a,a+c,c})<<ln;
  }
- if (k==2)
+ else if (n%4==2)
  {
-     cout<<min(2*a,b)<<ln;
-     return;
+      cout<<min({2*a,c*2,b})<<ln;
  }
- auto mini=std::min({a,b,c});
- if (k==1)
- {
-     cout<<mini<<ln;
-     return;
+ else{
+      cout<<min({a,b+c,3*c})<<ln;
  }
  
 }
