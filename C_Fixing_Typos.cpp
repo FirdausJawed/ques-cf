@@ -64,25 +64,20 @@ void solve()
 
     forn(i, n)
     {
-        if (s[i] != s[i + 1] && s[i + 1] != s[i + 2]&&s[i]!=s[i+2])
+        if (s[i] != s[i + 1] && s[i + 1] != s[i + 2] && s[i] != s[i + 2])
         {
             ans.push_back(s[i]);
         }
         else if (s[i] != s[i + 1] && s[i + 1] != s[i + 2])
         {
-             ans.push_back(s[i]);
+            ans.push_back(s[i]);
         }
     }
-    cout<<ans<<ln;
+    cout << ans << ln;
 }
 int main()
 {
     fast_cin();
-    // ll t;
-    // cin >> t;
-    // for (int it = 1; it <= t; it++)
-    // {
-        solve();
-    // }
+    solve();
     return 0;
 }
