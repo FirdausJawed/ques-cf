@@ -60,27 +60,29 @@ void solve()
     string s;
     cin >> s;
     int n = s.length();
+    string ans;
 
     forn(i, n)
     {
-        if (s[i] == s[i + 1] && s[i + 1] == s[i + 2])
+        if (s[i] != s[i + 1] && s[i + 1] != s[i + 2]&&s[i]!=s[i+2])
         {
-            int p = s[i];
-            s.pop_back(p);
+            ans.push_back(s[i]);
         }
-        else if (s[i] == s[i + 1] && s[i + 1] == s[i + 2])
+        else if (s[i] != s[i + 1] && s[i + 1] != s[i + 2])
         {
+             ans.push_back(s[i]);
         }
     }
+    cout<<ans<<ln;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
-    for (int it = 1; it <= t; it++)
-    {
+    // ll t;
+    // cin >> t;
+    // for (int it = 1; it <= t; it++)
+    // {
         solve();
-    }
+    // }
     return 0;
 }
