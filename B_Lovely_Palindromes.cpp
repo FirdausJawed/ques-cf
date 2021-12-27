@@ -59,53 +59,22 @@ void solve()
 {
     int n;
     cin >> n;
-    int j = n / 4, k = n % 4;
+    string s;
+    cin >> s;
 
-    if (k == 0)
-    {
-        for (int i = 1; i <= j; i++)
-        {
-            cout << 'a' << 'a' << 'b' << 'b' ;
-        }
-        return;
-    }
-
-    if (k == 1)
-    {
-        for (int i = 1; i <= j; i++)
-        {
-            cout << 'a' << 'a' << 'b' << 'b' ;
-        }
-        cout << 'a';
-        return;
-    }
-
-    if (k == 2)
-    {
-        for (int i = 1; i <= j; i++)
-        {
-            cout << 'a' << 'a' << 'b' << 'b' ;
-        }
-        cout << 'a' << 'a' ;
-        return;
-    }
-    if (k == 3)
-    {
-        for (int i = 1; i <= j; i++)
-        {
-            cout << 'a' << 'a' << 'b' << 'b' ;
-        }
-        cout << 'a' << 'a' << 'b' ;
-        return;
-    }
+    string t = s;
+    reverse(t.begin(), t.end());
+    t = s.append(t);
+    cout << t;
 }
 int main()
 {
     fast_cin();
-    //  ll t;
-    //  cin >> t;
-    //  for(int it=1;it<=t;it++) {
+    // ll t;
+    // cin >> t;
+    // for (int it = 1; it <= t; it++)
+    // {
     solve();
-    //  }
+    // }
     return 0;
 }

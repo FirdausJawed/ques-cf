@@ -57,55 +57,70 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    int j = n / 4, k = n % 4;
+    int l1, l2, l3;
+    cin >> l1 >> l2 >> l3;
 
-    if (k == 0)
+    if (l1 == l2)
     {
-        for (int i = 1; i <= j; i++)
+        if (l3 % 2 == 0)
         {
-            cout << 'a' << 'a' << 'b' << 'b' ;
+            cout << "YES" << ln;
+            return;
         }
-        return;
-    }
-
-    if (k == 1)
-    {
-        for (int i = 1; i <= j; i++)
-        {
-            cout << 'a' << 'a' << 'b' << 'b' ;
-        }
-        cout << 'a';
-        return;
     }
 
-    if (k == 2)
+    if (l3 == l2)
     {
-        for (int i = 1; i <= j; i++)
+        if (l1 % 2 == 0)
         {
-            cout << 'a' << 'a' << 'b' << 'b' ;
+            cout << "YES" << ln;
+            return;
         }
-        cout << 'a' << 'a' ;
-        return;
     }
-    if (k == 3)
+
+    if (l1 == l3)
     {
-        for (int i = 1; i <= j; i++)
+        if (l2 % 2 == 0)
         {
-            cout << 'a' << 'a' << 'b' << 'b' ;
+            cout << "YES" << ln;
+            return;
         }
-        cout << 'a' << 'a' << 'b' ;
-        return;
     }
+    int p = max({l1, l2, l3});
+    if (p == l2)
+    {
+        if (l1 + l3 == l2)
+        {
+            cout << "YES" << ln;
+            return;
+        }
+    }
+    if (p == l3)
+    {
+        if (l1 + l2 == l3)
+        {
+            cout << "YES" << ln;
+            return;
+        }
+    }
+    if (p == l1)
+    {
+        if (l2 + l3 == l1)
+        {
+            cout << "YES" << ln;
+            return;
+        }
+    }
+    cout << "NO" << ln;
 }
 int main()
 {
     fast_cin();
-    //  ll t;
-    //  cin >> t;
-    //  for(int it=1;it<=t;it++) {
-    solve();
-    //  }
+    ll t;
+    cin >> t;
+    for (int it = 1; it <= t; it++)
+    {
+        solve();
+    }
     return 0;
 }
