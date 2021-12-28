@@ -57,15 +57,13 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    string s;
+    string s,p;
     cin >> s;
 
     string t = s;
     reverse(t.begin(), t.end());
-    t = s.append(t);
-    cout << t;
+    p = s.append(t);
+    cout << p;
 }
 int main()
 {
