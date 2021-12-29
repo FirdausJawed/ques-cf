@@ -65,26 +65,30 @@ void solve()
         cin >> arr[i];
     }
 
-    int c1 = 0, c2 = 0;
+    int c1 = 0;
+    int x = a;
 
-    forn(i, a)
+    for (int i = 1; i < a; i++)
     {
-        if (arr[i] == '1')
+
+        if (arr[x--] == arr[x++])
+        {
+            c1++;
+        }
+        x += i;
+    }
+
+    for (int i = a; i <= n; i++)
+    {
+        if (arr[i] == 1)
         {
             c1++;
         }
     }
 
-    for (int i = a; i < n; i++)
-    {
-        if (arr[i] == '1')
-        {
-            c2++;
-        }
-    }
-    int p = max(c1, c2);
-    cout << p;
+    cout << c1;
 }
+
 int main()
 {
     fast_cin();
