@@ -60,7 +60,7 @@ void solve()
     int n, a;
     cin >> n >> a;
     int arr[n];
-    forn(i, n)
+    for (int i = 1; i <= n; i++)
     {
         cin >> arr[i];
     }
@@ -68,17 +68,22 @@ void solve()
     int c1 = 0;
     int x = a;
 
-    for (int i = 1; i < a; i++)
+    if (arr[a] == 1)
+    {
+        c1++;
+    }
+
+    for (int i = 1; i < (a) && x > 0; i++)
     {
 
-        if (arr[x--] == arr[x++])
+        if (arr[x--] == arr[x++] &&arr[x--]==1)
         {
-            c1++;
+            c1+=2;
         }
         x += i;
     }
 
-    for (int i = a; i <= n; i++)
+    for (int i = 2 * (a); i <= n; i++)
     {
         if (arr[i] == 1)
         {
