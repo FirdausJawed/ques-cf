@@ -76,9 +76,9 @@ void solve()
     for (int i = 1; i < (a) && x > 0; i++)
     {
 
-        if (arr[x--] == arr[x++] &&arr[x--]==1)
+        if (arr[x--] == arr[x++] && arr[x--] == 1)
         {
-            c1+=2;
+            c1 += 2;
         }
         x += i;
     }
@@ -91,7 +91,7 @@ void solve()
         }
     }
 
-    for (int i = n; i >=2 * (a); i--)
+    for (int i = n; i <= 2 * (a); i--)
     {
         if (arr[i] == 1)
         {

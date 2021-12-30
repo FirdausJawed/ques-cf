@@ -88,18 +88,24 @@ if (in==0)
     return;
 }
 
-cout<<min(2,in);
+else if (in==1)
+{
+    cout<<1;
+}
+else{
+    cout<<0;
+}
 
 
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
-    for (int it = 1; it <= t; it++)
-    {
+    // ll t;
+    // cin >> t;
+    // for (int it = 1; it <= t; it++)
+    // {
         solve();
-    }
+    // }
     return 0;
 }
