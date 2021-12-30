@@ -55,22 +55,19 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
-bool compare(int a, int b)
-{
-    return a > b;
-}
+
 
 void solve()
 {
     ll n;
     cin >> n;
-    ll arr[n];
+    vector <int> arr(n);
     forn(i, n)
     {
         cin >> arr[i];
     }
 
-    sort(arr, arr + n);
+    sort(arr.begin(), arr.end());
 
     int i = 0, j = n - 1;
 
@@ -79,6 +76,7 @@ void solve()
         if (i == j)
         {
             cout << arr[i];
+            return;
         }
         else
         {

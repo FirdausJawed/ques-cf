@@ -59,7 +59,7 @@ void solve()
 {
     int n, a;
     cin >> n >> a;
-    int arr[n];
+    int arr[n+1];
     for (int i = 1; i <= n; i++)
     {
         cin >> arr[i];
@@ -73,32 +73,49 @@ void solve()
         c1++;
     }
 
-    for (int i = 1; i < (a) && x > 0; i++)
-    {
 
-        if (arr[x--] == arr[x++] && arr[x--] == 1)
+    if (a <= float(n / 2))
+    {
+        for (int i = 1; i <= a; i++)
         {
-            c1 += 2;
+            int l = x - i, r = x + i;
+
+            if (arr[l] == arr[r] && arr[r] == 1)
+            {
+                c1 += 2;
+            }
         }
-        x += i;
-    }
 
-    for (int i = 2 * (a); i <= n; i++)
-    {
-        if (arr[i] == 1)
+        for (int i = 2 * a + 1; i <= n; i++)
         {
-            c1++;
-        }
-    }
-
-    for (int i = n; i <= 2 * (a); i--)
-    {
-        if (arr[i] == 1)
-        {
-            c1++;
+            if (arr[i] == 1)
+            {
+                c1++;
+            }
         }
     }
 
+    else
+    {
+
+        for (int i = n; i >= n - a; i--)
+        {
+            int l = x - i, r = x + i;
+
+            if (arr[l] == arr[r] && arr[r] == 1)
+            {
+                c1 += 2;
+            }
+        }
+
+        for (int i = n - a + 1; i >= 1; i--)
+        {
+            if (arr[i] == 1)
+            {
+                c1++;
+            }
+        }
+    }
     cout << c1;
 }
 
