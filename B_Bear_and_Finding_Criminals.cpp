@@ -59,58 +59,21 @@ void solve()
 {
     int n, a;
     cin >> n >> a;
-    int arr[n+1];
+    vector<int> arr(n + 1);
     for (int i = 1; i <= n; i++)
     {
         cin >> arr[i];
     }
 
     int c1 = 0;
-    int x = a;
 
-    if (arr[a] == 1)
+    for (int i = 1; i <= n; i++)
     {
-        c1++;
-    }
-
-
-    if (a <= float(n / 2))
-    {
-        for (int i = 1; i <= a; i++)
+        if (arr[i]==1)
         {
-            int l = x - i, r = x + i;
-
-            if (arr[l] == arr[r] && arr[r] == 1)
-            {
-                c1 += 2;
-            }
-        }
-
-        for (int i = 2 * a + 1; i <= n; i++)
-        {
-            if (arr[i] == 1)
-            {
-                c1++;
-            }
-        }
-    }
-
-    else
-    {
-
-        for (int i = n; i >= n - a; i--)
-        {
-            int l = x - i, r = x + i;
-
-            if (arr[l] == arr[r] && arr[r] == 1)
-            {
-                c1 += 2;
-            }
-        }
-
-        for (int i = n - a + 1; i >= 1; i--)
-        {
-            if (arr[i] == 1)
+            int x = i - a;
+            int y = a - x;
+            if (y < 1 || y > n || arr[i] == arr[y])
             {
                 c1++;
             }
