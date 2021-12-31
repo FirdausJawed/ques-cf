@@ -57,33 +57,61 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, cnt1 = 0;
+    int n;
     cin >> n;
     int arr[n];
     forn(i, n)
     {
         cin >> arr[i];
-
-        if (arr[i] == 1)
-        {
-            cnt1++;
-        }
     }
 
-    if (cnt1==0)
+    int c1 = count(arr, arr + n, 1);
+    int c2 = count(arr, arr + n, 2);
+    int c3 = count(arr, arr + n, 3);
+    int c4 = count(arr, arr + n, 4);
+
+    int ans = 0;
+    ans += c4;
+
+    if (c3 <= c1)
     {
-        cout<<0;
-        return;
+        ans += c3;
+        c1 -= c3;
+    }
+    else
+    {
+        ans += c3;
     }
 
-    forn(i,n){
-        if (arr[i]==1&&arr[i+1]==0)
-        {
-           cnt1++;
-        }
-        
+    if (c2 <= 2 * c1)
+    {
+        ans += c2;
+        c1 -= 2 * c2;
+    }
+    else if (c2 % 2 == 0)
+    {
+        ans += c2 / 2;
+    }
+    else
+    {
+        ans += (c2 / 2) + 1;
     }
     
+    if (c1 != 0)
+    {
+        if (c1 >= 4)
+        {
+            int p = n / 4;
+            ans += p;
+            c1 = n % 4;
+            ans += c1;
+        }
+        else
+        {
+            ans += c1;
+        }
+    }
+    cout << ans;
 }
 int main()
 {
@@ -92,7 +120,7 @@ int main()
     // cin >> t;
     // for (int it = 1; it <= t; it++)
     // {
-        solve();
+    solve();
     // }
     return 0;
 }
