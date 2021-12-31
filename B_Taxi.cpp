@@ -81,22 +81,27 @@ void solve()
     else
     {
         ans += c3;
+        c1 = 0;
     }
 
-    if (c2 <= 2 * c1)
-    {
-        ans += c2;
-        c1 -= 2 * c2;
-    }
-    else if (c2 % 2 == 0)
+    if (c2 % 2 == 0)
     {
         ans += c2 / 2;
     }
+    
     else
     {
-        ans += (c2 / 2) + 1;
+        if (c1 >= 2)
+        {
+            ans += c2 / 2;
+            c1 -= 2;
+        }
+        else
+        {
+            ans += (c2 / 2) + 1;
+        }
     }
-    
+
     if (c1 != 0)
     {
         if (c1 >= 4)
