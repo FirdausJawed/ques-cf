@@ -73,48 +73,22 @@ void solve()
     int ans = 0;
     ans += c4;
 
-    if (c3 <= c1)
-    {
-        ans += c3;
-        c1 -= c3;
-    }
-    else
-    {
-        ans += c3;
-        c1 = 0;
-    }
+    c1 -= c3;
+    ans += c3;
 
     if (c2 % 2 == 0)
     {
         ans += c2 / 2;
     }
-    
     else
     {
-        if (c1 >= 2)
-        {
-            ans += c2 / 2;
-            c1 -= 2;
-        }
-        else
-        {
-            ans += (c2 / 2) + 1;
-        }
+        ans += c2 / 2 + 1;
+        c1 -= 2;
     }
 
-    if (c1 != 0)
+    if (c1 > 0)
     {
-        if (c1 >= 4)
-        {
-            int p = n / 4;
-            ans += p;
-            c1 = n % 4;
-            ans += c1;
-        }
-        else
-        {
-            ans += c1;
-        }
+        ans+=((c1-1)/4)+1;
     }
     cout << ans;
 }
