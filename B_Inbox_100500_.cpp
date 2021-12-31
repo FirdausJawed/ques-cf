@@ -70,20 +70,26 @@ void solve()
         }
     }
 
-    if (cnt1==0)
+    if (cnt1 == 0)
     {
-        cout<<0;
+        cout << 0;
         return;
     }
 
-    forn(i,n){
-        if (arr[i]==1&&arr[i+1]==0)
+    forn(i, n - 1)
+    {
+        if (arr[i] == 1 && arr[i + 1] == 0)
         {
-           cnt1++;
+            cnt1++;
         }
-        
+    }
+
+    if (arr[n-1]==0 && cnt1>0)
+    {
+        cnt1--;
     }
     
+    cout << cnt1;
 }
 int main()
 {
@@ -92,7 +98,7 @@ int main()
     // cin >> t;
     // for (int it = 1; it <= t; it++)
     // {
-        solve();
+    solve();
     // }
     return 0;
 }
