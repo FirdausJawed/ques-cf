@@ -57,16 +57,33 @@ double eps = 1e-12;
 
 void solve()
 {
-    unordered_map<int, int> m;
-    int n;
-    cin >> n;
-    int arr[n];
-    forn(i, n)
+    ll a, b, x, y, n;
+    cin >> a >> b >> x >> y >> n;
+
+    if (max(a - n, x) > max(b - n, y))
     {
-        cin >> arr[i];
-        m[arr[i]++];
+        if (b - n >= y)
+        {
+            cout << (b - n) * a << ln;
+        }
+        else
+        {
+            int p = n - (b - y);
+            cout << y * max((a - p), x) << ln;
+        }
     }
-    
+    else
+    {
+        if (a - n >= x)
+        {
+            cout << (a - n) * b << ln;
+        }
+        else
+        {
+            int q = (n - (a - x));
+            cout << x * max((b - q), y) << ln;
+        }
+    }
 }
 int main()
 {

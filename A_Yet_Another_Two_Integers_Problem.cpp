@@ -57,16 +57,16 @@ double eps = 1e-12;
 
 void solve()
 {
-    unordered_map<int, int> m;
-    int n;
-    cin >> n;
-    int arr[n];
-    forn(i, n)
+    int a, b;
+    cin >> a >> b;
+
+    if (a == b)
     {
-        cin >> arr[i];
-        m[arr[i]++];
+        cout << 0 << ln;
+        return;
     }
-    
+    int n = (abs(a - b) + 9) / 10;
+    cout << n << ln;
 }
 int main()
 {
