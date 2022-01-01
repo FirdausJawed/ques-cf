@@ -57,20 +57,39 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, x, hash[110] = {0};
-    cin >> n;
-    forn(i, n)
-    {
-        cin >> x;
-        hash[x]++;
-    }
+    string s;
+    cin >> s;
+    int n = s.length();
+    int f = 0, se = 0;
 
-    int ans = 0;
-    for (int i = 1; i <= 100; i++)
+    f=count(s.begin(),s.end(),'4');
+    se=count(s.begin(),s.end(),'7');
+
+    if (se == 0 && f == 0)
     {
-        ans += hash[i] / 2;
+        cout << -1 << ln;
+        return;
     }
-    cout << ans / 2 << endl;
+    else
+    {
+        if (se == f)
+        {
+            cout << 4;
+            return;
+        }
+
+        if (se > f)
+        {
+            cout << 7 << ln;
+            return;
+        }
+
+        if (se < f)
+        {
+            cout << 4 << ln;
+            return;
+        }
+    }
 }
 int main()
 {
@@ -79,7 +98,7 @@ int main()
     // cin >> t;
     // for (int it = 1; it <= t; it++)
     // {
-        solve();
+    solve();
     // }
     return 0;
 }
