@@ -57,37 +57,39 @@ double eps = 1e-12;
 
 void solve()
 {
-    int s, r, h, c, n;
-    vector<int> speed, ram, hdd, cost;
+    int n, s, r, h, c, key = 0;
+    vector<int> speed, ram, hdd, cost;    
     cin >> n;
-    forn(i, n)
+
+    forn (i,n)
     {
         cin >> s >> r >> h >> c;
-        speed.pb(s), ram.pb(r), hdd.pb(h), cost.pb(c);
+        speed.pb(s);
+        ram.pb(r);
+        hdd.pb(h);
+        cost.pb(c);
     }
 
-    forn(i, n)
+    forn (i,n)
     {
-        forn(j, n)
+        forn (j,n)
         {
-            if (speed[i] < speed[j] && ram[i] < ram[j] && hdd[i] < hdd[j])
+            if (speed[i] < speed[j] && ram[i] < ram[j] && hdd[i] < hdd[j] )
             {
-                cost[i] == 2000;
+                cost[i] = 2000;
             }
         }
     }
 
-    int p = *min_element(cost.begin(), cost.end());
-    int key = 0;
+int p=*min_element(cost.begin(), cost.end());
 
-    forn(i, n)
+    forn (i,n)
     {
-        if (cost[i] == p)
+        if (cost[i] ==p)
         {
             key = i + 1;
         }
     }
-
     cout << key << ln;
 }
 int main()
