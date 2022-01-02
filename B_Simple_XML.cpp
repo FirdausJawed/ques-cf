@@ -71,7 +71,7 @@ void solve()
                 {
                     cout << " ";
                 }
-                cout << '<' << '/' << s[i - 1] << '>' << endl;
+                cout << '<' << '/' << s[i - 1] << '>' << ln;
             }
             else
             {
@@ -79,7 +79,7 @@ void solve()
                 {
                     cout << " ";
                 }
-                cout << '<' << s[i - 1] << '>' << endl;
+                cout << '<' << s[i - 1] << '>' << ln;
                 n++;
             }
         }
