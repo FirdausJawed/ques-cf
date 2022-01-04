@@ -58,11 +58,17 @@ double eps = 1e-12;
 void solve()
 {
     int n, m;
-    cin >> m, n;
+    cin >> m >> n;
     int arr[n];
     forn(i, n)
     {
         cin >> arr[i];
+    }
+
+    if (m == 0)
+    {
+        cout << "YES" << ln;
+        return;
     }
 
     sort(arr, arr + n);
@@ -73,24 +79,32 @@ void solve()
         return;
     }
 
-    int c = 1;
-    
-    for (int i = 0; i < n - 1; i++)
+    int c = 0;
+
+    for (int i = 0; i < n - 2; i++)
     {
-        if (arr[i + 1] - arr[i])
+        if ((arr[i + 1] - arr[i]) == 1 && arr[i + 2] - arr[i + 1] == 1)
         {
-            /* code */
+            c = 1;
         }
+    }
+    if (c == 1)
+    {
+        cout << "NO" << ln;
+    }
+    else
+    {
+        cout << "YES" << ln;
     }
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
-    for (int it = 1; it <= t; it++)
-    {
-        solve();
-    }
+    // ll t;
+    // cin >> t;
+    // for (int it = 1; it <= t; it++)
+    // {
+    solve();
+    // }
     return 0;
 }
