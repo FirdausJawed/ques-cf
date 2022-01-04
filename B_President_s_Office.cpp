@@ -21,7 +21,7 @@
 #include <fstream>
 
 using namespace std;
-typedef unsigned long long ull;
+
 typedef long long ll;
 typedef long double ld;
 typedef pair<int, int> p32;
@@ -52,45 +52,66 @@ double eps = 1e-12;
     cin.tie(NULL);                    \
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
-#define al(arr, n) arr, arr + n
+#define al(c, n) c, c + n
 #define sz(x) ((ll)(x).size())
+#define max 102
+
+char c[max][max];
 
 void solve()
 {
-    int n, m;
-    cin >> m, n;
-    int arr[n];
-    forn(i, n)
-    {
-        cin >> arr[i];
-    }
+    char p;
+    ll n, m;
+    cin >> n >> m >> p;
 
-    sort(arr, arr + n);
-
-    if (arr[0] == 1 || arr[n - 1] == m)
+    char s[n][m];
+    for (ll i = 0; i < n; i++)
     {
-        cout << "NO" << ln;
-        return;
-    }
-
-    int c = 1;
-    
-    for (int i = 0; i < n - 1; i++)
-    {
-        if (arr[i + 1] - arr[i])
+        for (ll j = 0; j < m; j++)
         {
-            /* code */
+            cin >> s[i][j];
         }
     }
+
+    set<char> v;
+
+    for (ll i = 0; i < n; i++)
+    {
+        for (ll j = 0; j < m; j++)
+        {
+            if (s[i][j] == p)
+            {
+
+                if (j != 0 && s[i][j - 1] != p && s[i][j - 1] != '.')
+                {
+                    v.insert(s[i][j - 1]);
+                }
+                if (i != 0 && s[i - 1][j] != p && s[i - 1][j] != '.')
+                {
+                    v.insert(s[i - 1][j]);
+                }
+                if (j != (m - 1) && s[i][j + 1] != p && s[i][j + 1] != '.')
+                {
+                    v.insert(s[i][j + 1]);
+                }
+                if (i != n - 1 && s[i + 1][j] != p && s[i + 1][j] != '.')
+                {
+
+                    v.insert(s[i + 1][j]);
+                }
+            }
+        }
+    }
+    cout << v.size() << endl;
 }
+
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
-    for (int it = 1; it <= t; it++)
-    {
-        solve();
-    }
+    //  ll t;
+    //  cin >> t;
+    //  for(int it=1;it<=t;it++) {
+    solve();
+    //  }
     return 0;
 }
