@@ -57,38 +57,66 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, cnt = 0;
+    int n;
     cin >> n;
     int x = 0, y = 0;
     string s;
     cin >> s;
-    for (int i = 0; i < n; i++)
+
+    forn(i, n)
     {
         if (s[i] == 'U')
         {
             y++;
         }
-        else  if (s[i] == 'D')
+        else if (s[i] == 'D')
         {
             y--;
         }
-        else  if (s[i] == 'L')
+        else if (s[i] == 'L')
         {
             x--;
         }
-        else  if (s[i] == 'R')
+        else if (s[i] == 'R')
         {
             x++;
         }
     }
+
+    while (y > 0)
+    {
+        y--;
+        n--;
+    }
+
+    while (y < 0)
+    {
+        y++;
+        n--;
+    }
+
+    while (x < 0)
+    {
+        x++;
+        n--;
+    }
+
+    while (x > 0)
+    {
+        x--;
+        n--;
+    }
+
+    cout << n << ln;
 }
 int main()
 {
     fast_cin();
-    //  ll t;
-    //  cin >> t;
-    //  for(int it=1;it<=t;it++) {
-    solve();
-    //  }
+    // ll t;
+    // cin >> t;
+    // for (int it = 1; it <= t; it++)
+    // {
+        solve();
+    // }
     return 0;
 }
