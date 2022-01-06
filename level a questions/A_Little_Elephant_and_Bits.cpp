@@ -21,7 +21,7 @@
 #include <fstream>
 
 using namespace std;
-
+typedef unsigned long long ull;
 typedef long long ll;
 typedef long double ld;
 typedef pair<int, int> p32;
@@ -55,66 +55,39 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
-vector<int> one;
-vector<int> two;
 void solve()
 {
-    ll a, b;
-    cin >> a >> b;
-    while (a != 0)
+    string s;
+    cin >> s;
+    int n = s.length(), p = 0;
+
+    forn(i, n)
     {
-        one.pb(a % 3);
-        a = a / 3;
-    }
-    while (b != 0)
-    {
-        two.pb(b % 3);
-        b = b / 3;
-    }
-    ll size = max(one.size(), two.size());
-    if (one.size() < size)
-    {
-        int l = size - one.size();
-        for (int i = 1; i <= l; i++)
+        if (s[i] == '0')
         {
-            one.pb(0);
+            p = i;
+            break;
         }
     }
-    else if (two.size() < size)
+
+    for (int i = 0; i < p; i++)
     {
-        int l = size - two.size();
-        for (int i = 1; i <= l; i++)
-        {
-            two.pb(0);
-        }
+        cout<<s[i];
     }
-    vector<int> res;
-    for (int i = 0; i < one.size(); i++)
+    
+     for (int i = p+1; i < n; i++)
     {
-        for (int j = 0; j < 4; j++)
-        {
-            if ((one[i] + j) % 3 == two[i])
-            {
-                res.pb(j);
-                break;
-            }
-        }
+        cout<<s[i];
     }
-    ll h=1,sum=0;
-    for (auto l : res)
-    {
-        sum+=l*h;
-        h=h*3;
-    }
-    cout<<sum<<ln;
 }
 int main()
 {
     fast_cin();
-    //  ll t;
-    //  cin >> t;
-    //  for(int it=1;it<=t;it++) {
-    solve();
-    //  }
+    // ll t;
+    // cin >> t;
+    // for (int it = 1; it <= t; it++)
+    // {
+        solve();
+    // }
     return 0;
 }
