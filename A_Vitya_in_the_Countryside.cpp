@@ -57,47 +57,53 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    v64 v(n + 1);
-    vector<vector<int>> a(m, vector<int>(n));
-
-    forn(i, m)
+    int n;
+    cin >> n;
+    int arr[n];
+    forn(i, n)
     {
-        forn(j, n)
-        {
-            cin >> a[i][j];
-        }
-        int maxi = *max_element(a[i].begin(), a[i].end());
-
-        forn(j, n)
-        {
-            if (a[i][j] == maxi)
-            {
-                v[j + 1]++;
-                break;
-            }
-        }
+        cin >> arr[i];
     }
 
-    int maxi = *max_element(v.begin(), v.end());
-    for (int i = 1; i <= n; i++)
+    if (arr[n - 1] == 15)
     {
-        if (v[i] == maxi)
+        cout << "DOWN" << ln;
+        return;
+    }
+
+     if (arr[n - 1] == 0)
+    {
+        cout << "UP" << ln;
+        return;
+    }
+
+    if (n == 1)
+    {
+        cout << -1 << ln;
+        return;
+    }
+
+    if (arr[n - 1] != 15)
+    {
+        int x = arr[n - 2] - arr[n - 1];
+
+        if (x > 0)
         {
-            cout << i << " ";
-            return;
+            cout << "DOWN" << ln;
+        }
+        else
+        {
+            cout << "UP" << ln;
         }
     }
 }
 int main()
 {
     fast_cin();
-    // ll t;
-    // cin >> t;
-    // for (int it = 1; it <= t; it++)
-    // {
+    //  ll t;
+    //  cin >> t;
+    //  for(int it=1;it<=t;it++) {
     solve();
-    // }
+    //  }
     return 0;
 }

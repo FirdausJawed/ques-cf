@@ -57,47 +57,24 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    v64 v(n + 1);
-    vector<vector<int>> a(m, vector<int>(n));
+    ll n, x = 1;
+    cin >> n;
+    n *= 2;
 
-    forn(i, m)
+    for (int i = 3; i <= n; i++)
     {
-        forn(j, n)
-        {
-            cin >> a[i][j];
-        }
-        int maxi = *max_element(a[i].begin(), a[i].end());
-
-        forn(j, n)
-        {
-            if (a[i][j] == maxi)
-            {
-                v[j + 1]++;
-                break;
-            }
-        }
+        x = (x * i) % MOD;
     }
-
-    int maxi = *max_element(v.begin(), v.end());
-    for (int i = 1; i <= n; i++)
-    {
-        if (v[i] == maxi)
-        {
-            cout << i << " ";
-            return;
-        }
-    }
+    cout << x << ln;
 }
 int main()
 {
     fast_cin();
-    // ll t;
-    // cin >> t;
-    // for (int it = 1; it <= t; it++)
-    // {
-    solve();
-    // }
+    ll t;
+    cin >> t;
+    for (int it = 1; it <= t; it++)
+    {
+        solve();
+    }
     return 0;
 }
