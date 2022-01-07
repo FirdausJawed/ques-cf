@@ -57,10 +57,22 @@ double eps = 1e-12;
 
 void solve()
 {
-    int l1, r1, l2, r2, k;
+    ll l1, r1, l2, r2, k;
     cin >> l1 >> r1 >> l2 >> r2 >> k;
 
-    
+    ll a = max(l1, l2), b = min(r1, r2);
+    if (a > b)
+    {
+        cout << 0 << ln;
+    }
+    else if (k >= a && k <= b)
+    {
+        cout << b - a;
+    }
+    else
+    {
+        cout << b - a + 1;
+    }
 }
 int main()
 {
