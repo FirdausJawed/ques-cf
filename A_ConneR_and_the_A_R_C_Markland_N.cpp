@@ -66,7 +66,7 @@ void solve()
     }
 
     sort(arr, arr + k);
-    int key = 0, idx = 0, case1, case2, p = s, q = s;
+    ll key = 0, idx = 0, case1=0, case2=0, p = s, q = s;
 
     forn(i, k)
     {
@@ -84,7 +84,7 @@ void solve()
         return;
     }
 
-    for (int i = idx; i < n && p <= n; i++)
+    for (int i = idx + 1; i < n && p <= n; i++)
     {
         p++;
         if (arr[i] != p)
@@ -94,10 +94,10 @@ void solve()
         }
     }
 
-    for (int i = 0; i < idx && q > 0; i++)
+    for (int i = idx - 1; i >= 0 && q > 0; i--)
     {
         q--;
-        if (arr[i] = q)
+        if (arr[i] != q)
         {
             case2 = q;
             break;
