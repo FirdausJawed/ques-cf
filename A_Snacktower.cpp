@@ -59,41 +59,40 @@ void solve()
 {
     ll n;
     cin >> n;
-    v64 v;
+    ll arr[n];
     forn(i, n)
     {
-        int a;
-        cin >> a;
-        v.pb(a);
+        cin >> arr[i];
     }
 
-    sort(all(v));
-
-    ll a = count(all(v), v[0]);
-    ll b = count(all(v), v[n - 1]);
-    ll ans;
-
-    cout << v[n - 1] - v[0] << " ";
-
-    if (v[0] == v[n - 1])
+    map<ll, ll> m;
+    ll k = n;
+    forn(i, n)
     {
-        ans = 1ll * (n - 1) * n / 2;
+        m[arr[i]]++;
+        if (arr[i] == k)
+        {
+            while (m[k])
+            {
+                cout << k << " ";
+                k--;
+            }
+            cout << ln;
+        }
+        else
+        {
+            cout << ln;
+        }
     }
-
-    else
-    {
-        ans = 1ll * a * b;
-    }
-    cout << ans << endl;
 }
-
 int main()
 {
     fast_cin();
-    //  ll t;
-    //  cin >> t;
-    //  for(int it=1;it<=t;it++) {
-    solve();
-    //  }
+    // ll t;
+    // cin >> t;
+    // for (int it = 1; it <= t; it++)
+    // {
+        solve();
+    // }
     return 0;
 }

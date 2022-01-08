@@ -1,0 +1,4 @@
+//notes for important questions of codeforces:-
+
+1.elections
+2.https://codeforces.com/contest/767/problem/A

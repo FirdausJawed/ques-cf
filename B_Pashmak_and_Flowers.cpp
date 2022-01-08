@@ -57,42 +57,43 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
-    unordered_map<ll, ll> m;
-    int arr[n];
+    v64 v;
     forn(i, n)
     {
-        cin >> arr[i];
-        m[arr[i]]++;
+        int a;
+        cin >> a;
+        v.pb(a);
     }
 
-    sort(arr, arr + n);
+    sort(all(v));
 
-    int maxi = arr[n - 1], mini = arr[0];
-    int ans1 = maxi - mini, m1 = 0;
+    ll a = count(all(v), v[0]);
+    ll b = count(all(v), v[n - 1]);
+    ll ans;
 
-    cout << ans1 << " ";
+    cout << v[n - 1] - v[0] << " ";
 
-    m1 = m[arr[n - 1]] * m[arr[0]];
-
-    if (ans1 == 0)
+    if (v[0] == v[n - 1])
     {
-        cout << n * (n - 1) / 2;
+        ans = 1ll * (n - 1) * n / 2;
     }
+
     else
     {
-        cout << m1;
+        ans = 1ll * a * b;
     }
+    cout << ans << endl;
 }
+
 int main()
 {
     fast_cin();
-    // ll t;
-    // cin >> t;
-    // for (int it = 1; it <= t; it++)
-    // {
+    //  ll t;
+    //  cin >> t;
+    //  for(int it=1;it<=t;it++) {
     solve();
-    // }
+    //  }
     return 0;
 }
