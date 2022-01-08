@@ -59,53 +59,40 @@ void solve()
 {
     int n, s, k;
     cin >> n >> s >> k;
-    int arr[k];
+    map<int, int> m;
     forn(i, k)
     {
-        cin >> arr[i];
+        ll x;
+        cin >> x;
+        m[x]++;
     }
 
-    sort(arr, arr + k);
-    ll key = 0, idx = 0, case1=0, case2=0, p = s, q = s;
-
-    forn(i, k)
-    {
-        if (arr[i] == s)
-        {
-            key = 1;
-            idx = i;
-            break;
-        }
-    }
-
-    if (key == 0)
+    if (m[s] == 0)
     {
         cout << 0 << ln;
         return;
     }
 
-    for (int i = idx + 1; i < n && p <= n; i++)
+    ll c1 = INT_MAX, c2 = INT_MAX;
+    for (int i = s; i < s + 1001 && i <= n; i++)
     {
-        p++;
-        if (arr[i] != p)
+        if (m[i] == 0)
         {
-            case1 = p;
+            c1 = i;
             break;
         }
     }
-
-    for (int i = idx - 1; i >= 0 && q > 0; i--)
+    for (int i = s; i >= 1; i--)
     {
-        q--;
-        if (arr[i] != q)
+        if (m[i] == 0)
         {
-            case2 = q;
+            c2 = i;
             break;
         }
     }
+    int ans = min(abs(c2 - s), abs(c1 - s));
+    cout << ans << ln;
 
-    int dist1 = abs(s - case1), dist2 = abs(s - case2);
-    cout << min(dist1, dist2) << ln;
 }
 int main()
 {
