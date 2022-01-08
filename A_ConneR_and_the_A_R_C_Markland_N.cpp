@@ -65,16 +65,16 @@ void solve()
         cin >> arr[i];
     }
 
-    int key = 0, p = s, q = s;
-    int idx1, idx2, idx3;
     sort(arr, arr + k);
+    int key = 0, idx = 0, case1, case2, p = s, q = s;
 
     forn(i, k)
     {
         if (arr[i] == s)
         {
             key = 1;
-            idx1 = i;
+            idx = i;
+            break;
         }
     }
 
@@ -84,34 +84,28 @@ void solve()
         return;
     }
 
-    for (int i = idx1; i < n && s <= n; i++)
+    for (int i = idx; i < n && p <= n; i++)
     {
-        s++;
-        if (arr[i] != s)
-        {
-            idx2 = s;
-            // cout<<idx2<<ln;
-            break;
-        }
-    }
-
-    for (int i = 0; i < idx1 && p > 0; i++)
-    {
-        p--;
+        p++;
         if (arr[i] != p)
         {
-            idx3 = p;
-            // cout<<idx2<<ln;
+            case1 = p;
             break;
         }
     }
-    int s1 = abs(q - idx2);
-    // cout<<s1<<ln;
-    int s2 = abs(q - idx3);
-    int idx = min(s1, s2);
-    // cout<<s2<<ln;
 
-    cout << idx << ln;
+    for (int i = 0; i < idx && q > 0; i++)
+    {
+        q--;
+        if (arr[i] = q)
+        {
+            case2 = q;
+            break;
+        }
+    }
+
+    int dist1 = abs(s - case1), dist2 = abs(s - case2);
+    cout << min(dist1, dist2) << ln;
 }
 int main()
 {
