@@ -55,24 +55,79 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
+void toggle(int &x)
+{
+    if (x == 1)
+    {
+        x = 0;
+    }
+    else
+    {
+        x = 1;
+    }
+}
+
+void resultant_array(int arr[3][3], int i, int j)
+{
+    toggle(arr[i][j]);
+    if (j < 2)
+    {
+        toggle(arr[i][j + 1]);
+    }
+    if (i < 2)
+    {
+        toggle(arr[i + 1][j]);
+    }
+    if (j > 0)
+    {
+        toggle(arr[i][j - 1]);
+    }
+    if (i > 0)
+    {
+        toggle(arr[i - 1][j]);
+    }
+}
 void solve()
 {
-    int n, t;
-    string s;
-    cin >> n >> t;
-    cin >> s;
-    while (t--)
+    int arr[5][5];
+    int ans[3][3];
+    int n = 3;
+    forn(i, n)
     {
-        for (int i = 0; i < n; i++)
+        forn(j, n)
         {
-            if (s[i] == 'B' && s[i + 1] == 'G')
+            cin >> arr[i][j];
+            ans[i][j] = 1;
+            if (arr[i][j] % 2 == 1)
             {
-                swap(s[i], s[i + 1]);
-                i++;
+                arr[i][j] = 1;
+            }
+            else
+            {
+                arr[i][j] = 0;
             }
         }
     }
-    cout << s;
+
+    forn(i, n)
+    {
+        forn(j, n)
+        {
+            if (arr[i][j] == 1)
+            {
+                resultant_array(ans, i, j);
+            }
+        }
+    }
+
+     forn(i, n)
+    {
+        forn(j, n)
+        {
+            cout<<ans[i][j];
+        }
+        cout<<ln;
+    }
 }
 int main()
 {
@@ -81,7 +136,7 @@ int main()
     // cin >> t;
     // for (int it = 1; it <= t; it++)
     // {
-    solve();
+        solve();
     // }
     return 0;
 }
