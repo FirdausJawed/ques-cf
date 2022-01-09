@@ -59,21 +59,19 @@ void solve()
 {
     int n, t;
     cin >> n >> t;
-    string s;
+    string s,str;
     cin >> s;
+    str=s;
 
-    forn(i, n)
-    {
-        while (t--)
+    for(int i=0;i<n,t>=0;i++,t--){
+        if (t[i]=='B'&&t[i+1])
         {
-            if (s[i] == 'B' && s[i + 1] == 'G')
-            {
-                swap(s[i], s[i + 1]);
-            }
+            /* code */
         }
+        
     }
     
-        cout<<s;
+        cout<<t;
     
 }
 int main()
