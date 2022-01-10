@@ -57,35 +57,30 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n;
+    int n, x = 0, y = 0, z = 0;
     cin >> n;
     int a[n], b[n - 1], c[n - 2];
+
     forn(i, n)
     {
-        cin >> a[i] >> b[i] >> c[i];
+        cin >> a[i];
+        x += a[i];
     }
 
-    sort(a, a + n);
-    sort(b, b + (n - 1));
-    sort(c, c + (n - 2));
-
-    int a1 = -1, a2 = -1;
     forn(i, n-1)
     {
-        if (a[i] != b[i])
-        {
-            a1 = a[i];
-        }
+        cin >> b[i];
+        y += b[i];
     }
-    forn(i, n - 2)
+
+    forn(i, n-2)
     {
-        if (b[i] != c[i])
-        {
-            a2 = b[i];
-        }
+        cin >> c[i];
+        z += c[i];
     }
-    cout<<a1<<ln;
-    cout<<a2<<ln;
+
+    cout << x - y << ln;
+    cout << y - z << ln;
 }
 int main()
 {
@@ -94,7 +89,7 @@ int main()
     // cin >> t;
     // for (int it = 1; it <= t; it++)
     // {
-        solve();
+    solve();
     // }
     return 0;
 }
