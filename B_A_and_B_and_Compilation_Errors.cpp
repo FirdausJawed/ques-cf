@@ -64,23 +64,24 @@ void solve()
     forn(i, n)
     {
         cin >> a[i];
-        x += a[i];
+        x = x ^ a[i];
     }
 
-    forn(i, n-1)
+    forn(i, n - 1)
     {
         cin >> b[i];
-        y += b[i];
+        y = y ^ b[i];
     }
 
-    forn(i, n-2)
+    forn(i, n - 2)
     {
         cin >> c[i];
-        z += c[i];
+        z = z ^ c[i];
     }
+    int a1 = x ^ y, a2 = y ^ z;
 
-    cout << x - y << ln;
-    cout << y - z << ln;
+    cout << a1 << ln;
+    cout << a2 << ln;
 }
 int main()
 {
