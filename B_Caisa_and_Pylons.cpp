@@ -70,8 +70,14 @@ void solve()
     forn(i, n - 1)
     {
         k += arr[i] - arr[i + 1];
+        if (k<0)
+        {
+            ans += abs(k);
+            k=0;
+        }
+        
     }
-    ans += abs(k);
+    
     cout << ans;
 }
 int main()
