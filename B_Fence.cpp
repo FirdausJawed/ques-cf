@@ -57,36 +57,48 @@ double eps = 1e-12;
 
 void solve()
 {
-    string s;
-    cin >> s;
-
-    int n = s.size(), cnt = 0;
-    int arr[n];
-    arr[0]=0;
-    for (int i = 1; i < n; i++)
+    int n, k;
+    cin >> n >> k;
+    ll arr[n];
+    forn(i, n)
     {
-        if (s[i] == s[i - 1])
+        cin >> arr[i];
+    }
+    if (n == 1)
+    {
+        cout << 1 << ln;
+        return;
+    }
+    ll sum = 0;
+    forn(i, k)
+    {
+        sum += arr[i];
+    }
+    ll i = 0, j = k - 1, ans = sum, idx = 1;
+    while (j < n)
+    {
+        if (j - i + 1 == k)
         {
-            cnt++;
+            j++;
+            sum += arr[j] - arr[i];
+            i++;
+            if (ans > sum)
+            {
+                ans = sum;
+                idx = i+1;
+            }
         }
-        arr[i] = cnt;
     }
-
-    int t;
-    cin>>t;
-    while(t--){
-        int l,r;
-        cin>>l>>r;
-        cout<<arr[r-1]-arr[l-1]<<ln;
-    }
+    cout << idx << ln;
 }
 int main()
 {
     fast_cin();
-    //  ll t;
+    ll t = 1;
     //  cin >> t;
-    //  for(int it=1;it<=t;it++) {
-    solve();
-    //  }
+    for (int it = 1; it <= t; it++)
+    {
+        solve();
+    }
     return 0;
 }
