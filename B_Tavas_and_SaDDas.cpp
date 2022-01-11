@@ -55,26 +55,36 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
+set<ll> s;
+v64 res;
+void generate(ll x)
+{
+    s.insert(x);
+    if (x > MOD)
+    {
+        return;
+    }
+    generate(x * 10 + 4);
+    generate(x * 10 + 7);
+}
+
 void solve()
 {
-    int n, x, y;
-    v64 vx, vy;
+    int n;
     cin >> n;
-    while (n--)
-    {
-        cin >> x >> y;
-        vx.pb(x), vy.pb(y);
-    }
-
-
-
-    
+    ll idx = lower_bound(all(res), n) - res.begin();
+    cout << idx << ln;
 }
 int main()
 {
     fast_cin();
+    generate(0);
+    for (auto t : s)
+    {
+        res.pb(t);
+    }
     ll t = 1;
-    //cin >> t;
+    //cin >> t=1;
     for (int it = 1; it <= t; it++)
     {
         solve();
