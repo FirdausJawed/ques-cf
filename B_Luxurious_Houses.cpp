@@ -66,38 +66,25 @@ void solve()
     }
 
     v64 v;
-    int leader = arr[n - 1];
-    v.pb(0);
+    int leader = 0;
 
-    for (int i = n - 2; i >= 0; i--)
+    for (int i = n-1; i >=0; i--)
     {
-        if (arr[i] > leader)
+        if (arr[i]<=leader)
         {
-            leader = arr[i];
+            v.pb(leader - arr[i] + 1);
         }
-        int x = leader;
-        v.pb(x);
+        else{
+            v.pb(0);
+        }
+        leader = max(leader, arr[i]);
     }
-    int t = 0;
 
     for (int i = n - 1; i >= 0; i--)
     {
-        if (i == n - 1)
-        {
-            cout << 0 << " ";
-            continue;
-        }
-        if (arr[i] == leader && t == 0)
-        {
-            t++;
-            cout << 0 << " ";
-        }
-        else
-        {
-            cout << v[i] - arr[i] + 1 << " ";
-        }
-    }
-    cout << ln;
+        cout << v[i] << " ";
+    }  
+    
 }
 int main()
 {
