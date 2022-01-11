@@ -57,27 +57,57 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, x, y;
-    v64 vx, vy;
+    int n, ans = 0;
     cin >> n;
-    while (n--)
+    int x[n], y[n];
+    forn(i, n)
     {
-        cin >> x >> y;
-        vx.pb(x), vy.pb(y);
+        cin >> x[i] >> y[i];
     }
 
-
-
-    
+    forn(i, n)
+    {
+        int l = 0, r = 0, u = 0, d = 0;
+        forn(j, n)
+        {
+            if (x[i] == x[j])
+            {
+                if (y[j] < y[i])
+                {
+                    d++;
+                }
+                else if (y[j] > y[i])
+                {
+                    u++;
+                }
+            }
+            if (y[i] == y[j])
+            {
+                if (x[j] < x[i])
+                {
+                    l++;
+                }
+                else if (x[j] > x[i])
+                {
+                    r++;
+                }
+            }
+        }
+        if (d > 0 && u > 0 && l > 0 && r > 0)
+        {
+            ans++;
+        }
+    }
+    cout << ans;
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    //cin >> t;
-    for (int it = 1; it <= t; it++)
-    {
-        solve();
-    }
+    // ll t = 1;
+    // //cin >> t;
+    // for (int it = 1; it <= t; it++)
+    // {
+    solve();
+    // }
     return 0;
 }
