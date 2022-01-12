@@ -55,29 +55,20 @@ double eps = 1e-12;
 
 void solve()
 { 
- ll n,k;
- cin>>n>>k;
-
-if (k<=(n+1)/2)
-{
-    cout << 2 * k - 1;
-    return;
-}
-
-if (n%2==0)
-{
-    cout << 2 * k - n;
-}
-else{
-    cout << 2 * k - (n+1);
-}
-
+ int n;
+ cin>>n;
+ int arr[n];
+ forn(i,n)
+ {
+ cin>>arr[i];
+ }
+ 
 }
 int main()
 {
  fast_cin();
- ll t=1;
- //cin >> t;
+ ll t;
+ cin >> t;
  for(int it=1;it<=t;it++) {
  solve();
  }
