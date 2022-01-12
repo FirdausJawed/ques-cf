@@ -57,27 +57,46 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, m, sum = 0;
+    priority_queue<ll> pmaxi;
+    priority_queue<ll, v64, greater<ll>> pmini;
+
+    ll n, m, x, maxi = 0, mini = 0;
     cin >> n >> m;
-    int arr[m];
+
     forn(i, m)
     {
-        cin >> arr[i];
-        sum += arr[i];
+
+        cin >> x;
+        pmaxi.push(x), pmini.push(x);
     }
 
-    int ans = 0;
-
-    if (sum == n)
+    forn(i, n)
     {
-        int k = 0;
-        while (arr[k] >= 1 && k < n)
+        if (pmaxi.top() == 0)
         {
-            ans += arr[k];
+            pmaxi.pop();
         }
-        k++;
-        cout << ans<<" "<<ans << ln;
+        maxi += pmaxi.top();
+        x = pmaxi.top();
+        pmaxi.pop();
+        x--;
+        pmaxi.push(x);
     }
+
+    forn(i, n)
+    {
+        if (pmini.top() == 0)
+        {
+            pmini.pop();
+        }
+        mini += pmini.top();
+        x = pmini.top();
+        pmini.pop();
+        x--;
+        pmini.push(x);
+    }
+
+    cout << maxi << " " << mini;
 }
 int main()
 {
