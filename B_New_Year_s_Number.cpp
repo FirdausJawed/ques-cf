@@ -55,45 +55,24 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
-vector<pair<ll, ll>> pf(ll n)
+set<ll> s;
+void total_number(ll x)
 {
-    vector<pair<ll, ll>> prime;
-    for (int i = 2; i <= 3; i++)
+    forn(i, 1000)
     {
-        if (n % i == 0)
+        forn(j, 1000)
         {
-            int count = 0;
-            while (n % i == 0)
-            {
-                count++;
-                n = n / i;
-            }
-            prime.pb(mp(i, count));
+            s.insert(i * 2020 + j * 2021);
         }
     }
-    if (n > 1)
-    {
-        prime.pb(mp(n, 1));
-    }
-    return prime;
 }
 
 void solve()
 {
     ll n;
     cin >> n;
-    bool flag = 0;
-    vp64 check = pf(n);
 
-    for (auto z : check)
-    {
-        if (z.fi % 2 != 0)
-        {
-            flag = 1;
-        }
-    }
-
-    if (flag == 1)
+    if (s.count(n) != 0 && n != 0)
     {
         cout << "YES" << ln;
     }
@@ -105,6 +84,7 @@ void solve()
 int main()
 {
     fast_cin();
+    total_number(0);
     ll t;
     cin >> t;
     for (int it = 1; it <= t; it++)
