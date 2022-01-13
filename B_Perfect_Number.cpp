@@ -55,7 +55,7 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
-v64 s;
+set<ll> s;
 
 int sum_digit(ll n)
 {
@@ -70,28 +70,41 @@ int sum_digit(ll n)
 
 void generate(ll x)
 {
-    if (x > 10000)
+    if (x > MOD)
     {
         return;
     }
     ll p = sum_digit(x);
     if (p == 10)
     {
-        s.pb(x);
+        s.insert(x);
+    }
+    for (int i = 0; i <= (10-p); i++)
+    {
+        generate(x * 10 + i);
     }
 }
+
+v64 v;
 
 void solve()
 {
     ll n;
     cin >> n;
-    sort(s.begin(), s.end());
-    cout << s[n - 1];
+    cout << v[n - 1];
 }
 int main()
 {
     fast_cin();
-    generate(0);
+    for (int i = 1; i < 10; i++)
+    {
+        generate(i);
+    }
+
+    for(auto x:s){
+        v.pb(x);
+    }
+    sort(v.begin(), v.end());
     ll t = 1;
     //cin >> t;
     for (int it = 1; it <= t; it++)
