@@ -57,46 +57,32 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    int arr[n];
+    int n, m;
+    cin >> n >> m;
+    int arr[n], brr[m];
     forn(i, n)
     {
         cin >> arr[i];
     }
-
-    int mini = INT_MAX, answer = 0;
-
-    for (int i = 1; i <= 1000; i++)
+    forn(i, m)
     {
-        int cost = 0;
-        forn(j, n)
-        {
-            if (arr[j] > i)
-            {
-                cost += arr[j] - (i + 1);
-            }
-            else if (arr[j] < i)
-            {
-                cost += (i - 1) -arr[j] ;
-            }
-        }
-        if (cost < mini)
-        {
-            mini = cost;
-            answer = i;
-        }
+        cin >> brr[i];
     }
-    cout << answer << " " << mini << ln;
+
+    if (min(n, m) == 1)
+    {
+        cout << 1 << ln;
+        return;
+    }
 }
 int main()
 {
     fast_cin();
-    // ll t;
-    // cin >> t;
-    // for (int it = 1; it <= t; it++)
-    // {
+    ll t = 1;
+    //cin >> t;
+    for (int it = 1; it <= t; it++)
+    {
         solve();
-    // }
+    }
     return 0;
 }

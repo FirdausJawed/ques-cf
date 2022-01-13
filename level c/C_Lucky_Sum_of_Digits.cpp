@@ -57,18 +57,14 @@ void solve()
 { 
  int n;
  cin>>n;
- int arr[n];
- forn(i,n)
- {
- cin>>arr[i];
- }
+ 
  
 }
 int main()
 {
  fast_cin();
- ll t;
- cin >> t;
+ ll t=1;
+ //cin >> t;
  for(int it=1;it<=t;it++) {
  solve();
  }
