@@ -55,41 +55,65 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
-int sign(ll x)
-{
-    if (x > 0)
-    {
-        return 1;
-    }
-    return -1;
-}
-
 void solve()
 {
-    int n;
-    cin >> n;
-    int arr[n];
-    forn(i, n)
+    ll n, m, r, s;
+    cin >> n >> m >> r >> s;
+    char a[n + 1][m + 1];
+
+    ll key = 0;
+    for (ll i = 1; i <= n; i++)
     {
-        cin >> arr[i];
+        for (ll j = 1; j <= m; j++)
+        {
+            cin >> a[i][j];
+            if (a[i][j] == 'B')
+            {
+                key = 1;
+            }
+        }
     }
 
-    ll sum = 0;
-    
-    for (int i = 0; i < n; ++i)
+    if (key == 0)
     {
-        int j = i;
-        int cur = arr[i];
-        while (j < n && sign(arr[i]) == sign(arr[j]))
-        {
-            cur = max(cur, arr[j]);
-            j++;
-        }
-        sum += cur;
-        i = j - 1;
+        cout << "-1" << endl;
+        return;
     }
-    cout << sum << ln;
+    if (a[r][s] == 'B')
+    {
+        cout << "0" << endl;
+        return;
+    }
+    if (n == 1 || m == 1)
+    {
+        cout << "1" << endl;
+        return;
+    }
+    key = 0;
+    for (ll i = 1; i <= n; i++)
+    {
+        if (a[i][s] == 'B')
+        {
+            key = 1;
+        }
+    }
+    for (ll i = 1; i <= m; i++)
+    {
+        if (a[r][i] == 'B')
+        {
+            key = 1;
+        }
+    }
+    if (key == 1)
+    {
+        cout << "1" << endl;
+    }
+    else
+    {
+        cout << "2" << endl;
+    }
 }
+
 int main()
 {
     fast_cin();
