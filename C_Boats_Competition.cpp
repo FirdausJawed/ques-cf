@@ -21,7 +21,7 @@
 #include <fstream>
 
 using namespace std;
-
+typedef unsigned long long ull;
 typedef long long ll;
 typedef long double ld;
 typedef pair<int, int> p32;
@@ -34,9 +34,9 @@ typedef vector<vector<ll>> vv64;
 typedef vector<vector<p64>> vvp64;
 typedef vector<p64> vp64;
 typedef vector<p32> vp32;
-ll MOD = 998244353;
+ll MOD = 1000000007;
 double eps = 1e-12;
-#define forn(i, e) for (ll i = 0; i < e; i++)
+#define forn(i, n) for (ll i = 0; i < n; i++)
 #define forsn(i, s, e) for (ll i = s; i < e; i++)
 #define rforn(i, s) for (ll i = s; i >= 0; i--)
 #define rforsn(i, s, e) for (ll i = s; i >= e; i--)
@@ -52,31 +52,61 @@ double eps = 1e-12;
     cin.tie(NULL);                    \
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
+#define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
 void solve()
 {
-    ll n;
+    map<ll, ll> m;
+    int n;
     cin >> n;
-    ll a[n];
-    for (ll i = 0; i < n; i++)
+    int arr[n];
+    forn(i, n)
     {
-        cin >> a[i];
+        cin >> arr[i];
     }
-    ll b[n];
-    for (ll i = 0; i < n; i++)
+    sort(al(arr, n));
+    forn(i, n)
     {
-        cin >> b[i];
+        forn(j, n)
+        {
+            if (i != j)
+            {
+                m[arr[i] + arr[j]]++;
+            }
+        }
     }
-    ll mini_a = *min_element(a, a + n);
-    ll mini_b = *min_element(b, b + n);
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
+
+    vector<int> v;
+    for (auto t : m)
     {
-        ll maxi = max(a[i] - mini_a, b[i] - mini_b);
-        ans = ans + maxi;
+        v.pb(t.first);
     }
-    cout << ans << endl;
+    int maxi = 0, p = v.size();
+
+    for (int k = 0; k < p; k++)
+    {
+        int i = 0, j = n - 1, c = 0;
+        while (i < j)
+        {
+            if (arr[i] + arr[j] == v[k])
+            {
+                i++;
+                j--;
+                c++;
+            }
+            else if (arr[i] + arr[j] > v[k])
+            {
+                j--;
+            }
+            else if (arr[i] + arr[j] < v[k])
+            {
+                i++;
+            }
+        }
+        maxi = max(c, maxi);
+    }
+    cout << maxi << ln;
 }
 int main()
 {
