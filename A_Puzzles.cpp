@@ -57,24 +57,28 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    int arr[n], brr[n];
-    forn(i, n)
+    int n, m;
+    cin >> n >> m;
+    int arr[m];
+    forn(i, m)
     {
-        cin >> brr[i];
+        cin >> arr[i];
     }
 
-    forn(i, n)
+    sort(arr, arr + m);
+
+    int a1 = arr[n - 1] - arr[0];
+    for (size_t i = 1; i <= m-n; i++)
     {
-        arr[2 * i - 1] = brr[i];
+        a1 = min(a1, arr[i + n - 1] - arr[i]);
     }
+    cout << a1;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t=1;
+    //cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
