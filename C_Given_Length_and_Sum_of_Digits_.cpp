@@ -57,8 +57,9 @@ double eps = 1e-12;
 
 void solve()
 {
-    int m, s;
+    ll m, s;
     cin >> m >> s;
+    ll diff = 9 * m - s;
 
     if (s == 0 && m != 1)
     {
@@ -66,18 +67,57 @@ void solve()
         return;
     }
 
-    if ( m == 1)
+    if (m == 1)
     {
-        cout << s<<" "<<s;
+        cout << s << " " << s;
         return;
     }
 
+    if (diff <= 0)
+    {
+        cout << "-1 -1" << ln;
+        return;
+    }
 
+    v64 dummy, mini, maxi;
+    int temp = s;
+
+    for (ll i = 0; i < m && temp >= 0; i++)
+    {
+        dummy.pb(min(temp, 9));
+        temp -= min(temp, 9);
+    }
+
+    forn(i, dummy.size())
+    {
+        maxi.pb(dummy[i]);
+    }
+    // now smallest
+    reverse(all(dummy));
+    forn(i, dummy.size())
+    {
+        mini.pb(dummy[i]);
+    }
+    if (mini[0] == 0)
+    {
+        mini[0] = 1;
+    }
+    // ___________________________________________
+    for (auto t : mini)
+    {
+        cout << t;
+    }
+    cout << " ";
+    for (auto t : maxi)
+    {
+        cout << t;
+    }
+    cout << ln;
 }
 int main()
 {
     fast_cin();
-    ll t=1;
+    ll t = 1;
     //cin >> t;
     for (int it = 1; it <= t; it++)
     {

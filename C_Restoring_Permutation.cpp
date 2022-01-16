@@ -57,12 +57,16 @@ void solve()
 { 
  int n;
  cin>>n;
- int arr[n];
+ int arr[n],brr[n];
  forn(i,n)
  {
- cin>>arr[i];
+ cin>>brr[i];
  }
- 
+
+ forn(i, n)
+ {
+    arr[2*i-1]= brr[i];
+ }
 }
 int main()
 {
