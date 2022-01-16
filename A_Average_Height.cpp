@@ -59,29 +59,36 @@ void solve()
 {
     int n;
     cin >> n;
-    int arr[n], brr[n];
-    forn(i,n){
-        cin >> arr[i] >> brr[i];
-    }
-
-    for (size_t i = 0; i < n; i++)
+    v64 odd, even;
+    int arr[n];
+    forn(i, n)
     {
-        for (size_t j = 0; j < n; j++)
+        cin >> arr[i];
+        if (arr[i] & 1)
         {
-            if (i!=j&&arr[i]==brr[j])
-            {
-                /* code */
-            }
-            
+            odd.pb(arr[i]);
+        }
+        else
+        {
+            even.pb(arr[i]);
         }
     }
-    
+
+    for (size_t i = 0; i < odd.size(); i++)
+    {
+        cout << odd[i] << " ";
+    }
+    for (size_t i = 0; i < even.size(); i++)
+    {
+        cout << even[i] << " ";
+    }
+    cout << ln;
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    //cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
