@@ -57,10 +57,11 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n;
+    int n, cnt = 0;
     cin >> n;
-    int arr[n], brr[n];
-    forn(i,n){
+    int arr[n], brr[n], crr[n] = {0};
+    forn(i, n)
+    {
         cin >> arr[i] >> brr[i];
     }
 
@@ -68,14 +69,28 @@ void solve()
     {
         for (size_t j = 0; j < n; j++)
         {
-            if (i!=j&&arr[i]==brr[j])
+            if (crr[j] == 1)
             {
-                /* code */
+                continue;
             }
-            
+            if (i == j)
+            {
+                continue;
+            }
+            if (brr[i] == arr[j])
+            {
+                crr[j] = 1;
+            }
         }
     }
-    
+    forn(i, n)
+    {
+        if (crr[i] == 0)
+        {
+            cnt++;
+        }
+    }
+    cout << cnt << ln;
 }
 int main()
 {
