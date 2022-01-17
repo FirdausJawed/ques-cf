@@ -57,49 +57,41 @@ double eps = 1e-12;
 
 void solve()
 {
-    map<ll, ll> m;
     int n;
     cin >> n;
     int arr[n];
+    map<ll, v64> m;
     forn(i, n)
     {
         cin >> arr[i];
-        m[arr[i]]++;
+        m[arr[i]].pb(i);
     }
 
-    int maxi = -1, num = -1, dist = -1, min_dist = INT_MAX;
+    int dist = -1, mini_dist = INT_MAX;
+    bool flag = false;
 
     for (auto t : m)
     {
-        if (t.se > maxi)
+        auto k = t.se;
+        if (k.size() > 1)
         {
-            maxi = t.se;
-            num = t.fi;
+            flag = true;
+            forn(i, k.size() - 1)
+            {
+                dist = abs(k[i] - k[i + 1]);
+                mini_dist = min(dist, mini_dist);
+            }
         }
     }
 
-    if (maxi <= 1)
+    if (!flag)
     {
         cout << -1 << ln;
-        return;
     }
-
-    v64 idx;
-
-    forn(i, n)
+    else
     {
-        if (arr[i] == num)
-        {
-            idx.pb(i);
-        }
+        cout << mini_dist + 1 << ln;
     }
-
-    forn(i, (idx.size() - 1))
-    {
-        dist = abs(idx[i] - idx[i + 1]) + 1;
-        min_dist = min(dist, min_dist);
-    }
-    cout << min_dist << ln;
 }
 int main()
 {
