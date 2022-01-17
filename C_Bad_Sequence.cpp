@@ -91,14 +91,22 @@ void solve()
     string s;
     cin >> s;
 
-    cout << check(s) << ln;
+    if (check(s) == 1 || check(s) == 0)
+    {
+        cout << "YES" << ln;
+    }
+    else
+    {
+        cout << "NO" << ln;
+    }
+
     cnt = 0;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    //cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
