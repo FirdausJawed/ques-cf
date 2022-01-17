@@ -76,7 +76,7 @@ void solve()
             return;
         }
     }
-    
+
     for (ll i = 1; i <= 2 * n; i++)
     {
         if (m[i] == 0)
@@ -84,7 +84,7 @@ void solve()
             s.insert(i);
         }
     }
-    
+
     for (ll i = 0; i < n; i++)
     {
         res.pb(arr[i]);
