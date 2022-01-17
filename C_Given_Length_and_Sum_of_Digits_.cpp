@@ -79,7 +79,7 @@ void solve()
         return;
     }
 
-    v64 dummy, mini, maxi;
+    string dummy, mini, maxi;
     int temp = s;
 
     for (ll i = 0; i < m && temp >= 0; i++)
@@ -100,7 +100,7 @@ void solve()
     }
     if (mini[0] == 0)
     {
-        mini[0] = 1;
+        mini[0] = '1';
     }
     // ___________________________________________
     for (auto t : mini)

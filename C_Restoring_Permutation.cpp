@@ -57,18 +57,54 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
-    int arr[n], brr[n];
+    ll arr[n];
+    set<ll> s;
+    map<ll, ll> m;
+    v64 res;
     forn(i, n)
     {
-        cin >> brr[i];
+        cin >> arr[i];
     }
-
     forn(i, n)
     {
-        arr[2 * i - 1] = brr[i];
+        m[arr[i]]++;
+        if (arr[i] > 2 * n || m[arr[i]] > 1)
+        {
+            cout << -1 << ln;
+            return;
+        }
     }
+    
+    for (ll i = 1; i <= 2 * n; i++)
+    {
+        if (m[i] == 0)
+        {
+            s.insert(i);
+        }
+    }
+    
+    for (ll i = 0; i < n; i++)
+    {
+        res.pb(arr[i]);
+        auto it = s.upper_bound(arr[i]);
+        if (it != s.end())
+        {
+            res.pb(*it);
+            s.erase(it);
+        }
+    }
+    if (res.size() != 2 * n)
+    {
+        cout << -1 << ln;
+        return;
+    }
+    for (auto t : res)
+    {
+        cout << t << " ";
+    }
+    cout << ln;
 }
 int main()
 {
