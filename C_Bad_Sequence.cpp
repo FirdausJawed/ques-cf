@@ -58,8 +58,9 @@ double eps = 1e-12;
 map<char, int> m = {{'(', -1}, {')', 1}};
 int cnt = 0;
 
-int check(string s)
+bool check(string s)
 {
+    ll openbracket = 0, closebracket = 0;
     stack<char> st;
     for (auto bracket : s)
     {
@@ -72,16 +73,24 @@ int check(string s)
             if (st.empty())
             {
                 cnt++;
+                closebracket++;
             }
             else
             {
-                char top = st.top();
                 st.pop();
             }
         }
     }
-    cnt += st.size();
-    return (cnt / 2);
+    openbracket += st.size();
+    if (openbracket == closebracket && openbracket == 0 && closebracket == 0)
+    {
+        return true;
+    }
+    if (openbracket == closebracket && openbracket == 1 && closebracket == 1)
+    {
+        return true;
+    }
+    return false;
 }
 
 void solve()
@@ -91,22 +100,21 @@ void solve()
     string s;
     cin >> s;
 
-    if (check(s) == 1 || check(s) == 0)
+    if (check(s))
     {
-        cout << "YES" << ln;
+        cout << "Yes" << ln;
     }
     else
     {
-        cout << "NO" << ln;
+        cout << "No" << ln;
     }
-
     cnt = 0;
 }
 int main()
 {
     fast_cin();
     ll t = 1;
-    //cin >> t;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
