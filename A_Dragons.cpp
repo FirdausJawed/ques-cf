@@ -57,30 +57,30 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, s,cnt=0;
+    int n, s;
     cin >> s >> n;
-    int arr[n], brr[n];
+    vp64 m;
     forn(i, n)
     {
-        cin >> arr[i] >> brr[i];
+        ll x, y;
+        cin >> x >> y;
+        m.pb(mp(x, y));
     }
 
-    forn(i,n){
-        if (arr[i]<=s)
-        {
-            cnt++;
-            s = s + brr[i];
-        }       
-    }
-
-    if (cnt==n)
+    sort(all(m));
+    forn(i, n)
     {
-        cout << "YES" << ln;
+        if (s > m[i].fi)
+        {
+            s += m[i].se;
+        }
+        else
+        {
+            cout << "NO" << ln;
+            return;
+        }
     }
-    else{
-        cout << "NO" << ln;
-    }
-    
+    cout << "YES" << ln;
 }
 int main()
 {
