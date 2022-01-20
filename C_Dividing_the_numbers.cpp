@@ -64,6 +64,8 @@ void solve()
     {
         cin >> arr[i];
     }
+
+    
 }
 int main()
 {

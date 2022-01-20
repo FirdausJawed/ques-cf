@@ -55,62 +55,50 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
-// bool even(int x)
-// {
-//     if (x % 2 == 0)
-//     {
-//         return true;
-//     }
-//     else
-//     {
-//         return false;
-//     }
-// }
-
 void solve()
 {
-    int n;
-    cin >> n;
-    int s1 = 0, s2 = 0,cnt=0;
-    int arr[n], brr[n];
+    string s;
+    cin >> s;
+    int n = s.length(), streak = 0, maxi = -1, s1 = 0, mxx = -1;
+
     forn(i, n)
     {
-        cin >> arr[i] >> brr[i];
-
-        if ((arr[i]) % 2 != (brr[i]) % 2)
+        if (s[i] == '1')
         {
-            cnt++;
+            streak++;
         }
-        
-        s1 += arr[i], s2 += brr[i];
-    }
+        else
+        {
+            streak = 0;
+        }
+        maxi = max(streak, maxi);
 
-    if ((s1) % 2 == (s2) % 2)
+        if (s[i] == '0')
+        {
+            s1++;
+        }
+        else
+        {
+            s1 = 0;
+        }
+        mxx = max(s1, mxx);
+    }
+    if (maxi >= 7 || mxx >= 7)
     {
-        if ((s1) % 2 == 0)
-        {
-            cout << 0 << ln;
-        }
-        else if (cnt>0)
-        {
-            cout << 1 << ln;
-        }
-        else{
-            cout << -1 << ln;
-        }
+        cout << "YES" << ln;
     }
-    else{
-        cout << -1 << ln;
+    else
+    {
+        cout << "NO" << ln;
     }
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
+    //  ll t;
     //  cin >> t;
-    for (int it = 1; it <= t; it++)
-    {
-        solve();
-    }
+    //  for(int it=1;it<=t;it++) {
+    solve();
+    //  }
     return 0;
 }
