@@ -57,38 +57,33 @@ double eps = 1e-12;
 
 void solve()
 {
+    int n, k;
+    cin >> n >> k;
+    string s, ans = "";
+    cin >> s;
 
-    int n, m, k, x, ans, i, j;
-    int a[2003];
-    string s;
-    cin >> n >> m >> k;
-    for (i = 0; i < n; i++)
+    ll open = k / 2, close = k / 2;
+
+    forn(i, n)
     {
-        cin >> s;
-        x = 0;
-        for (j = 0; j < m; j++)
+        if (s[i] == '(' && open)
         {
-            if (s[j] == '.')
-                a[j]++, x++;
-            else
-            {
-                x = 0;
-                a[j] = 0;
-            }
-            if (x >= k)
-                ans++;
-            if (k > 1 && a[j] >= k)
-                ans++;
+            ans.pb(s[i]);
+            open--;
+        }
+        else if (s[i] == ')' && close)
+        {
+            ans.pb(s[i]);
+            close--;
         }
     }
-
     cout << ans;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();

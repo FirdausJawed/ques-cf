@@ -57,38 +57,38 @@ double eps = 1e-12;
 
 void solve()
 {
-
-    int n, m, k, x, ans, i, j;
-    int a[2003];
-    string s;
+    int n, m, k, x = 0;
     cin >> n >> m >> k;
-    for (i = 0; i < n; i++)
+    char arr[n][m];
+    int cnt = 0;
+
+    forn(i, n)
     {
-        cin >> s;
-        x = 0;
-        for (j = 0; j < m; j++)
+        forn(j, m)
         {
-            if (s[j] == '.')
-                a[j]++, x++;
+            cin >> arr[i][j];
+            if (arr[i][j] == '.')
+            {
+                x++;
+            }
             else
             {
                 x = 0;
-                a[j] = 0;
             }
             if (x >= k)
-                ans++;
-            if (k > 1 && a[j] >= k)
-                ans++;
+            {
+                cnt++;
+            }
         }
     }
 
-    cout << ans;
+    cout << cnt << ln;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
