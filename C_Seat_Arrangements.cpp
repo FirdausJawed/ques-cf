@@ -55,14 +55,14 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
+int n, m, k, x = 0;
+int col[2000];
+string arr;
+int cnt = 0;
+
 void solve()
 {
-    int n, m, k, x = 0;
     cin >> n >> m >> k;
-    int col[2000];
-    string arr;
-    int cnt = 0;
-
     forn(i, n)
     {
         x = 0;
@@ -95,6 +95,7 @@ void solve()
 
     cout << cnt << ln;
 }
+
 int main()
 {
     fast_cin();

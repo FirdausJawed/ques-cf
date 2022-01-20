@@ -55,12 +55,11 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
+int n, m, k, x, ans, i, j;
+int a[2003];
+string s;
 void solve()
-{
-
-    int n, m, k, x, ans, i, j;
-    int a[2003];
-    string s;
+{   
     cin >> n >> m >> k;
     for (i = 0; i < n; i++)
     {
