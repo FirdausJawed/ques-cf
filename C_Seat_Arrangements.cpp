@@ -59,23 +59,34 @@ void solve()
 {
     int n, m, k, x = 0;
     cin >> n >> m >> k;
-    char arr[n][m];
+    int col[2000];
+    string arr;
     int cnt = 0;
 
     forn(i, n)
     {
+        x = 0;
+        cin >> arr;
         forn(j, m)
         {
-            cin >> arr[i][j];
-            if (arr[i][j] == '.')
+           
+            if (arr[j] == '.')
             {
                 x++;
+                col[j]++;
             }
             else
             {
                 x = 0;
+                col[j] = 0;
             }
+
             if (x >= k)
+            {
+                cnt++;
+            }
+
+            if (k > 1 && col[j] >= k)
             {
                 cnt++;
             }
