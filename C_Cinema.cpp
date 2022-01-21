@@ -57,45 +57,70 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, q;
-    cin >> n >> q;
-
-    int t[q], k[q], d[q];
-    forn(i, q)
+    ll n;
+    cin >> n;
+    ll sci_lang[n];
+    map<ll, ll> ma, mb, mc;
+    forn(i, n)
     {
-        cin >> t[i] >> k[i] >> d[i];
+        cin >> sci_lang[i];
+        ma[sci_lang[i]]++;
     }
 
-    int ti = 0;
-    v64 ans;
-
-    ans.pb(t[0] + k[0] + d[0]);
-    n -= k[0], ti += d[0];
-
-    for (int i = 1; i < q; i++)
+    ll m;
+    cin >> m;
+    ll audio[m], subtitle[m];
+    forn(i, m)
     {
-        if (n >= k[i] && ti < t[i])
+        cin >> audio[i];
+        // mb[audio[i]]++;
+    }
+    forn(i, m)
+    {
+        cin >> subtitle[i];
+        // mc[subtitle[i]]++;
+    }
+
+    vp64 v(m);
+    forn(i, m)
+    {
+        v[i].fi = ma[audio[i]];
+        v[i].se = ma[subtitle[i]];
+    }
+
+    int a = -1, b = -1, c = -1, k = 1;
+
+    for (auto t : v)
+    {
+        if (a < t.fi)
         {
-            ans.pb(k[i] + t[i] + d[i]);
+            a = t.fi;
+            c = k;
         }
-        else
-        {
-            ans.pb(-1);
-        }
-        ti += d[i];
-        n -= k[i];
+        k++;
     }
 
-    for (auto t : ans)
+    int k2 = 1;
+    int ans = 0;
+    for (auto t : v)
     {
-        cout << t << ln;
+        if (a == t.fi)
+        {
+            if (b < t.se)
+            {
+                b = t.se;
+                ans = k2;
+            }
+        }
+        k2++;
     }
+    cout << ans;
 }
 int main()
 {
     fast_cin();
     ll t = 1;
-    //  cin >> t;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
