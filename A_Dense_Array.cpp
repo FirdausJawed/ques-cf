@@ -65,35 +65,27 @@ void solve()
         cin >> arr[i];
     }
 
-    if (n == 1)
-    {
-        cout << arr[0] + 1 << ln;
-        return;
-    }
-
-    ll ans = 0, curr = 0;
+    int cnt = 0;
     forn(i, n - 1)
     {
-        ans += (arr[i] - curr + 1);
-        curr = arr[i];
-        if (arr[i + 1] >= arr[i])
+        int a = double(max(arr[i], arr[i + 1]));
+        int b = double(min(arr[i], arr[i + 1]));
+        if ((a / b) > 2)
         {
-            ans++;
-        }
-        else
-        {
-            ans += (arr[i] - arr[i + 1] + 1);
-            curr = arr[i + 1];
+            while ((a / b) > 2)
+            {
+                cnt++;
+                b *= 2;
+            }
         }
     }
-    ans += (arr[n - 1] - curr + 1);
-    cout << ans << ln;
+    cout << cnt << ln;
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    //  cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
