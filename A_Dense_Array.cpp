@@ -68,15 +68,12 @@ void solve()
     int cnt = 0;
     forn(i, n - 1)
     {
-        int a = double(max(arr[i], arr[i + 1]));
-        int b = double(min(arr[i], arr[i + 1]));
-        if ((a / b) > 2)
+        int a = (max(arr[i], arr[i + 1]));
+        int b = (min(arr[i], arr[i + 1]));
+        while ((b * 2) < a)
         {
-            while ((a / b) > 2)
-            {
-                cnt++;
-                b *= 2;
-            }
+            cnt++;
+            b *= 2;
         }
     }
     cout << cnt << ln;
