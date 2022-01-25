@@ -55,37 +55,17 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
+
+
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    int arr[n];
-    int brr[m];
-
-    forn(i, n)
-    {
-        cin >> arr[i];
-    }
-
-    forn(j, m)
-    {
-        cin >> brr[j];
-    }
-
-    int i = 0, j = 0, s1 = 0, s2 = 0;
-    while (i <= n - 1 && j <= m - 1)
-    {
-        if (n)
-        {
-            /* code */
-        }
-    }
+    
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    //  cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();

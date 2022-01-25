@@ -57,29 +57,14 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    int arr[n];
-    int brr[m];
-
-    forn(i, n)
+    int n, k;
+    cin >> n >> k;
+    ll ans = 1;
+    while (k--)
     {
-        cin >> arr[i];
+        ans = (ans * n) % MOD;
     }
-
-    forn(j, m)
-    {
-        cin >> brr[j];
-    }
-
-    int i = 0, j = 0, s1 = 0, s2 = 0;
-    while (i <= n - 1 && j <= m - 1)
-    {
-        if (n)
-        {
-            /* code */
-        }
-    }
+    cout << ans << ln;
 }
 int main()
 {
