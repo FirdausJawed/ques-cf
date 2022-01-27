@@ -55,11 +55,45 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
+bool magic_no(string s)
+{
+    int cnt = 0;
+    bool magic = true, ma = false;
 
+    forn(i, s.length())
+    {
+        if (s[i] != '1' && s[i] != '4')
+        {
+            magic = false;
+        }
+        else
+        {
+            if (s[i] == '1')
+            {
+                cnt = 0;
+                ma = true;
+            }
+            else if (s[i] == '4')
+            {
+                cnt++;
+            }
+        }
+
+        if (cnt > 2 || !ma)
+        {
+            magic = false;
+            break;
+        }
+    }
+    return magic;
+}
 
 void solve()
 {
-    
+    string s;
+    cin >> s;
+
+    magic_no(s) ? cout << "YES" : cout << "NO";
 }
 int main()
 {
