@@ -125,18 +125,16 @@ void solve()
 { 
  ll n;
  cin>>n;
- ll arr[n];
- forn(i,n)
- {
- cin>>arr[i];
- }
- 
+ string s;
+ cin >> s;
+ sort(all(s));
+ cout << s << ln;
 }
 int main()
 {
  fast_cin();
- ll t;
- cin >> t;
+ ll t=1;
+//  cin >> t;
  for(int it=1;it<=t;it++) {
  solve();
  }
