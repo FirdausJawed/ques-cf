@@ -57,38 +57,39 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n, k, cnt = 0;
+    int n, k;
     cin >> n >> k;
 
     string s;
     cin >> s;
-    string t = s;
 
-    int i = 0, j = n - 1;
-    while (i < j)
+    v64 v(n);
+    for (int i = 1; i < n; i++)
     {
+        int j = v[i - 1];
+        while (j > 0 && s[j] != s[i])
+        {
+            j = v[j - 1];
+        }
         if (s[i] == s[j])
         {
-            cnt++;
+            j++;
         }
-        i++;
-        j--;
+        v[i] = j;
     }
 
-    cout << t;
-    k -= n;
-    int p = n - cnt;
-
-    for (int it = cnt; (it < n), k; it++)
+    ll l = n - v[n - 1];
+    forn(i, k - 1)
     {
-        cout << s[it];
+        cout << s.substr(0, l);
     }
+    cout << s << ln;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
