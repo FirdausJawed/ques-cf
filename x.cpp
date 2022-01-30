@@ -126,8 +126,8 @@ void solve()
     ll x, d,n;
     cin >> x >> n >> d;
 
-    ll res = powl((x % d), n);
-    cout << res%d;
+    ll res = modpow(x,n,d);
+    cout << res;
 }
 int main()
 {
