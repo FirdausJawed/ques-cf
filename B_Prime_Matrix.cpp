@@ -110,7 +110,7 @@ void sieve()
 
 void solve()
 {
-    ll n, m,cnt=0;
+    ll n, m;
     cin >> n >> m;
     ll arr[n][m];
     forn(i, n)
@@ -121,15 +121,36 @@ void solve()
         }
     }
 
+    ll mini_row = INT_MAX, mini_col = INT_MAX;
 
+    forn(i, n)
+    {
+        ll row = 0;
+        forn(j, m)
+        {
+            ll idx = lower_bound(all(prime), arr[i][j]) - prime.begin();
+            row += prime[idx] - arr[i][j];
+        }
+        mini_row = min(row, mini_row);
+    }
 
-
+    forn(j, m)
+    {
+        ll col = 0;
+        forn(i, n)
+        {
+            ll idx = lower_bound(all(prime), arr[i][j]) - prime.begin();
+            col += prime[idx] - arr[i][j];
+        }
+        mini_col = min(col, mini_col);
+    }
+    cout << min(mini_row, mini_col) << ln;
 }
 int main()
 {
     fast_cin();
     sieve();
-    ll t=1;
+    ll t = 1;
     // cin >> t;
     for (int it = 1; it <= t; it++)
     {
