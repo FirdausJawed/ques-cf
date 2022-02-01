@@ -6,3 +6,15 @@
 multiplication table:-
 https://codeforces.com/contest/448/problem/D
 
+
+
+
+
+
+
+
+
+
+
+//to do graphs questions:-
+https://codeforces.com/contest/707/problem/B
