@@ -177,38 +177,36 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
+    map<int, int> m;
+    int n;
     cin >> n;
     string s;
     cin >> s;
-
-    map<ll, ll> m;
-
-    for (size_t i = 1; i < 10; i++)
+    for (int i = 1; i <= 9; i++)
     {
-        ll t;
-        cin >> t;
-        m[i] = t;
+        ll a;
+        cin >> a;
+        m[i] = a;
     }
-    forn(i,n)
+
+    int F = 0;
+    for (int i = 0; i < s.size(); i++)
     {
-        if (m[s[i] - '0'] > s[i] - '0')
+        if (m[s[i] - '0'] >= s[i] - '0')
         {
-            for (int j = i; j < n; j++)
+            if (m[s[i] - '0'] == s[i] - '0')
             {
-                if (m[s[j] - '0'] >= (s[j] - '0'))
-                {
-                    s[j] = (char)(m[s[j] - '0'] + '0');
-                }
-                else
-                {
-                    break;
-                }
+                continue;
             }
+            F = 1;
+            s[i] = m[s[i] - '0'] + '0';
+        }
+        else if (F)
+        {
             break;
         }
     }
-    cout << s << ln;
+    cout << s;
 }
 int main()
 {
