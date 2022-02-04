@@ -179,13 +179,67 @@ void solve()
 {
     string s;
     cin >> s;
-    ll n = s.length();
 
-    if (n < 26)
+    ll cnt[26] = {0}, q = 0, n = s.length();
+
+    for (int i = 0; i < n; i++)
     {
-        cout << -1 << ln;
-        return;
+        if (s[i] != '?')
+        {
+            cnt[s[i] - 'A']++;
+        }
+        else
+        {
+            q++;
+        }
+
+        if (i - 26 >= 0)
+        {
+            if (s[i - 26] != '?')
+            {
+                cnt[s[i - 26] - 'A']--;
+            }
+            else
+            {
+                q--;
+            }
+        }
+
+        ll maxi = *max_element(cnt, cnt + 26), z = count(cnt, cnt + 26, 0);
+
+        if (maxi <= 1 && z == q)
+        {
+            ll j = i - 25, k = 0;
+
+            while (j <= i)
+            {
+                if (s[j] == '?')
+                {
+                    while (cnt[k])
+                    {
+                        k++;
+                    }
+
+                    s[j] = (char)(k + 'A');
+                    {
+                        k++;
+                    }
+                }
+
+                j++;
+            }
+
+            for (auto e : s)
+            {
+                if (e == '?')
+                    cout << 'Z';
+                else
+                    cout << e;
+            }
+            return;
+        }
     }
+    cout << "-1";
 }
 int main()
 {
