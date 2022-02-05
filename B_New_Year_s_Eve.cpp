@@ -19,10 +19,9 @@
 #include <stack>
 #include <iomanip>
 #include <fstream>
-
 using namespace std;
-typedef unsigned long long ull;
 typedef long long ll;
+typedef unsigned long long int ull;
 typedef long double ld;
 typedef pair<int, int> p32;
 typedef pair<ll, ll> p64;
@@ -35,98 +34,20 @@ typedef vector<vector<p64>> vvp64;
 typedef vector<p64> vp64;
 typedef vector<p32> vp32;
 ll MOD = 1000000007;
-double eps = 1e-12;
 #define forn(i, n) for (ll i = 0; i < n; i++)
-#define forsn(i, s, e) for (ll i = s; i < e; i++)
-#define rforn(i, s) for (ll i = s; i >= 0; i--)
-#define rforsn(i, s, e) for (ll i = s; i >= e; i--)
 #define ln "\n"
-#define dbg(x) cout << #x << " = " << x << ln
 #define mp make_pair
 #define pb push_back
-#define fi first
-#define se second
-#define INF 2e18
 #define fast_cin()                    \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);                    \
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
-#define al(arr, n) arr, arr + n
+#define alll(arr, n) (arr), (arr) + (n)
 #define sz(x) ((ll)(x).size())
 
-//function for prime factorization
-vector<pair<ll, ll>> pf(ll n)
-{
-    vector<pair<ll, ll>> prime;
-    for (int i = 2; i <= sqrt(n); i++)
-    {
-        if (n % i == 0)
-        {
-            int count = 0;
-            while (n % i == 0)
-            {
-                count++;
-                n = n / i;
-            }
-            prime.pb(mp(i, count));
-        }
-    }
-    if (n > 1)
-    {
-        prime.pb(mp(n, 1));
-    }
-    return prime;
-}
-
-//sum of digits of a number
-ll sumofno(ll n)
-{
-    ll sum = 0;
-    while (n != 0)
-    {
-        sum += n % 10;
-        n = n / 10;
-    }
-    return sum;
-}
-
-//modular exponentiation
-long long modpow(long long val, long long deg, long long mod)
-{
-    if (!deg)
-        return 1 % mod;
-    if (deg & 1)
-        return modpow(val, deg - 1, mod) * val % mod;
-    long long res = modpow(val, deg >> 1, mod);
-    return (res * res) % mod;
-}
-
-const int N = 1e6 + 100;
-long long fact[N];
-// initialise the factorial
-void initfact()
-{
-    fact[0] = 1;
-    for (int i = 1; i < N; i++)
-    {
-        fact[i] = (fact[i - 1] * i);
-        fact[i] %= MOD;
-    }
-}
-
-//formula for c
-ll C(ll n, ll i)
-{
-    ll res = fact[n];
-    ll div = fact[n - i] * fact[i];
-    div %= MOD;
-    div = modpow(div, MOD - 2, MOD);
-    return (res * div) % MOD;
-}
-
-//function for fast expo
-ll fastexpo(ll a, ll b)
+// function for fast expo
+ull fastexpo(ull a, ull b)
 {
     if (b == 0)
     {
@@ -136,7 +57,7 @@ ll fastexpo(ll a, ll b)
     {
         return 0;
     }
-    ll y = fastexpo(a, b / 2);
+    ull y = fastexpo(a, b / 2);
     if (b % 2 == 0)
     {
         return y * y;
@@ -147,45 +68,27 @@ ll fastexpo(ll a, ll b)
     }
 }
 
-ll popcount(ll n)
-{
-    ll c = 0;
-    for (; n; ++c)
-        n &= n - 1;
-    return c;
-}
-
-ll ce(ll x, ll y)
-{
-    ll res = x / y;
-    if (x % y != 0)
-    {
-        res++;
-    }
-    return res;
-}
-
-bool pow2(ll x)
-{
-    ll res = x & (x - 1);
-    if (res == 0)
-    {
-        return true;
-    }
-    return false;
-}
-
 void solve()
 {
-    ll n,k;
-    cin >> n>>k;
-    
-    if (k==1)
+    ull a, b;
+    cin >> a >> b;
+    ll kk = a + 1;
+    ll ans = kk & a;
+    if (ans == 0)
     {
-        cout << n << ln;
+        cout << a << ln;
         return;
     }
-    
+    if (b > 1)
+    {
+        ull res = log2(a) + 1ull;
+        ull sum = fastexpo(2, res) - 1ull;
+        cout << sum << ln;
+    }
+    else
+    {
+        cout << a << ln;
+    }
 }
 int main()
 {
@@ -199,7 +102,7 @@ int main()
     return 0;
 }
 
-/* 
+/*
 1. Check borderline constraints. Can a variable you are dividing by be 0?
 2. Use ll while using bitshifts
 3. Do not erase from set while iterating it
