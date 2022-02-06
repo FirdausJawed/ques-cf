@@ -59,31 +59,32 @@ void solve()
 {
     ll n;
     cin >> n;
-    ll arr[n][n];
-    forn(i, n)
+    ll a[n + 1][n + 1];
+
+    for (ll i = 1; i <= n; i++)
     {
-        forn(j, n)
+        for (ll j = 1; j <= n; j++)
         {
-            cin >> arr[i][j];
+            cin >> a[i][j];
         }
     }
 
-    v64 res;
+    ll res[n + 1];
 
-    forn(i, n - 2)
+    for (ll i = 1; i <= n - 2; i++)
     {
-        ll t = (arr[i][i + 1] * arr[i][i + 2]) / (arr[i + 1][i + 2]);
-        res.pb(sqrt(t));
+        ll t = (a[i][i + 1] * a[i][i + 2]) / (a[i + 1][i + 2]);
+        res[i] = sqrt(t);
     }
 
-    ll t = (arr[n - 1][n - 2] * arr[n - 1][n]) / arr[n][n - 2];
+    ll t = (a[n - 1][n - 2] * a[n - 1][n]) / a[n][n - 2];
 
-    res.pb(sqrt(t));
-    res.pb(arr[n][n - 1] / res[n - 1]);
+    res[n - 1] = sqrt(t);
+    res[n] = a[n][n - 1] / res[n - 1];
 
-    for (auto x : res)
+    for (ll i = 1; i <= n; i++)
     {
-        cout << x << " ";
+        cout << res[i] << " ";
     }
 }
 int main()
