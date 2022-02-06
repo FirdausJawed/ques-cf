@@ -196,11 +196,12 @@ void solve()
     {
         if (arr[i] == brr[j])
         {
+            m[brr[j]] = 1;
             i++, j++;
         }
         else if (m[arr[i]] == 0)
         {
-            brr[j] = 1;
+            m[brr[j]] = 1;
             j++, fine++;
         }
         else
