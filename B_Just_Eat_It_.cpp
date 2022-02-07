@@ -55,6 +55,30 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
+// function for prime factorization
+vector<pair<ll, ll>> pf(ll n)
+{
+    vector<pair<ll, ll>> prime;
+    for (int i = 2; i <= sqrt(n); i++)
+    {
+        if (n % i == 0)
+        {
+            int count = 0;
+            while (n % i == 0)
+            {
+                count++;
+                n = n / i;
+            }
+            prime.pb(mp(i, count));
+        }
+    }
+    if (n > 1)
+    {
+        prime.pb(mp(n, 1));
+    }
+    return prime;
+}
+
 // sum of digits of a number
 ll sumofno(ll n)
 {
@@ -68,41 +92,37 @@ ll sumofno(ll n)
 }
 
 // modular exponentiation
-long long modpow(long long x, long long n, long long p)
+long long modpow(long long val, long long deg, long long mod)
 {
-
-    if (n == 0)
-        return 1 % p;
-
-    ll ans = 1, base = x;
-    while (n > 0)
-    {
-        if (n % 2 == 1)
-        {
-            ans = (ans * base) % p;
-            n--;
-        }
-        else
-        {
-            base = (base * base) % p;
-            n /= 2;
-        }
-    }
-    if (ans < 0)
-        ans = (ans + p) % p;
-    return ans;
+    if (!deg)
+        return 1 % mod;
+    if (deg & 1)
+        return modpow(val, deg - 1, mod) * val % mod;
+    long long res = modpow(val, deg >> 1, mod);
+    return (res * res) % mod;
 }
 
-long long CW(ll n, ll m)
+const int N = 1e6 + 100;
+long long fact[N];
+// initialise the factorial
+void initfact()
 {
-    if (m > n - m)
-        m = n - m;
-    long long ans = 1;
-    for (int i = 0; i < m; i++)
+    fact[0] = 1;
+    for (int i = 1; i < N; i++)
     {
-        ans = ans * (n - i) / (i + 1);
+        fact[i] = (fact[i - 1] * i);
+        fact[i] %= MOD;
     }
-    return ans;
+}
+
+// formula for c
+ll C(ll n, ll i)
+{
+    ll res = fact[n];
+    ll div = fact[n - i] * fact[i];
+    div %= MOD;
+    div = modpow(div, MOD - 2, MOD);
+    return (res * div) % MOD;
 }
 
 // function for fast expo
@@ -157,41 +177,39 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n, ev = 0, od = 0;
+    ll n;
     cin >> n;
     ll arr[n];
     forn(i, n)
     {
         cin >> arr[i];
-        ll pow = log2(arr[i]);
-        if (pow & 1)
-        {
-            od++;
-        }
-        else
-        {
-            ev++;
-        }
-    }
-    if (ev > 0 && od == 0)
-    {
-        ll res = (modpow(2ll, ev, MOD) - 1) % MOD;
-        cout << res % MOD << ln;
     }
 
-    else if (ev > 0 && od > 0)
+    ll s1 = 0, s2 = 0;
+
+    forn(i, n)
     {
-        ll res1 = (modpow(2ll, ev, MOD)) % MOD;
-        ll res2 = modpow(2ll, od - 1, MOD) % MOD;
-        ll prod = (res1 * res2) % MOD - 1;
-        cout << prod % MOD << ln;
+        s1 += arr[i];
+        if (s1 <= 0)
+        {
+            cout << "NO" << ln;
+            return;
+        }
     }
-    
-    else if (ev == 0 && od > 0)
+
+    reverse(al(arr, n));
+
+    forn(i, n)
     {
-        ll res = (modpow(2ll, od - 1, MOD) - 1) % MOD;
-        cout << res % MOD << ln;
+        s2 += arr[i];
+        if (s2 <= 0)
+        {
+            cout << "NO" << ln;
+            return;
+        }
     }
+
+    cout << "YES" << ln;
 }
 int main()
 {
@@ -204,3 +222,13 @@ int main()
     }
     return 0;
 }
+
+/*
+1. Check borderline constraints. Can a variable you are dividing by be 0?
+2. Use ll while using bitshifts
+3. Do not erase from set while iterating it
+4. Initialise everything
+5. Read the task carefully, is something unique, sorted, adjacent, guaranteed??
+6. DO NOT use if(!mp[x]) if you want to iterate the map later
+7. Are you using i in all loops? Are the i's conflicting?
+*/
