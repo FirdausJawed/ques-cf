@@ -177,10 +177,28 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll x, y;
-    cin >> x >> y;
+    ll n, k;
+    cin >> n >> k;
+    ll arr[n];
+    forn(i, n)
+    {
+        cin >> arr[i];
+    }
 
-    cout << min(x / 2, y) << ln;
+    set<ll> s;
+
+    forn(i, n)
+    {
+        if (k < arr[i])
+        {
+            s.insert(2);
+        }
+        else
+        {
+            s.insert(ce(k, arr[i]));
+        }
+    }
+    cout << *s.begin() << ln;
 }
 int main()
 {
