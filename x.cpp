@@ -55,67 +55,167 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
+// function for prime factorization
+vector<pair<ll, ll>> pf(ll n)
+{
+    vector<pair<ll, ll>> prime;
+    for (int i = 2; i <= sqrt(n); i++)
+    {
+        if (n % i == 0)
+        {
+            int count = 0;
+            while (n % i == 0)
+            {
+                count++;
+                n = n / i;
+            }
+            prime.pb(mp(i, count));
+        }
+    }
+    if (n > 1)
+    {
+        prime.pb(mp(n, 1));
+    }
+    return prime;
+}
+
+// sum of digits of a number
+ll sumofno(ll n)
+{
+    ll sum = 0;
+    while (n != 0)
+    {
+        sum += n % 10;
+        n = n / 10;
+    }
+    return sum;
+}
+
+// modular exponentiation
+long long modpow(long long x, long long n, long long p)
+{
+
+    if (n == 0)
+        return 1 % p;
+
+    ll ans = 1, base = x;
+    while (n > 0)
+    {
+        if (n % 2 == 1)
+        {
+            ans = (ans * base) % p;
+            n--;
+        }
+        else
+        {
+            base = (base * base) % p;
+            n /= 2;
+        }
+    }
+    if (ans < 0)
+        ans = (ans + p) % p;
+    return ans;
+}
+long long CW(ll n, ll m)
+{
+    if (m > n - m)
+        m = n - m;
+    long long ans = 1;
+    for (int i = 0; i < m; i++)
+    {
+        ans = ans * (n - i) / (i + 1);
+    }
+    return ans;
+}
+
+// function for fast expo
+ll fastexpo(ll a, ll b)
+{
+    if (b == 0)
+    {
+        return 1;
+    }
+    if (a == 0)
+    {
+        return 0;
+    }
+    ll y = fastexpo(a, b / 2);
+    if (b % 2 == 0)
+    {
+        return y * y;
+    }
+    else
+    {
+        return a * y * y;
+    }
+}
+
+ll popcount(ll n)
+{
+    ll c = 0;
+    for (; n; ++c)
+        n &= n - 1;
+    return c;
+}
+
+ll ce(ll x, ll y)
+{
+    ll res = x / y;
+    if (x % y != 0)
+    {
+        res++;
+    }
+    return res;
+}
+
+bool pow2(ll x)
+{
+    ll res = x & (x - 1);
+    if (res == 0)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool compare(p64 a, p64 b)
+{
+    ll diff1 = a.se - a.fi;
+    ll diff2 = b.se - b.fi;
+    if (diff1 == diff2)
+    {
+        return a.fi < b.fi;
+    }
+    return diff1 < diff2;
+}
+
 void solve()
 {
     ll n;
     cin >> n;
-    ll arr[n], brr[n];
+    vp64 v;
     forn(i, n)
     {
-        cin >> arr[i];
+        ll a, b;
+        cin >> a >> b;
+        v.pb({a, b});
     }
-    forn(i, n)
+    sort(all(v), compare);
+    map<ll, ll> m;
+    ll count = 0;
+    for (auto t : v)
     {
-        cin >> brr[i];
-    }
-    if (n & 1)
-    {
-        if (arr[n / 2] != brr[n / 2])
+        for (ll i = t.fi; i <= t.se; i++)
         {
-            cout << -1 << ln;
-            return;
-        }
-    }
-
-    v64 ans(n, 0);
-
-    forn(i, n)
-    {
-        if (arr[i] != brr[i])
-        {
-            if (brr[i] == arr[n - i - 1])
+            if (m[i] == 0)
             {
-                ans[i] = 1;
-            }
-            else
-            {
-                cout << -1 << ln;
-                return;
+                m[i]++;
+                count++;
+                break;
             }
         }
-        else if (arr[i] == brr[i])
-        {
-            ans[i] = 0;
-        }
     }
-
-    ll s = 0, p = -1;
-    if (ans[0] == 1)
-    {
-        s = 1;
-    }
-
-    p = ans[0];
-
-    for (ll i = 0; i < n / 2; i++)
-    {
-        if (ans[i] != p)
-        {
-            s++;
-            p = ans[i];
-        }
-    }
-    cout << s << ln;
+    cout << count << ln;
 }
 int main()
 {
@@ -128,3 +228,4 @@ int main()
     }
     return 0;
 }
+

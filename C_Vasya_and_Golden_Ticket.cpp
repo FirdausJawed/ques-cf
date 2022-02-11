@@ -177,33 +177,13 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
+    ll n;
+    cin >> n;
+    string str;
+    cin >> str;
 
-    if (n / 2 >= m)
-    {
-        cout << m << ln;
-        return;
-    }
-
-   else if (n <= m / 2)
-    {
-        cout << n << ln;
-        return;
-    }
-
-    else
-    {
-        ll ans = (n + m) / 3;
-        if (n >= ans && m >= ans)
-        {
-            cout << ans << ln;
-        }
-        else
-        {
-            cout << min(n, m) << ln;
-        }
-    }
+    ll sum = 0;
+   
 }
 int main()
 {

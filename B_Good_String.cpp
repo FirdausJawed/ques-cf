@@ -177,39 +177,41 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
+    ll n;
+    cin >> n;
+    string s;
+    cin >> s;
 
-    if (n / 2 >= m)
+    if (n == 1)
     {
-        cout << m << ln;
+        cout << 0 << ln;
         return;
     }
 
-   else if (n <= m / 2)
-    {
-        cout << n << ln;
-        return;
-    }
+    bool flag1 = true, flag2 = true;
+    ll i = 0, j = n - 1, start_idx = 0, last_idx = 0;
 
-    else
+    for (; i < n, j >= 0; i++, j--)
     {
-        ll ans = (n + m) / 3;
-        if (n >= ans && m >= ans)
+        if (s[i] == '>' && flag1)
         {
-            cout << ans << ln;
+            start_idx = i;
+            flag1 = false;
         }
-        else
+
+        if (s[j] == '<' && flag2)
         {
-            cout << min(n, m) << ln;
+            last_idx = n - j - 1;
+            flag2 = false;
         }
     }
+    cout << min(start_idx, last_idx) << ln;
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    //  cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
