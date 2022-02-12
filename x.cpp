@@ -116,6 +116,7 @@ long long modpow(long long x, long long n, long long p)
         ans = (ans + p) % p;
     return ans;
 }
+
 long long CW(ll n, ll m)
 {
     if (m > n - m)
@@ -180,52 +181,80 @@ bool pow2(ll x)
 
 bool compare(p64 a, p64 b)
 {
-    ll diff1 = a.se - a.fi;
-    ll diff2 = b.se - b.fi;
-    if (diff1 == diff2)
-    {
-        return a.fi < b.fi;
-    }
-    return diff1 < diff2;
+    return a.se < b.se;
 }
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    vp64 v;
+    ll n, m;
+    cin >> n >> m;
+    ll arr[n], brr[n];
+    
     forn(i, n)
     {
-        ll a, b;
-        cin >> a >> b;
-        v.pb({a, b});
+        cin >> arr[i];
     }
-    sort(all(v), compare);
-    map<ll, ll> m;
-    ll count = 0;
-    for (auto t : v)
+
+    forn(i, n)
     {
-        for (ll i = t.fi; i <= t.se; i++)
+        cin >> brr[i];
+    }
+
+    // making vector pairs;
+    vp64 res1, res2;
+    forn(i, n)
+    {
+        res1.pb(mp(arr[i], brr[i]));
+        res2.pb(mp(arr[i], brr[i]));
+    }
+
+
+    sort(al(arr, n)), sort(al(brr, n));
+    sort(all(res1));
+    sort(all(res2), compare);
+
+    ll res = 0;
+    forn(i, m)
+    {
+        ll a, b, ans = INF;
+        cin >> a >> b;
+        ll idx1 = lower_bound(al(arr, n), a) - arr;
+        ll idx2 = lower_bound(al(brr, n), b) - brr;
+        if (idx1 <= n - 1 && idx2 <= n - 1)
         {
-            if (m[i] == 0)
+            for (ll i = (idx1); i < n; i++)
             {
-                m[i]++;
-                count++;
-                break;
+                ll aa = res1[i].fi, bb = res1[i].se;
+                if (aa >= a && bb >= b)
+                {
+                    ans = min(ans, aa + bb);
+                }
             }
+            for (ll i = (idx2); i < n; i++)
+            {
+                ll aa = res2[i].fi, bb = res2[i].se;
+                if (aa >= a && bb >= b)
+                {
+                    ans = min(ans, aa + bb);
+                }
+            }
+            if (ans == INF)
+            {
+                ans = 0;
+            }
+            res += ans;
         }
     }
-    cout << count << ln;
+    cout << res << ln;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
     }
     return 0;
 }
-

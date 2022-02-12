@@ -179,11 +179,42 @@ void solve()
 {
     ll n;
     cin >> n;
-    string str;
-    cin >> str;
+    string s;
+    cin >> s;
 
     ll sum = 0;
-   
+    forn(i, n - 1)
+    {
+        sum += s[i] - '0';
+        bool flag = true;
+        int pos = i + 1;
+        int sum2 = 0;
+
+        while (pos < n)
+        {
+            sum2 = s[pos++] - '0';
+            while (pos < n && sum2 + s[pos] - '0' <= sum)
+            {
+                sum2 += s[pos] - '0';
+                ++pos;
+            }
+            if (sum2 != sum)
+            {
+                flag = false;
+            }
+        }
+
+        if (sum2 != sum)
+        {
+            flag = false;
+        }
+        if (flag)
+        {
+            cout << "YES" << ln;
+            return;
+        }
+    }
+    cout << "NO" << ln;
 }
 int main()
 {
