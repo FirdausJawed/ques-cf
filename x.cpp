@@ -182,7 +182,7 @@ void solve()
 
     ll p = a * b, q = x * y;
 
-    if (q > p)
+    if (q >= p)
     {
         cout << "YES" << ln;
     }
