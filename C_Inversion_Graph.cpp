@@ -57,33 +57,31 @@ double eps = 1e-12;
 
 void solve()
 {
-    ll n;
+    ll n, answer = 1;
     cin >> n;
     ll arr[n];
     v64 res(n, 0);
+    
     forn(i, n)
     {
         cin >> arr[i];
     }
 
-    // ll grap = INT_MIN,p1=INT64_MAX;
-
-    ll max = arr[0];
-    ll ans = 1;
+    ll obs = arr[0];
 
     for (ll i = 1; i < n; i++)
     {
-        if (arr[i] > max && max <= i)
+        if (arr[i] > obs && obs <= i)
         {
-            ans++;
+            answer++;
         }
-        if (arr[i] > max)
+        if (arr[i] > obs)
         {
-            max = arr[i];
+            obs = arr[i];
         }
-        // cout<<max<<ln;
+        // cout<<obs<<ln;
     }
-    cout << ans << endl;
+    cout << answer << endl;
 }
 int main()
 {
