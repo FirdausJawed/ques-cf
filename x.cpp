@@ -92,41 +92,37 @@ ll sumofno(ll n)
 }
 
 // modular exponentiation
-long long modpow(long long x, long long n, long long p)
+long long modpow(long long val, long long deg, long long mod)
 {
-
-    if (n == 0)
-        return 1 % p;
-
-    ll ans = 1, base = x;
-    while (n > 0)
-    {
-        if (n % 2 == 1)
-        {
-            ans = (ans * base) % p;
-            n--;
-        }
-        else
-        {
-            base = (base * base) % p;
-            n /= 2;
-        }
-    }
-    if (ans < 0)
-        ans = (ans + p) % p;
-    return ans;
+    if (!deg)
+        return 1 % mod;
+    if (deg & 1)
+        return modpow(val, deg - 1, mod) * val % mod;
+    long long res = modpow(val, deg >> 1, mod);
+    return (res * res) % mod;
 }
 
-long long CW(ll n, ll m)
+const int N = 1e6 + 100;
+long long fact[N];
+// initialise the factorial
+void initfact()
 {
-    if (m > n - m)
-        m = n - m;
-    long long ans = 1;
-    for (int i = 0; i < m; i++)
+    fact[0] = 1;
+    for (int i = 1; i < N; i++)
     {
-        ans = ans * (n - i) / (i + 1);
+        fact[i] = (fact[i - 1] * i);
+        fact[i] %= MOD;
     }
-    return ans;
+}
+
+// formula for c
+ll C(ll n, ll i)
+{
+    ll res = fact[n];
+    ll div = fact[n - i] * fact[i];
+    div %= MOD;
+    div = modpow(div, MOD - 2, MOD);
+    return (res * div) % MOD;
 }
 
 // function for fast expo
@@ -179,82 +175,40 @@ bool pow2(ll x)
     return false;
 }
 
-bool compare(p64 a, p64 b)
-{
-    return a.se < b.se;
-}
-
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
-    ll arr[n], brr[n];
-    
-    forn(i, n)
+    ll a, b, x, y;
+    cin >> a >> b >> x >> y;
+
+    ll p = a * b, q = x * y;
+
+    if (q > p)
     {
-        cin >> arr[i];
+        cout << "YES" << ln;
     }
-
-    forn(i, n)
+    else
     {
-        cin >> brr[i];
+        cout << "NO" << ln;
     }
-
-    // making vector pairs;
-    vp64 res1, res2;
-    forn(i, n)
-    {
-        res1.pb(mp(arr[i], brr[i]));
-        res2.pb(mp(arr[i], brr[i]));
-    }
-
-
-    sort(al(arr, n)), sort(al(brr, n));
-    sort(all(res1));
-    sort(all(res2), compare);
-
-    ll res = 0;
-    forn(i, m)
-    {
-        ll a, b, ans = INF;
-        cin >> a >> b;
-        ll idx1 = lower_bound(al(arr, n), a) - arr;
-        ll idx2 = lower_bound(al(brr, n), b) - brr;
-        if (idx1 <= n - 1 && idx2 <= n - 1)
-        {
-            for (ll i = (idx1); i < n; i++)
-            {
-                ll aa = res1[i].fi, bb = res1[i].se;
-                if (aa >= a && bb >= b)
-                {
-                    ans = min(ans, aa + bb);
-                }
-            }
-            for (ll i = (idx2); i < n; i++)
-            {
-                ll aa = res2[i].fi, bb = res2[i].se;
-                if (aa >= a && bb >= b)
-                {
-                    ans = min(ans, aa + bb);
-                }
-            }
-            if (ans == INF)
-            {
-                ans = 0;
-            }
-            res += ans;
-        }
-    }
-    cout << res << ln;
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    // cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
     }
     return 0;
 }
+
+/*
+1. Check borderline constraints. Can a variable you are dividing by be 0?
+2. Use ll while using bitshifts
+3. Do not erase from set while iterating it
+4. Initialise everything
+5. Read the task carefully, is something unique, sorted, adjacent, guaranteed??
+6. DO NOT use if(!mp[x]) if you want to iterate the map later
+7. Are you using i in all loops? Are the i's conflicting?
+*/
