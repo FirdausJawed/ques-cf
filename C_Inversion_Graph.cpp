@@ -57,55 +57,42 @@ double eps = 1e-12;
 
 void solve()
 {
-    ll n, hun = 0, thun = 0;
+    ll n;
     cin >> n;
     ll arr[n];
+    v64 res(n, 0);
     forn(i, n)
     {
         cin >> arr[i];
-        if (arr[i] == 100)
+    }
+
+    // ll grap = INT_MIN,p1=INT64_MAX;
+
+    ll max = arr[0];
+    ll ans = 1;
+
+    for (ll i = 1; i < n; i++)
+    {
+        if (arr[i] > max && max <= i)
         {
-            hun++;
+            ans++;
         }
-        else
+        if (arr[i] > max)
         {
-            thun++;
+            max = arr[i];
         }
+        // cout<<max<<ln;
     }
-    if (hun == 0 && thun % 2 != 0)
-    {
-        cout << "NO" << ln;
-        return;
-    }
-    if ((hun + 2 * thun) % 2 == 0)
-    {
-        cout << "YES" << ln;
-        return;
-    }
-    else
-    {
-        cout << "NO" << endl;
-        return;
-    }
+    cout << ans << endl;
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    // cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
     }
     return 0;
 }
-
-/*
-1. Check borderline constraints. Can a variable you are dividing by be 0?
-2. Use ll while using bitshifts
-3. Do not erase from set while iterating it
-4. Initialise everything
-5. Read the task carefully, is something unique, sorted, adjacent, guaranteed??
-6. DO NOT use if(!mp[x]) if you want to iterate the map later
-7. Are you using i in all loops? Are the i's conflicting?
-*/
