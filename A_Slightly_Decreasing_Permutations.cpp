@@ -177,21 +177,20 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
+    ll n, k;
+    cin >> n >> k;
+    v64 v(n,0);
+
     forn(i, n)
     {
-        cin >> arr[i];
+        v[i] = i + 1;
     }
 
-    sort(al(arr, n));
-    swap(arr[0], arr[n - 1]);
-    for (auto t : arr)
+    reverse(v.begin(), v.begin() + k + 1);
+    for (auto t : v)
     {
-        cout << t << ' ';
+        cout << t << " ";
     }
-    cout << ln;
 }
 int main()
 {
