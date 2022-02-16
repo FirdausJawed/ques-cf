@@ -177,32 +177,30 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    ll x = 0, z = 0, y = 0, sum = 0;
+    ll n, x;
+    cin >> n >> x;
 
-    forn(i, n)
+    v64 v(n, 0);
+    v[0] = 2;
+
+    for (int i = 1; i < n; i++)
     {
-        cin >> arr[i];
-        sum += arr[i];
+        v[i] = v[i - 1] + x;
     }
-
-    x = *max_element(arr, arr + n);
-    ll stolen = 1ll * (x * n) - (sum);
-
     forn(i,n){
-        z = __gcd(z, x - arr[i]);
+        if (v[i]>=n)
+        {
+            cout << i+1 << ln;
+            return;
+        }
+        
     }
-
-    y = stolen / z;
-    cout << y << " " << z << ln;
 }
 int main()
 {
     fast_cin();
-    ll t=1;
-    // cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();

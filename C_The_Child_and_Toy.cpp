@@ -177,32 +177,28 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
+    ll n, m;
+    cin >> n >> m;
     ll arr[n];
-    ll x = 0, z = 0, y = 0, sum = 0;
-
     forn(i, n)
     {
         cin >> arr[i];
-        sum += arr[i];
     }
 
-    x = *max_element(arr, arr + n);
-    ll stolen = 1ll * (x * n) - (sum);
-
-    forn(i,n){
-        z = __gcd(z, x - arr[i]);
+    ll ans = 0;
+    ll x, y;
+    while (m--)
+    {
+        cin >> x >> y;
+        ans += min(arr[x - 1], arr[y - 1]);
     }
-
-    y = stolen / z;
-    cout << y << " " << z << ln;
+    cout << ans << ln;
 }
 int main()
 {
     fast_cin();
-    ll t=1;
-    // cin >> t;
+    ll t = 1;
+    //  cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
@@ -210,7 +206,9 @@ int main()
     return 0;
 }
 
-/*
+/*git add .
+git commit -m "."
+git push origin main
 1. Check borderline constraints. Can a variable you are dividing by be 0?
 2. Use ll while using bitshifts
 3. Do not erase from set while iterating it
