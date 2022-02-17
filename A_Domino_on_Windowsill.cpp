@@ -182,11 +182,12 @@ void solve()
     ll b1 = n - k1, b2 = n - k2;
     ll wmax = (k1 + k2) / 2, bmax = (b1 + b2) / 2;
 
-    if (wmax>=w)
+    if (wmax >= w && bmax >= b)
     {
         cout << "YES" << ln;
     }
-    else{
+    else
+    {
         cout << "NO" << ln;
     }
 }
