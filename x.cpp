@@ -177,19 +177,50 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll a, b, x, y;
-    cin >> a >> b >> x >> y;
+    ll n;
+    cin >> n;
+    string s1, s2;
+    cin >> s1 >> s2;
 
-    ll p = a * b, q = x * y;
+    sort(all(s1));
+    sort(all(s2), greater<int>());
 
-    if (q >= p)
+    deque<char> a(all(s1));
+    deque<char> b(all(s2));
+
+    string a1 = "", a2 = "";
+
+    forn(i, 2 * n)
     {
-        cout << "YES" << ln;
+        if (i % 2 == 0)
+        {
+            if (a[0] < b[0])
+            {
+                a1.pb(a[0]);
+                a.pop_front();
+            }
+            else
+            {
+                a2.pb(a.back());
+                a.pop_back();
+            }
+        }
+        else{
+            if (a[0] < b[0])
+            {
+                a1.pb(b[0]);
+                b.pop_front();
+            }
+            else
+            {
+                a2.pb(a.back());
+                b.pop_back();
+            }
+        }
     }
-    else
-    {
-        cout << "NO" << ln;
-    }
+    reverse(all(a2));
+    a1 += a2;
+    cout << a1 << ln;
 }
 int main()
 {
