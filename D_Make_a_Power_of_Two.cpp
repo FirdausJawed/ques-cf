@@ -175,21 +175,44 @@ bool pow2(ll x)
     return false;
 }
 
+v64 v(64, 1);
+
 void solve()
 {
     ll n;
     cin >> n;
     ll arr[n];
-    forn(i, n)
+    ll ans = INT_MAX;
+    forn(i, 64)
     {
-        cin >> arr[i];
+        string s1 = to_string(v[i]);
+        string s2 = to_string(n);
+
+        ll cnt = 0, j = 0;
+
+        forn(i, s2.size())
+        {
+            if (j < s1.size() && s2[i] == s1[j])
+            {
+                cnt++, j++;
+            }
+        }
+        ll a = s2.size() + s1.size() - 2 * cnt;
+        ans = min(a, ans);
     }
+    cout << ans << ln;
 }
 int main()
 {
     fast_cin();
+
+    for (ll i = 1; i < 64; i++)
+    {
+        v[i] = v[i - 1] * 2;
+    }
     ll t;
     cin >> t;
+
     for (int it = 1; it <= t; it++)
     {
         solve();

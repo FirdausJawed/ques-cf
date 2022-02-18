@@ -36,7 +36,7 @@ typedef vector<p64> vp64;
 typedef vector<p32> vp32;
 ll MOD = 1000000007;
 double eps = 1e-12;
-#define forn(i, n) for (ll i = 0; i < n; i++)
+#define forn(i, n) for (ll i = 1; i <= n; i++)
 #define forsn(i, s, e) for (ll i = s; i < e; i++)
 #define rforn(i, s) for (ll i = s; i >= 0; i--)
 #define rforsn(i, s, e) for (ll i = s; i >= e; i--)
@@ -177,56 +177,44 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    string s1, s2;
-    cin >> s1 >> s2;
-
-    sort(all(s1));
-    sort(all(s2), greater<char>());
-
-    deque<char> a(all(s1));
-    deque<char> b(all(s2));
-
-    string a1 = "", a2 = "";
-
-    forn(i, 2 * n)
+    ll n, m;
+    cin >> n >> m;
+    ll arr[n];
+    forn(i, n)
     {
-        if (i % 2 == 0)
+        cin >> arr[i];
+    }
+
+    ll s = 0;
+    while (m--)
+    {
+        ll t;
+        cin >> t;
+        if (t == 1)
         {
-            if (a[0] < b[0])
-            {
-                a1.pb(a[0]);
-                a.pop_front();
-            }
-            else
-            {
-                a2.pb(a.back());
-                a.pop_back();
-            }
+            ll v, x;
+            cin >> v >> x;
+            arr[v] = x - s;
         }
-        else{
-            if (a[0] < b[0])
-            {
-                a1.pb(b[0]);
-                b.pop_front();
-            }
-            else
-            {
-                a2.pb(b.back());
-                b.pop_back();
-            }
+        else if (t == 2)
+        {
+            ll y;
+            cin >> y;
+            s += y;
+        }
+        else if (t == 3)
+        {
+            ll q;
+            cin >> q;
+            cout << arr[q] + s << ln;
         }
     }
-    reverse(all(a2));
-    a1 += a2;
-    cout << a1 << ln;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
