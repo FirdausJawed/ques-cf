@@ -177,28 +177,51 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll W, H, x1, y1, x2, y2, w, h, a, b;
-    cin >> W >> H >> x1 >> y1 >> x2 >> y2 >> w >> h;
-
-    ll s = 0;
-    a = min(max(w - x1, s), max(w - (W - x2), s));
-    b = min(max(h - y1, s), max(h - (H - y2), s));
-
-    ll res = max(W, H);
-
-    if (w + x2 - x1 <= W)
+    ll n;
+    cin >> n;
+    set<ll> s;
+    for (ll i = 1; i <= n; i++)
     {
-        res = min(res, a);
+        s.insert(i);
     }
-    if (h + y2 - y1 <= H)
+
+    v64 v;
+    forn(i, n)
     {
-        res = min(res, b);
+        ll t;
+        cin >> t;
+        if (s.find(t) != s.end())
+        {
+            s.erase(t);
+        }
+        else
+        {
+            v.pb(t);
+        }
     }
-    if (res >= max(W, H))
+
+    sort(all(v), greater<ll>());
+    bool flag = false;
+
+    for (auto t : v)
     {
-        res = -1;
+        auto end = s.end();
+        end--;
+        if (*end > (t - 1) / 2)
+        {
+            flag = true;
+            break;
+        }
+        s.erase(end);
     }
-    cout << res << endl;
+    if (flag)
+    {
+        cout << -1 << ln;
+    }
+    else
+    {
+        cout << v.size() << ln;
+    }
 }
 int main()
 {
