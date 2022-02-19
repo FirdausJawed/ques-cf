@@ -177,19 +177,44 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
+    string s;
+    cin >> s;
+    ll n = s.size();
+    map<char, ll> m;
+
     forn(i, n)
     {
-        cin >> arr[i];
+        m[s[i]]++;
     }
+
+    ll odd = 0;
+
+    for (auto t : m)
+    {
+        if (t.se % 2 != 0)
+        {
+            odd++;
+        }
+    }
+
+    if (odd == 0 || odd == 1)
+    {
+        cout << "First" << ln;
+        return;
+    }
+
+    if (odd % 2 == 0)
+    {
+        cout << "Second" << ln;
+        return;
+    }
+    cout << "First" << ln;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
