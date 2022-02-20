@@ -177,21 +177,64 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n, m, k;
-    cin >> n >> m >> k;
+    ll n;
+    cin >> n;
     ll arr[n];
     forn(i, n)
     {
         cin >> arr[i];
     }
+    string s;
+    cin >> s;
 
-    
+    v64 b, r;
+    forn(i, n)
+    {
+        if (s[i] == 'B')
+        {
+            b.pb(arr[i]);
+        }
+        else
+        {
+            r.pb(arr[i]);
+        }
+    }
+    sort(all(b)), sort(all(r));
+
+    ll blue = sz(b), red = sz(r), key = 1, flag = 0, l = 0, h = 0;
+
+    while (l < blue || h < red)
+    {
+        if (l < blue && key <= b[l])
+        {
+            l++;
+        }
+        else if (h < red && key >= r[h])
+        {
+            h++;
+        }
+        else
+        {
+            flag = 1;
+            break;
+        }
+        key++;
+    }
+
+    if (flag)
+    {
+        cout << "NO" << ln;
+    }
+    else
+    {
+        cout << "YES" << ln;
+    }
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    //  cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
