@@ -177,45 +177,52 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n, sum = 0;
+    map<ll, ll> m;
+    v64 res;
+    ll ans = 0, l = INT_MAX;
+    ll n;
     cin >> n;
-    v64 arr;
+    ll arr[n];
+    
     forn(i, n)
     {
-        ll t;
-        cin >> t;
-        arr.pb(t);
-        sum += arr[i];
+        cin >> arr[i];
+        m[arr[i]]++;
     }
 
-    sort(all(arr));
-
-    ll q;
-    cin >> q;
-    while (q--)
+    for (auto x : m)
     {
-        ll x, y;
-        cin >> x >> y;
-        ll idx = lower_bound(all(arr), x) - arr.begin();
-
-        ll ans = INT_MAX;
-
-        if (idx > 0)
-        {
-            ans = min(ans, (x - arr[idx - 1]) + max(0LL, y - sum + arr[idx - 1]));
-        }
-        if (idx < n)
-        {
-            ans = min(ans, max(0LL, y - sum + arr[idx]));
-        }
-        cout << ans << ln;
+        res.pb(x.se);
     }
+
+    sort(all(res), greater<ll>());
+
+    for (auto x : res)
+    {
+        if (l <= 0)
+        {
+            break;
+        }
+
+        if (x < l)
+        {
+            ans += x;
+            l = x - 1;
+        }
+        else if (x >= l)
+        {
+            ans += l;
+            l -= 1;
+        }
+    }
+
+    cout << ans << ln;
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    // cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
