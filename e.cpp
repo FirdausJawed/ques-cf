@@ -179,37 +179,43 @@ void solve()
 {
     ll n, k;
     cin >> n >> k;
-    ll a1[n + 1];
+    v64 arr;
+
     for (ll i = 1; i <= n; i++)
     {
-        a1[i] = i;
-    }
-    if (n == 1)
-    {
-        cout << "1" << ln;
-        return;
+        arr.pb(i);
     }
 
     for (ll i = k + 1; i <= n; i += 2)
     {
         if (i + 1 <= n)
         {
-            swap(a1[i], a1[i + 1]);
+            swap(arr[i], arr[i + 1]);
         }
+    }
+
+    if (n == 1)
+    {
+        cout << "1" << ln;
+        return;
     }
 
     if ((k % 2 == 0 && n % 2 == 0) || (k % 2 != 0 && n % 2 != 0))
     {
         for (ll i = 1; i <= n; i++)
-            cout << a1[i] << " ";
+        {
+            cout << arr[i] << " ";
+        }
         cout << ln;
     }
-    
     else
     {
-        swap(a1[1], a1[n]);
+        swap(arr[1], arr[n]);
+
         for (ll i = 1; i <= n; i++)
-            cout << a1[i] << " ";
+        {
+            cout << arr[i] << " ";
+        }
         cout << ln;
     }
 }

@@ -177,41 +177,11 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
-    ll a1[n + 1];
-    for (ll i = 1; i <= n; i++)
-    {
-        a1[i] = i;
-    }
-    if (n == 1)
-    {
-        cout << "1" << ln;
-        return;
-    }
+    ll a, b, c;
+    cin >> a >> b >> c;
 
-    for (ll i = k + 1; i <= n; i += 2)
-    {
-        if (i + 1 <= n)
-        {
-            swap(a1[i], a1[i + 1]);
-        }
-    }
-
-    if ((k % 2 == 0 && n % 2 == 0) || (k % 2 != 0 && n % 2 != 0))
-    {
-        for (ll i = 1; i <= n; i++)
-            cout << a1[i] << " ";
-        cout << ln;
-    }
-    
-    else
-    {
-        swap(a1[1], a1[n]);
-        for (ll i = 1; i <= n; i++)
-            cout << a1[i] << " ";
-        cout << ln;
-    }
+    ll a1 = a + c;
+    cout << max(a1, b) << ln;
 }
 int main()
 {
