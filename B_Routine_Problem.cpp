@@ -177,16 +177,31 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll a,b,c,d;
-    cin >> a>>b>>c>>d;
-    
+    double a, b, c, d;
+    cin >> a >> b >> c >> d;
+    double ans = 0, m = (a * d) / (b * c);
 
-
+    if (m==1)
+    {
+        cout << "0/1";
+    }
+    else if (m>1)
+    {
+        ans = 1 - (1 / m);
+        ll gc = __gcd((int)(a * d - (b * c)), (int)(a * d));
+        cout << ((int)(a * d - (b * c))) / gc << "/" << ((int)(a * d)) / gc;
+    }
+    else
+    {
+        ans = 1 - m;
+        int gc = __gcd((int)(b * c - (a * d)), (int)(b * c));
+        cout << ((int)(b * c - (a * d))) / gc << "/" << ((int)(b * c)) / gc;
+    }
 }
 int main()
 {
     fast_cin();
-    ll t=1;
+    ll t = 1;
     // cin >> t;
     for (int it = 1; it <= t; it++)
     {
