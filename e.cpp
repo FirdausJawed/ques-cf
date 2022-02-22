@@ -177,13 +177,12 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n, k;
+    long long int n, k;
     cin >> n >> k;
-    v64 arr;
-
-    for (ll i = 1; i <= n; i++)
+    long long int arr[n + 1];
+    forsn(i, 1, n + 1)
     {
-        arr.pb(i);
+        arr[i] = i;
     }
 
     for (ll i = k + 1; i <= n; i += 2)
@@ -199,23 +198,23 @@ void solve()
         cout << "1" << ln;
         return;
     }
-
-    if ((k % 2 == 0 && n % 2 == 0) || (k % 2 != 0 && n % 2 != 0))
+    else if ((k % 2 == 0 && n % 2 == 0) || (k % 2 != 0 && n % 2 != 0))
     {
         for (ll i = 1; i <= n; i++)
         {
             cout << arr[i] << " ";
         }
         cout << ln;
+        return;
     }
     else
     {
         swap(arr[1], arr[n]);
-
         for (ll i = 1; i <= n; i++)
         {
             cout << arr[i] << " ";
         }
+        return;
         cout << ln;
     }
 }
