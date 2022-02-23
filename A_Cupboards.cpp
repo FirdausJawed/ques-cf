@@ -177,31 +177,16 @@ bool pow2(ll x)
 
 void solve()
 {
-    string s;
-    ll a, b, n;
-    cin >> a >> b >> n;
+    ll n, a, b;
+    cin >> n;
+    ll left = 0, right = 0;
 
-    s.append(to_string(a));
-
-    ll temp = (a * 10) % b, t = b - temp;
-
-    if (temp == 0)
+    forn(i, n)
     {
-        s.append(n, '0');
-        cout << s << ln;
-        return;
+        cin >> a >> b;
+        left += a, right += b;
     }
-
-    if (t / 10 == 0)
-    {
-        s.append(to_string(t));
-        s.append(n - 1, '0');
-        cout << s << ln;
-    }
-    else
-    {
-        cout << -1 << ln;
-    }
+    cout << min(left, n - left) + min(right, n - right);
 }
 int main()
 {
