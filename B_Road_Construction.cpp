@@ -177,19 +177,42 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    forn(i, n)
+    int n, m;
+    cin >> n >> m;
+    v64 v(n + 1, 0);
+    
+    forn(i, m)
     {
-        cin >> arr[i];
+        ll a, b;
+        cin >> a >> b;
+        v[a] = 1;
+        v[b] = 1;
+    }
+
+    ll node;
+
+    for (ll i = 1; i < n + 1; i++)
+    {
+        if (v[i] == 0)
+        {
+            node = i;
+            break;
+        }
+    }
+    cout << n - 1 << ln;
+
+    for (ll i = 1; i < n + 1; i++)
+    {
+        if (node == i)
+            {continue;}
+        cout << node << " " << i << ln;
     }
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
