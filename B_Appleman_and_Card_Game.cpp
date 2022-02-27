@@ -197,7 +197,7 @@ void solve()
     sort(all(v), greater<ll>());
     ll ans = 0, i = 0;
 
-    while (k != 0)
+    while (k > 0)
     {
         if (v[i] > k)
         {
@@ -208,6 +208,7 @@ void solve()
         {
             ans += v[i] * v[i];
             k -= v[i];
+            i++;
         }
     }
     cout << ans << ln;
