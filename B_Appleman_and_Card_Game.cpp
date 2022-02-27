@@ -177,40 +177,46 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll x, y, n;
-    cin >> x >> y >> n;
-    int m = n % 6;
+    v64 v;
+    ll n, k;
+    cin >> n >> k;
+    string s;
+    cin >> s;
+    map<char, ll> m;
 
-    if (m == 0)
+    forn(i, n)
     {
-        cout << (x - y + 2 * MOD) % MOD << ln;
+        m[s[i]]++;
     }
-    else if (m == 1)
+
+    for (auto t : m)
     {
-        cout << (x + MOD) % MOD << ln;
+        v.pb(t.se);
     }
-    else if (m == 2)
+
+    sort(all(v), greater<ll>());
+    ll ans = 0, i = 0;
+
+    while (k != 0)
     {
-        cout << (y + MOD) % MOD << ln;
+        if (v[i] > k)
+        {
+            ans += k * k;
+            k = 0;
+        }
+        else
+        {
+            ans += v[i] * v[i];
+            k -= v[i];
+        }
     }
-    else if (m == 3)
-    {
-        cout << (y - x + 2 * MOD) % MOD << ln;
-    }
-    else if (m == 4)
-    {
-        cout << (-1 * x + MOD) % MOD << ln;
-    }
-    else if (m == 5)
-    {
-        cout << (-1 * y + MOD) % MOD << ln;
-    }
+    cout << ans << ln;
 }
 int main()
 {
     fast_cin();
     ll t = 1;
-    //  cin >> t;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
