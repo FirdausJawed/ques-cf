@@ -177,49 +177,46 @@ bool pow2(ll x)
 
 void solve()
 {
-    string s, t;
-    cin >> s >> t;
-
-    ll n1 = s.size();
-    ll n2 = t.size();
-
-    for (int i = 0; i < n1; i++)
+    int n;
+    cin >> n;
+    ll g = 0;
+    for (int i = 0; i < n; ++i)
     {
-        for (int j = i; j < n1; j++)
+        ll x;
+        cin >> x;
+        if (i == 0)
         {
-            int temp = n2 - (j - i + 1);
-            int r = j - temp;
-            if (r < 0)
-            {
-                continue;
-            }
+            g = x;
+        }
+        else
+        {
+            g = __gcd(g, x);
+        }
+    }
 
-            string res;
-            for (int k = i; k <= j; k++)
+    ll ans = 0;
+    
+    for (ll i = 1; i * i <= g; ++i)
+    {
+        if (g % i == 0)
+        {
+            if (i * i == g)
             {
-                res += s[k];
+                ans++;
             }
-
-            for (int k = j - 1; k >= r; k--)
+            else
             {
-                {
-                    res += s[k];
-                }
-            }
-            if (res == t)
-            {
-                cout << "YES" << ln;
-                return;
+                ans += 2;
             }
         }
     }
-    cout << "NO" << ln;
+    cout << ans << ln;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    //  cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
