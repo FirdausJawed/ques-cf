@@ -65,31 +65,35 @@ void solve()
         ll t;
         cin >> t;
         arr.pb(t);
-        //sum += arr[i];
+        sum += arr[i];
     }
-    
-    sum = accumulate(all(arr), 0ll);
-    sort(all(arr));
 
+    sort(all(arr));
     ll q;
     cin >> q;
-    while (q--)
-    {
-        ll x, y;
-        cin >> x >> y;
-        ll idx = lower_bound(all(arr), x) - arr.begin();
+    while(q--){
+        ll d, a;
+        cin >> d >> a;
 
-        ll ans = INT_MAX;
+        ll idx1 = lower_bound(all(arr), d) - arr.begin();
+        ll idx2 = lower_bound(all(arr), d) - arr.begin()-1;
 
-        if (idx > 0)
+        if (idx1>n-1)
         {
-            ans = min(ans, (x - arr[idx - 1]) + max(0LL, y - sum + arr[idx - 1]));
+            idx1 = n - 1;
         }
-        if (idx < n)
+        if (idx2<0)
         {
-            ans = min(ans, max(0LL, y - sum + arr[idx]));
+            idx2 = 0;
         }
-        cout << ans << ln;
+        ll s1 = arr[idx1],s2=arr[idx2];
+
+        ll  r1 = sum - s1;
+        ll  r2 = sum - s2;
+
+        ll c1 = max(d - s1, 0ll) + max(a - r1, 0ll);
+        ll c2 = max(d - s2, 0ll) + max(a - r2, 0ll);
+        cout << min(c1, c2)<<ln;
     }
 }
 int main()

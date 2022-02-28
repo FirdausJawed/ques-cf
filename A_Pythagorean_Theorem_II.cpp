@@ -36,7 +36,7 @@ typedef vector<p64> vp64;
 typedef vector<p32> vp32;
 ll MOD = 1000000007;
 double eps = 1e-12;
-#define forn(i, n) for (ll i = 0; i < n; i++)
+#define forn(i, n) for (ll i = 1; i <= n; i++)
 #define forsn(i, s, e) for (ll i = s; i < e; i++)
 #define rforn(i, s) for (ll i = s; i >= 0; i--)
 #define rforsn(i, s, e) for (ll i = s; i >= e; i--)
@@ -175,36 +175,27 @@ bool pow2(ll x)
     return false;
 }
 
+bool check(ll n)
+{
+    ll sq = sqrt(n);
+    return (sq * sq) == n;
+}
+
 void solve()
 {
-    ll n, m, d, ans = 0;
-    cin >> n >> m >> d;
-    v64 a, b[n];
+    ll n;
+    cin >> n;
+    ll ans = 0;
 
     forn(i, n)
     {
-        forn(j, m)
+        for (ll j = i; j <= n; j++)
         {
-            ll x;
-            cin >> x;
-            a.pb(x), b[i].pb(x);
-        }
-    }
-
-    sort(all(a));
-    ll mid = a[a.size() / 2];
-
-    forn(i, a.size())
-    {
-        ll temp = abs(mid - a[i]);
-        if (temp % d == 0)
-        {
-            ans += temp / d;
-        }
-        else
-        {
-            cout << -1 << ln;
-            return;
+            ll sum = (i * i) + (j * j);
+            if (check(sum) && (sqrt(sum) >= j) && (sqrt(sum) <= n))
+            {
+                ans++;
+            }
         }
     }
     cout << ans << ln;
@@ -212,8 +203,8 @@ void solve()
 int main()
 {
     fast_cin();
-    ll t=1;
-    // cin >> t;
+    ll t = 1;
+    //  cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();

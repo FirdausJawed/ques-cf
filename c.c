@@ -1,26 +1,22 @@
-#include <stdio.h>
-void main()
+import java.util.scanner;
+
+public class ques
 {
-    int n, t;
-    scanf("%d",&n);
-    int neg = 0, pos = 0, zero = 0;
-    for (int i = 1; i <= n; i++)
+public
+    static void main(String[] args)
     {
-        scanf("%d", &t);
-        if (t > 0)
+        int sum = 0, num = 10;
+        System.out.println("Enter 10 numbers: " );
+
+        while (num > 0)
         {
-            pos += 1;
+            Scanner t = new Scanner(System.in);
+            int temp = t.nextInt();
+            sum += temp;
+            num--;
         }
-        else if (t < 0)
-        {
-            neg += 1;
-        }
-        else
-        {
-            zero++;
-        }
+        System.out.println("Sum of the given numbers is: " +sum);
+        int avg = sum / 10;
+        System.out.println("Average of the given numbers is: " +avg);
     }
-    printf("%d\n", pos);
-    printf("%d\n", neg);
-    printf("%d\n", zero);
 }
