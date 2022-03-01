@@ -56,25 +56,29 @@ double eps = 1e-12;
 #define sz(x) ((ll)(x).size())
 
 // function for prime factorization
-vector<pair<ll, ll>> pf(ll n)
+ll pf(ll n)
 {
-    vector<pair<ll, ll>> prime;
+    ll prime = 1ll;
+    bool flag = 1;
     for (int i = 2; i <= sqrt(n); i++)
     {
         if (n % i == 0)
         {
-            int count = 0;
             while (n % i == 0)
             {
-                count++;
+                prime *= i;
                 n = n / i;
             }
-            prime.pb(mp(i, count));
+            if (flag)
+            {
+                prime /= i;
+                flag = 0;
+            }
         }
     }
     if (n > 1)
     {
-        prime.pb(mp(n, 1));
+        prime *= n;
     }
     return prime;
 }
@@ -174,36 +178,27 @@ bool pow2(ll x)
     }
     return false;
 }
-ll fun(ll x)
-{
-    return (x * (x + 1)) / 2;
-}
+
 void solve()
 {
-    ll n, k, l = 0, r;
-    cin >> k >> n;
-    r = 2 * k - 1;
-
-    while (r - l > 1)
+    ll n, k;
+    cin >> n;
+    if (n % 2 == 0)
     {
-        ll mid = (l + r) / 2;
-        ll temp = fun(mid);
-
-        if (mid > k)
-        {
-            temp = k * k - fun(2 * k - 1 - mid);
-        }
-        if (temp >= n)
-        {
-            r = mid;
-        }
-
-        else
-        {
-            l = mid;
-        }
+        cout << n / 2 << " " << n / 2 << ln;
+        return;
     }
-    cout << r << ln;
+
+    k = pf(n);
+
+    if (k == n)
+    {
+        cout << 1 << " " << n - 1 << ln;
+    }
+    else
+    {
+        cout << k << " " << abs(n - k) << ln;
+    }
 }
 int main()
 {
