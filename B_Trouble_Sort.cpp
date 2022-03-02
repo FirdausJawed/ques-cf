@@ -178,14 +178,71 @@ bool pow2(ll x)
 void solve()
 {
     ll n;
+    ll o = 0, z = 0; 
     cin >> n;
-    ll arr[n];
+    v64 a(n), b(n);
     forn(i, n)
     {
-        cin >> arr[i];
+        cin >> a[i];
     }
 
-    
+    forn(i, n)
+    {
+        cin >> b[i];
+    }
+
+    forn(i, n)
+    {
+        if (b[i] == 0)
+        {
+            z = 1;
+        }
+        else
+        {
+            o = 1;
+        }
+    }
+
+    if (o && z)
+    {
+        cout << "YES" << ln;
+        return;
+    }
+
+    v64 one, zero;
+    forn(i, n)
+    {
+        if (b[i] == 0)
+            zero.pb(a[i]);
+        else
+            one.pb(a[i]);
+    }
+
+    if (one.size() == 0 and zero.size() > 0)
+    {
+        if (is_sorted(all(zero)))
+        {
+            cout << "YES" << ln;
+        }
+        else
+        {
+            cout << "NO" << ln;
+        }
+        return;
+    }
+    if (one.size() > 0 and zero.size() == 0)
+    {
+        if (is_sorted(all(one)))
+        {
+            {
+                cout << "YES" << ln;
+            }
+        }
+        else
+        {
+            cout << "NO" << ln;
+        }
+    }
 }
 int main()
 {
@@ -200,7 +257,7 @@ int main()
 }
 
 /*
-1. Check borderline constraints. Can a variable you are dividing by be 0?
+1. Check borderline constraints. Can a variable you are div64ding by be 0?
 2. Use ll while using bitshifts
 3. Do not erase from set while iterating it
 4. Initialise everything
