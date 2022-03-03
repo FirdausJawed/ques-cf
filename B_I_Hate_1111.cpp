@@ -179,11 +179,20 @@ void solve()
 {
     ll n;
     cin >> n;
-    ll arr[n];
-    forn(i, n)
+    if (n % 111 == 0 || n % 11 == 0)
     {
-        cin >> arr[i];
+        cout << "YES" << ln;
+        return;
     }
+
+    ll x = (n - ((n % 11) * 111));
+
+    if (x > 0 && x % 11 == 0)
+    {
+        cout << "YES" << ln;
+        return;
+    }
+    cout << "NO" << ln;
 }
 int main()
 {
