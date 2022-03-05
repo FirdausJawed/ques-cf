@@ -177,33 +177,17 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
+    ll n, x;
+    cin >> n >> x;
+    ll t = n * ((n + 1) / 2);
 
-    if (n == 2)
+    if (n >= x || t >= x)
     {
-        cout << -1 << ln;
+        cout << "YES" << ln;
         return;
     }
 
-    if (n % 2 != 0)
-    {
-        for (ll i = 1; i <= n; i++)
-        {
-            cout << i << " ";
-            cout << ln;
-        }
-        return;
-    }
-    if (n % 2 == 0)
-    {
-        cout << "1 " << n << " ";
-        for (ll i = 2; i <= n - 1; i++)
-        {
-            cout << i << " ";
-        }
-        cout << ln;
-    }
+    cout << "NO" << ln;
 }
 int main()
 {
