@@ -55,7 +55,7 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
-//function for prime factorization
+// function for prime factorization
 vector<pair<ll, ll>> pf(ll n)
 {
     vector<pair<ll, ll>> prime;
@@ -79,7 +79,7 @@ vector<pair<ll, ll>> pf(ll n)
     return prime;
 }
 
-//sum of digits of a number
+// sum of digits of a number
 ll sumofno(ll n)
 {
     ll sum = 0;
@@ -91,7 +91,7 @@ ll sumofno(ll n)
     return sum;
 }
 
-//modular exponentiation
+// modular exponentiation
 long long modpow(long long val, long long deg, long long mod)
 {
     if (!deg)
@@ -115,7 +115,7 @@ void initfact()
     }
 }
 
-//formula for c
+// formula for c
 ll C(ll n, ll i)
 {
     ll res = fact[n];
@@ -125,7 +125,7 @@ ll C(ll n, ll i)
     return (res * div) % MOD;
 }
 
-//function for fast expo
+// function for fast expo
 ll fastexpo(ll a, ll b)
 {
     if (b == 0)
@@ -177,12 +177,30 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    forn(i, n)
+    ll n, m;
+    cin >> n >> m;
+    ll mini = 0;
+
+    if (m == 0)
     {
-        cin >> arr[i];
+        cout << n << " " << n;
+        return;
+    }
+
+    if ((n - (2 * m)) >= 0)
+    {
+        mini = n - (2 * m);
+    }
+    cout << mini << " ";
+
+    for (ll i = 1; i <= n; i++)
+    {
+        m -= i;
+        if (m <= 0)
+        {
+            cout << (n - i - 1);
+            return;
+        }
     }
 }
 int main()
@@ -197,7 +215,7 @@ int main()
     return 0;
 }
 
-/* 
+/*
 1. Check borderline constraints. Can a variable you are dividing by be 0?
 2. Use ll while using bitshifts
 3. Do not erase from set while iterating it
