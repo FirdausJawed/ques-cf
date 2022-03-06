@@ -177,14 +177,34 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll l, r;
-    
+    ll n, maxi = INT_MIN, mini = INT_MAX;
+    cin >> n;
+    vp64 v;
+
+    forn(i, n)
+    {
+        ll l, r;
+        cin >> l >> r;
+        mini = min(mini, l);
+        maxi = max(maxi, r);
+        v.pb({l, r});
+    }
+
+    forn(i, n)
+    {
+        if (v[i].fi == mini && v[i].se == maxi)
+        {
+            cout << i + 1 << ln;
+            return;
+        }
+    }
+    cout << -1 << ln;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
