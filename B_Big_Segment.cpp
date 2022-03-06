@@ -55,55 +55,136 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
-void solve()
+// function for prime factorization
+vector<pair<ll, ll>> pf(ll n)
 {
-    string s1, s2;
-    getline(cin, s1);
-    getline(cin, s2);
-    map<char, ll> mp1, mp2;
-    bool flag = 1;
-
-    forn(i,s1.size())
+    vector<pair<ll, ll>> prime;
+    for (int i = 2; i <= sqrt(n); i++)
     {
-        if (s1[i] != ' ')
+        if (n % i == 0)
         {
-            mp1[s1[i]]++;
+            int count = 0;
+            while (n % i == 0)
+            {
+                count++;
+                n = n / i;
+            }
+            prime.pb(mp(i, count));
         }
     }
-
-    forn(i, s2.size())
+    if (n > 1)
     {
-        if (s2[i] != ' ')
-        {
-            mp2[s2[i]]++;
-        }
+        prime.pb(mp(n, 1));
     }
+    return prime;
+}
 
-    for (auto x : mp2)
+// sum of digits of a number
+ll sumofno(ll n)
+{
+    ll sum = 0;
+    while (n != 0)
     {
-        auto a = x.fi;
-        auto b = x.se;
-        if (mp1[a] < b)
-        {
-            flag = 0;
-            break;
-        }
+        sum += n % 10;
+        n = n / 10;
     }
+    return sum;
+}
 
-    if (flag)
+// modular exponentiation
+long long modpow(long long val, long long deg, long long mod)
+{
+    if (!deg)
+        return 1 % mod;
+    if (deg & 1)
+        return modpow(val, deg - 1, mod) * val % mod;
+    long long res = modpow(val, deg >> 1, mod);
+    return (res * res) % mod;
+}
+
+const int N = 1e6 + 100;
+long long fact[N];
+// initialise the factorial
+void initfact()
+{
+    fact[0] = 1;
+    for (int i = 1; i < N; i++)
     {
-        cout << "YES" << ln;
+        fact[i] = (fact[i - 1] * i);
+        fact[i] %= MOD;
+    }
+}
+
+// formula for c
+ll C(ll n, ll i)
+{
+    ll res = fact[n];
+    ll div = fact[n - i] * fact[i];
+    div %= MOD;
+    div = modpow(div, MOD - 2, MOD);
+    return (res * div) % MOD;
+}
+
+// function for fast expo
+ll fastexpo(ll a, ll b)
+{
+    if (b == 0)
+    {
+        return 1;
+    }
+    if (a == 0)
+    {
+        return 0;
+    }
+    ll y = fastexpo(a, b / 2);
+    if (b % 2 == 0)
+    {
+        return y * y;
     }
     else
     {
-        cout << "NO" << ln;
+        return a * y * y;
     }
+}
+
+ll popcount(ll n)
+{
+    ll c = 0;
+    for (; n; ++c)
+        n &= n - 1;
+    return c;
+}
+
+ll ce(ll x, ll y)
+{
+    ll res = x / y;
+    if (x % y != 0)
+    {
+        res++;
+    }
+    return res;
+}
+
+bool pow2(ll x)
+{
+    ll res = x & (x - 1);
+    if (res == 0)
+    {
+        return true;
+    }
+    return false;
+}
+
+void solve()
+{
+    ll l, r;
+    
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    // cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
