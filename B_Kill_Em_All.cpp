@@ -177,13 +177,26 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
+    ll n, r;
+    cin >> n >> r;
     ll arr[n];
     forn(i, n)
     {
         cin >> arr[i];
     }
+
+    sort(al(arr, n));
+    ll ans = 0;
+
+    forn(i, n)
+    {
+        ll pos = arr[i] - r * ans;
+        if (pos > 0)
+        {
+            ans++;
+        }
+    }
+    cout << ans << ln;
 }
 int main()
 {
@@ -201,7 +214,7 @@ int main()
 1. Check borderline constraints. Can a variable you are dividing by be 0?
 2. Use ll while using bitshifts
 3. Do not erase from set while iterating it
-4. Initialise everything
+4. Initi)alise everything
 5. Read the task carefully, is something unique, sorted, adjacent, guaranteed??
 6. DO NOT use if(!mp[x]) if you want to iterate the map later
 7. Are you using i in all loops? Are the i's conflicting?
