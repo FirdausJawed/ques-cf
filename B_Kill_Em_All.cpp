@@ -177,20 +177,28 @@ bool pow2(ll x)
 
 void solve()
 {
+    set<ll> s;
     ll n, r;
     cin >> n >> r;
     ll arr[n];
     forn(i, n)
     {
         cin >> arr[i];
+        s.insert(arr[i]);
     }
 
-    sort(al(arr, n));
     ll ans = 0;
-
-    forn(i, n)
+    v64 v;
+    for (auto t : s)
     {
-        ll pos = arr[i] - r * ans;
+        v.pb(t);
+    }
+
+    reverse(all(v));
+
+    for (auto t : v)
+    {
+        ll pos = t - r * ans;
         if (pos > 0)
         {
             ans++;
