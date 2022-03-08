@@ -194,6 +194,9 @@ void solve()
         v.pb(t);
     }
 
+
+    
+
     reverse(all(v));
 
     for (auto t : v)
