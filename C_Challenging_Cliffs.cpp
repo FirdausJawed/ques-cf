@@ -198,6 +198,12 @@ void solve()
         return;
     }
 
+    if (n == 2)
+    {
+        cout << arr[0] << " " << arr[1] << endl;
+        return;
+    }
+
     for (int i = 1; i < n; i++)
     {
         ll temp = arr[i] - arr[i - 1];
