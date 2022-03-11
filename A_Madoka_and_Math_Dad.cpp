@@ -177,38 +177,99 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
-    char s[n + 1][m + 1];
-    for (ll i = 1; i <= n; i++)
+    ll n;
+    cin >> n;
+    ll one = n, two = n, l = 0, m = 0;
+
+    if (n == 1)
     {
-        for (ll j = 1; j <= m; j++)
-            cin >> s[i][j];
+        cout << 1 << ln;
+        return;
     }
 
-    for (ll i = 1; i < n; i++)
+    if (n == 2)
     {
-        for (ll j = 1; j < m; j++)
-        {
-            ll count = 0;
-            if (s[i][j] == '1')
-                count++;
-            if (s[i + 1][j] == '1')
-                count++;
-            if (s[i][j + 1] == '1')
-                count++;
-            if (s[i + 1][j + 1] == '1')
-                count++;
-            if (count == 3)
-            {
-                cout << "NO" << endl;
+        cout << 2 << ln;
+        return;
+    }
 
-                return;
+    v64 a, b;
+    while (one > 0)
+    {
+        if (l % 2 == 0)
+        {
+            a.pb(1);
+            one--;
+        }
+        else
+        {
+            a.pb(2);
+            one--;
+            one--;
+        }
+        l++;
+    }
+    while (two > 0)
+    {
+        if (m % 2 == 0)
+        {
+            b.pb(2);
+            two--;
+            two--;
+        }
+        else
+        {
+            b.pb(1);
+            two--;
+        }
+        m++;
+    }
+
+    if (one == 0 && two == 0)
+    {
+        if (a.size() > b.size())
+        {
+            for (auto t : a)
+            {
+                cout << t;
             }
+            cout << ln;
+        }
+        else if (a.size() < b.size())
+        {
+            for (auto t : b)
+            {
+                cout << t;
+            }
+            cout << ln;
+        }
+        else if (a.size() == b.size())
+        {
+            for (auto t : b)
+            {
+                cout << t;
+            }
+            cout << ln;
         }
     }
 
-    cout << "YES" << endl;
+    if (two == 0 && one != 0)
+    {
+        for (auto t : b)
+        {
+            cout << t;
+        }
+        cout << ln;
+    }
+    
+    if (one == 0 && two != 0)
+    {
+        for (auto t : a)
+        {
+            cout << t;
+        }
+        cout << ln;
+    }
 }
 int main()
 {

@@ -36,7 +36,7 @@ typedef vector<p64> vp64;
 typedef vector<p32> vp32;
 ll MOD = 1000000007;
 double eps = 1e-12;
-#define forn(i, n) for (ll i = 0; i < n; i++)
+#define forn(i, n) for (ll i = 1; i <= n; i++)
 #define forsn(i, s, e) for (ll i = s; i < e; i++)
 #define rforn(i, s) for (ll i = s; i >= 0; i--)
 #define rforsn(i, s, e) for (ll i = s; i >= e; i--)
@@ -179,36 +179,45 @@ void solve()
 {
     ll n, m;
     cin >> n >> m;
-    char s[n + 1][m + 1];
-    for (ll i = 1; i <= n; i++)
+    char arr[n + 1][m + 1];
+    forn(i, n)
     {
-        for (ll j = 1; j <= m; j++)
-            cin >> s[i][j];
+        forn(j, m)
+        {
+            cin >> arr[i][j];
+        }
     }
 
     for (ll i = 1; i < n; i++)
     {
         for (ll j = 1; j < m; j++)
         {
-            ll count = 0;
-            if (s[i][j] == '1')
-                count++;
-            if (s[i + 1][j] == '1')
-                count++;
-            if (s[i][j + 1] == '1')
-                count++;
-            if (s[i + 1][j + 1] == '1')
-                count++;
-            if (count == 3)
+            ll cnt = 0;
+            if (arr[i][j] == '1')
             {
-                cout << "NO" << endl;
+                cnt++;
+            }
+            if (arr[i + 1][j + 1] == '1')
+            {
+                cnt++;
+            }
+            if (arr[i][j + 1] == '1')
+            {
+                cnt++;
+            }
+            if (arr[i + 1][j] == '1')
+            {
+                cnt++;
+            }
 
+            if (cnt == 3)
+            {
+                cout << "NO" << ln;
                 return;
             }
         }
     }
-
-    cout << "YES" << endl;
+    cout << "YES" << ln;
 }
 int main()
 {
