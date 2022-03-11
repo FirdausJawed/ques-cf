@@ -1,22 +1,16 @@
-import java.util.scanner;
+#include <stdio.h>
 
-public class ques
+void swap(int *a, int *b)
 {
-public
-    static void main(String[] args)
-    {
-        int sum = 0, num = 10;
-        System.out.println("Enter 10 numbers: " );
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-        while (num > 0)
-        {
-            Scanner t = new Scanner(System.in);
-            int temp = t.nextInt();
-            sum += temp;
-            num--;
-        }
-        System.out.println("Sum of the given numbers is: " +sum);
-        int avg = sum / 10;
-        System.out.println("Average of the given numbers is: " +avg);
-    }
+int main()
+{
+    int a = 10, b = 20;
+    swap(&a, &b);
+    printf("%d %d", a, b);
+    return 0;
 }
