@@ -177,23 +177,53 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n,m;
-    cin >> n>>m;
-    ll arr[n][m];
+    ll n, k, x;
+    cin >> n >> k >> x;
+    ll arr[n];
     forn(i, n)
     {
-        forn(j,m){
-            cin >> arr[i][j];
+        cin >> arr[i];
+    }
+
+    sort(al(arr, n));
+    priority_queue<ll, v64, greater<ll>> pq;
+    ll size = n;
+
+    for (ll i = 1; i < n; i++)
+    {
+        ll diff = arr[i] - arr[i - 1];
+        if (diff > x)
+        {
+            pq.push(diff);
+        }
+        else
+        {
+            size--;
         }
     }
 
+    while (k > 0 && !pq.empty())
+    {
+        ll c = (pq.top() - 1) / x;
+        pq.pop();
 
+        if (k >= c)
+        {
+            k -= c;
+        }
+        else
+        {
+            break;
+        }
+        size--;
+    }
+    cout << size << ln;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
