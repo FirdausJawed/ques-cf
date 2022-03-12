@@ -177,38 +177,13 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
-    char s[n + 1][m + 1];
-    for (ll i = 1; i <= n; i++)
+    ll n;
+    cin >> n;
+    ll arr[n];
+    forn(i, n)
     {
-        for (ll j = 1; j <= m; j++)
-            cin >> s[i][j];
+        cin >> arr[i];
     }
-
-    for (ll i = 1; i < n; i++)
-    {
-        for (ll j = 1; j < m; j++)
-        {
-            ll count = 0;
-            if (s[i][j] == '1')
-                count++;
-            if (s[i + 1][j] == '1')
-                count++;
-            if (s[i][j + 1] == '1')
-                count++;
-            if (s[i + 1][j + 1] == '1')
-                count++;
-            if (count == 3)
-            {
-                cout << "NO" << endl;
-
-                return;
-            }
-        }
-    }
-
-    cout << "YES" << endl;
 }
 int main()
 {
