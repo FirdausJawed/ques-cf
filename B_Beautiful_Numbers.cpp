@@ -180,10 +180,37 @@ void solve()
     ll n;
     cin >> n;
     ll arr[n];
+    v64 a(n,-1), b;
+
     forn(i, n)
     {
         cin >> arr[i];
+        a[arr[i] - 1] = i;
     }
+
+    ll l = n, r = 0;
+
+    forn(i, n)
+    {
+        l = min(l, a[i]);
+        r = max(r, a[i]);
+
+        if (r - l == i)
+        {
+            b.pb(1);
+        }
+        else
+        {
+            b.pb(0);
+        }
+    }
+
+    forn(i, sz(b))
+    {
+        cout << b[i];
+    }
+
+    cout << ln;
 }
 int main()
 {
