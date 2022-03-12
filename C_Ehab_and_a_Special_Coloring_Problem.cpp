@@ -177,10 +177,6 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    string s;
-    cin>>s;
     
 }
 int main()
