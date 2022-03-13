@@ -177,58 +177,74 @@ bool pow2(ll x)
 
 void solve()
 {
+    map<ll, ll> m;
     ll n;
     cin >> n;
     ll arr[n];
     forn(i, n)
     {
         cin >> arr[i];
+        m[arr[i]]++;
     }
 
-    ll idx = -1;
+    if (m[4] == 0 || m[8] == 0 || m[15] == 0 ||
+        m[16] == 0 || m[23] == 0 || m[42] == 0)
+    {
+        cout << n << ln;
+        return;
+    }
 
     forn(i, n)
     {
-        if (arr[i] == 1)
+        if (arr[i] == 8)
         {
-            idx = i;
-            break;
+            if (m[4] < m[8])
+            {
+                m[8]--;
+            }
+        }
+
+        if (arr[i] == 15)
+        {
+            if (m[4] < m[15] || m[8] < m[15])
+            {
+                m[8]--;
+            }
+        }
+
+        if (arr[i] == 16)
+        {
+            if (m[4] < m[16] || m[8] < m[16] || m[15] < m[16])
+            {
+                m[16]--;
+            }
+        }
+
+        if (arr[i] == 23)
+        {
+            if (m[4] < m[23] || m[8] < m[23] || m[15] < m[23] || m[16] < m[23])
+            {
+                m[23]--;
+            }
+        }
+
+        if (arr[i] == 42)
+        {
+            if (m[4] < m[42] || m[8] < m[42] || m[15] < m[42] || m[16] < m[42] || m[23] < m[42])
+            {
+                m[42]--;
+            }
         }
     }
-
-    if (idx == -1)
-    {
-        for (ll i = 1; i <= n + 1; i++)
-        {
-            cout << i << " ";
-        }
-        cout << ln;
-    }
-
-    else
-    {
-        ll i = 0;
-        while (i < idx)
-        {
-            cout << i + 1 << " ";
-            i++;
-        }
-
-        cout << n + 1 << " ";
-
-        while (i < n)
-        {
-            cout << i + 1 << " ";
-            i++;
-        }
-        cout << ln;
-    }
+    
+    ll res = n - m[42] * 6;
+    cout << res << ln;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();

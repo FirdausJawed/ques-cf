@@ -19,10 +19,9 @@
 #include <stack>
 #include <iomanip>
 #include <fstream>
-
 using namespace std;
-typedef unsigned long long ull;
 typedef long long ll;
+typedef unsigned long long int ull;
 typedef long double ld;
 typedef pair<int, int> p32;
 typedef pair<ll, ll> p64;
@@ -35,154 +34,79 @@ typedef vector<vector<p64>> vvp64;
 typedef vector<p64> vp64;
 typedef vector<p32> vp32;
 ll MOD = 1000000007;
-double eps = 1e-12;
 #define forn(i, n) for (ll i = 0; i < n; i++)
-#define forsn(i, s, e) for (ll i = s; i < e; i++)
-#define rforn(i, s) for (ll i = s; i >= 0; i--)
-#define rforsn(i, s, e) for (ll i = s; i >= e; i--)
 #define ln "\n"
-#define dbg(x) cout << #x << " = " << x << ln
 #define mp make_pair
 #define pb push_back
-#define fi first
-#define se second
-#define INF 2e18
 #define fast_cin()                    \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);                    \
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
-#define al(arr, n) arr, arr + n
+#define alll(arr, n) (arr), (arr) + (n)
 #define sz(x) ((ll)(x).size())
+#define maxi 1000010
+ll ar[maxi];
+#define max 1000000
+bool arr[max];
+vector<ll> prime;
 
-// function for prime factorization
-vector<pair<ll, ll>> pf(ll n)
+void sieve()
 {
-    vector<pair<ll, ll>> prime;
-    for (int i = 2; i <= sqrt(n); i++)
+    ll i;
+    fill(arr, arr + max, true);
+
+    arr[0] = false;
+    arr[1] = false;
+
+    for (i = 0; i * i < max; i++)
     {
-        if (n % i == 0)
+        if (arr[i] == true)
         {
-            int count = 0;
-            while (n % i == 0)
+            prime.pb(i);
+            for (ll j = i * i; j < max; j += i)
             {
-                count++;
-                n = n / i;
+                arr[j] = false;
             }
-            prime.pb(mp(i, count));
         }
     }
-    if (n > 1)
+    for (ll k = i; k < max; k++)
     {
-        prime.pb(mp(n, 1));
-    }
-    return prime;
-}
-
-// sum of digits of a number
-ll sumofno(ll n)
-{
-    ll sum = 0;
-    while (n != 0)
-    {
-        sum += n % 10;
-        n = n / 10;
-    }
-    return sum;
-}
-
-// modular exponentiation
-long long modpow(long long val, long long deg, long long mod)
-{
-    if (!deg)
-        return 1 % mod;
-    if (deg & 1)
-        return modpow(val, deg - 1, mod) * val % mod;
-    long long res = modpow(val, deg >> 1, mod);
-    return (res * res) % mod;
-}
-
-// const int N = 1e6 + 100;
-// long long fact[N];
-// // initialise the factorial
-// void initfact()
-// {
-//     fact[0] = 1;
-//     for (int i = 1; i < N; i++)
-//     {
-//         fact[i] = (fact[i - 1] * i);
-//         fact[i] %= MOD;
-//     }
-// }
-
-// // formula for c
-// ll C(ll n, ll i)
-// {
-//     ll res = fact[n];
-//     ll div = fact[n - i] * fact[i];
-//     div %= MOD;
-//     div = modpow(div, MOD - 2, MOD);
-//     return (res * div) % MOD;
-// }
-
-// function for fast expo
-ll fastexpo(ll a, ll b)
-{
-    if (b == 0)
-    {
-        return 1;
-    }
-    if (a == 0)
-    {
-        return 0;
-    }
-    ll y = fastexpo(a, b / 2);
-    if (b % 2 == 0)
-    {
-        return y * y;
-    }
-    else
-    {
-        return a * y * y;
+        if (arr[k] == true)
+        {
+            prime.pb(k);
+        }
     }
 }
 
-ll popcount(ll n)
-{
-    ll c = 0;
-    for (; n; ++c)
-        n &= n - 1;
-    return c;
-}
-
-ll ce(ll x, ll y)
-{
-    ll res = x / y;
-    if (x % y != 0)
-    {
-        res++;
-    }
-    return res;
-}
-
-bool pow2(ll x)
-{
-    ll res = x & (x - 1);
-    if (res == 0)
-    {
-        return true;
-    }
-    return false;
-}
 
 void solve()
 {
-    
+    ll n, k = 1;
+    cin >> n;
+    for (ll i = 0; i < prime.size(); i++)
+    {
+        if (prime[i] > n)
+        {
+            break;
+        }
+        for (ll j = prime[i]; j < maxi; j += prime[i])
+        {
+            ar[j] = k;
+        }
+        k++;
+    }
+    for (ll i = 2; i < n + 1; i++)
+    {
+        cout << ar[i] << " ";
+    }
+    cout << ln;
 }
 int main()
 {
     fast_cin();
-    ll t=1;
+    sieve();
+    ll t = 1;
     // cin >> t;
     for (int it = 1; it <= t; it++)
     {

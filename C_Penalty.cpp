@@ -177,52 +177,64 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    forn(i, n)
-    {
-        cin >> arr[i];
-    }
+    string s;
+    cin >> s;
+    ll x = 0, y = 0, ans = 9;
 
-    ll idx = -1;
-
-    forn(i, n)
+    forn(i, 10)
     {
-        if (arr[i] == 1)
+        if (i % 2 == 0)
         {
-            idx = i;
-            break;
+            if (s[i] != '0')
+            {
+                x++;
+            }
+        }
+        else
+        {
+            if (s[i] == '1')
+            {
+                y++;
+            }
+        }
+        if (x > y + (10 - i) / 2)
+        {
+            ans = min(ans, i);
+        }
+        if (y > x + (9 - i) / 2)
+        {
+            ans = min(ans, i);
         }
     }
 
-    if (idx == -1)
+    x = 0, y = 0;
+
+    forn(i, 10)
     {
-        for (ll i = 1; i <= n + 1; i++)
+        if (i % 2 == 0)
         {
-            cout << i << " ";
+            if (s[i] == '1')
+            {
+                x++;
+            }
         }
-        cout << ln;
+        else
+        {
+            if (s[i] != '0')
+            {
+                y++;
+            }
+        }
+        if (x > y + (10 - i) / 2)
+        {
+            ans = min(ans, i);
+        }
+        if (y > x + (9 - i) / 2)
+        {
+            ans = min(ans, i);
+        }
     }
-
-    else
-    {
-        ll i = 0;
-        while (i < idx)
-        {
-            cout << i + 1 << " ";
-            i++;
-        }
-
-        cout << n + 1 << " ";
-
-        while (i < n)
-        {
-            cout << i + 1 << " ";
-            i++;
-        }
-        cout << ln;
-    }
+    cout << (ans + 1) << ln;
 }
 int main()
 {
