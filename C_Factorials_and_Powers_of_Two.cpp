@@ -184,38 +184,6 @@ void solve()
     {
         cin >> arr[i];
     }
-
-    sort(al(arr, n));
-
-    ll sumb = arr[0] + arr[1], l = 2, r = n - 2;
-    ll sumr = arr[n - 1];
-    bool flag = false;
-
-    if (sumb < sumr)
-    {
-        cout << "YES" << ln;
-        return;
-    }
-
-    while (l < r)
-    {
-        sumr += arr[r], sumb += arr[l];
-        l++, r--;
-        if (sumr > sumb)
-        {
-            flag = true;
-            break;
-        }
-    }
-
-    if (flag)
-    {
-        cout << "YES" << ln;
-    }
-    else
-    {
-        cout << "NO" << ln;
-    }
 }
 int main()
 {
