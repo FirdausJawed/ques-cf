@@ -177,12 +177,33 @@ bool pow2(ll x)
 
 void solve()
 {
-    string s;
-    ll n;
-    cin >> n>>s;
-    
-    sort(all(s));
-    cout << s << ln;
+    v64 v;
+    ll n, k, sum = 0, cnt = 0;
+    cin >> n >> k;
+    ll arr[n];
+    forn(i, n)
+    {
+        cin >> arr[i];
+    }
+
+    sort(al(arr, n));
+
+    forn(i, n)
+    {
+        sum += arr[i];
+        if (sum > k)
+        {
+            sum -= arr[i];
+            sum += ce(arr[i], 2);
+            if (sum <= k)
+            {
+                cnt++;
+            }
+            break;
+        }
+        cnt++;
+    }
+    cout << cnt << ln;
 }
 int main()
 {
