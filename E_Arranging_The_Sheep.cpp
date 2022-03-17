@@ -179,13 +179,40 @@ void solve()
 {
     ll n;
     cin >> n;
-    ll arr[n];
+    string s;
+    cin >> s;
+    ll sheep = 0, temp = 0, c = 0, i = 0, x = -1;
+
+    sheep = count(all(s), '*');
+    ll mid = (sheep + 1) / 2;
+
+    while (c < mid)
+    {
+        if (s[i] == '*')
+        {
+            c++;
+
+            if (c == mid)
+            {
+                x = i;
+            }
+        }
+        i++;
+    }
+
+    ll moves = 0;
+    c = 0;
+
     forn(i, n)
     {
-        cin >> arr[i];
+        if (s[i] == '*')
+        {
+            c++;
+            moves += abs(i - (x - mid + c));
+        }
     }
+    cout << moves << ln;
 }
-
 int main()
 {
     fast_cin();
