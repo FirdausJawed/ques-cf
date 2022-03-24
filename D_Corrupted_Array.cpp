@@ -177,18 +177,57 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n,sum=0;
+    ll n, sum = 0, t = -1;
     cin >> n;
-    ll arr[n+2];
-    forn(i, n+2)
+    ll arr[n + 2];
+    forn(i, n + 2)
     {
         cin >> arr[i];
-        sum += arr[i];
     }
 
     sort(al(arr, n + 2));
 
+    forn(i, n)
+    {
+        sum += arr[i];
+    }
 
+    if (sum == arr[n])
+    {
+        forn(i, n)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << ln;
+        return;
+    }
+
+    sum += arr[n];
+
+    forn(i, n + 1)
+    {
+        if (sum - arr[i] == arr[n + 1])
+        {
+            t = i;
+            break;
+        }
+    }
+
+    if (t == -1)
+    {
+        cout << -1 << ln;
+        return;
+    }
+
+    forn(i, n + 1)
+    {
+        if (i == t)
+        {
+            continue;
+        }
+        cout << arr[i] << " ";
+    }
+    cout << ln;
 }
 int main()
 {
