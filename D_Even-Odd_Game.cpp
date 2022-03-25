@@ -184,6 +184,36 @@ void solve()
     {
         cin >> arr[i];
     }
+
+    sort(al(arr, n));
+    reverse(al(arr, n));
+
+    ll even = 0, odd = 0;
+
+    forn(i, n)
+    {
+        if (i % 2 == 0)
+        {
+            odd++;
+        }
+        else
+        {
+            even++;
+        }
+    }
+
+    if (even == odd)
+    {
+        cout << "Tie" << ln;
+    }
+    else if (even > odd)
+    {
+        cout << "Alice" << ln;
+    }
+    else
+    {
+        cout << "Bob" << ln;
+    }
 }
 int main()
 {
