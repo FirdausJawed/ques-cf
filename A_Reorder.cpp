@@ -175,32 +175,26 @@ bool pow2(ll x)
     return false;
 }
 
-// normal recursion for sum of no
-map<ll, string> m;
-string sumofnoo(ll n)
+void solve()
 {
-    if (n == 0)
+    ll n, sum = 0, m;
+    cin >> n >> m;
+    ll arr[n];
+    forn(i, n)
     {
-        return "";
+        cin >> arr[i];
+        sum += arr[i];
+    }
+
+    if (sum == m)
+    {
+        cout << "YES" << ln;
     }
     else
     {
-        return m[n % 10]+" " + sumofnoo(n / 10);
+        cout << "NO" << ln;
     }
 }
-
-void solve()
-{
-    ll n;
-    cin >> n;
-    m[1] = "One";
-    m[2] = "Two";
-    m[3] = "Three";
-    m[4] = "Four";
-    m[5] = "Five";
-    cout << sumofnoo(n) << ln;
-}
-
 int main()
 {
     fast_cin();
