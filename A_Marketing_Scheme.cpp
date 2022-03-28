@@ -177,29 +177,27 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll x, y;
-    cin >> x >> y;
+    ll l, r;
+    cin >> l >> r;
+    ll temp = r + 1;
 
-    if (x == 0 && y == 1)
-    {
-        cout << "Yes" << ln;
-        return;
-    }
+    ll cei = ce(temp, 2);
+    ll f = r % temp, s = l % temp;
 
-    if (y > 1 && (x + 2) > y && (x - y) % 2 !=0)
+    if (f >= cei && s >= cei)
     {
-        cout << "Yes" << ln;
+        cout << "YES" << ln;
     }
     else
     {
-        cout << "No" << ln;
+        cout << "NO" << ln;
     }
 }
 int main()
 {
     fast_cin();
-    ll t = 1;
-    // cin >> t;
+    ll t;
+    cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
