@@ -177,19 +177,29 @@ bool pow2(ll x)
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    forn(i, n)
+    ll x, y;
+    cin >> x >> y;
+
+    if (x == 0 && y == 1)
     {
-        cin >> arr[i];
+        cout << "YES" << ln;
+        return;
+    }
+
+    if (y > 1 && (x - y) % 2 == 1 && (x + 2) > y)
+    {
+        cout << "YES" << ln;
+    }
+    else
+    {
+        cout << "NO" << ln;
     }
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
+    // cin >> t;
     for (int it = 1; it <= t; it++)
     {
         solve();
