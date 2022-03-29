@@ -179,11 +179,8 @@ void solve()
 {
     ll n;
     cin >> n;
-    ll arr[n];
-    forn(i, n)
-    {
-        cin >> arr[i];
-    }
+    vp64 v;
+    for (ll i = 2;)
 }
 int main()
 {
