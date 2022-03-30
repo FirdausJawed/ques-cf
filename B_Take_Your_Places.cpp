@@ -177,33 +177,51 @@ bool pow2(ll x)
 
 void solve()
 {
-    map<ll, ll> m;
-    ll n, k, ans = 0;
-    cin >> n >> k;
+    ll even = 0, odd = 0, cnt_odd = 0, cnt_even = 0;
+    ll n;
+    cin >> n;
     ll arr[n];
     forn(i, n)
     {
         cin >> arr[i];
-        m[arr[i] % k]++;
+        if (arr[i] % 2)
+        {
+            odd++;
+            cnt_odd += abs(odd - even);
+        }
+        else
+        {
+            even++;
+            cnt_even += abs(odd - even);
+        }
     }
 
-    for (auto &t : m)
+    if (n == 1)
     {
-        if (t.fi == 0)
+        cout << 0 << ln;
+        return;
+    }
+
+    if (abs(odd - even) > 1)
+    {
+        cout << -1 << ln;
+    }
+
+    else
+    {
+        if (even > odd)
         {
-            ans++;
+            cout << cnt_odd << ln;
         }
-        else if (2 * (t.fi) == k)
+        else if (odd > even)
         {
-            ans++;
+            cout << cnt_even << ln;
         }
-        else if (2 * t.fi < k || m.find(k - t.fi) == m.end())
+        else
         {
-            int x = t.se, y = m[k - t.fi];
-            ans += 1 + max(0, abs(x - y) - 1);
+            cout << min(cnt_odd, cnt_even) << ln;
         }
     }
-    cout << ans << ln;
 }
 int main()
 {
