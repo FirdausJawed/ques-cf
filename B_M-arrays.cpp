@@ -178,43 +178,32 @@ bool pow2(ll x)
 void solve()
 {
     map<ll, ll> m;
-    ll n, sum = 0;
-    cin >> n;
+    ll n, k,ans=0;
+    cin >> n >> k;
     ll arr[n];
     forn(i, n)
     {
         cin >> arr[i];
-        m[arr[i]]++;
-        sum += arr[i];
+        m[arr[i] % k];
     }
 
-    ll x = (2 * sum) % n;
-
-    if (x != 0)
+    for (auto &t : m)
     {
-        cout << 0 << ln;
-        return;
-    }
-
-    ll y = (2 * sum) / n, res = 0;
-
-    for (auto t : m)
-    {
-        ll rem = y - t.first;
-        ll one = t.first;
-        if (rem == one)
+        if (t.fi == 0)
         {
-            res += (m[one] * (m[one] - 1)) / 2;
+            ans++;
         }
-        else
+        else if (2*(t.fi)==k)
         {
-            res += m[one] * m[rem];
+            ans++;
         }
-        m[one] = 0;
-        m[rem] = 0;
+        else if (2*t.fi<k||m.find(k=t.fi)==m.end())
+        {
+            ll t1 = t.se, t2 = m[k - t.fi];
+            ans += max(0, (abs(t1 - t2) - 1)) + 1;
+        }
     }
-
-    cout << res << ln;
+    cout << ans << ln;
 }
 int main()
 {

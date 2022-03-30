@@ -63,13 +63,13 @@ vector<pair<ll, ll>> pf(ll n)
     {
         if (n % i == 0)
         {
-            int count = 0;
+            int cnt = 0;
             while (n % i == 0)
             {
-                count++;
+                cnt++;
                 n = n / i;
             }
-            prime.pb(mp(i, count));
+            prime.pb(mp(i, cnt));
         }
     }
     if (n > 1)
@@ -92,13 +92,13 @@ ll sumofno(ll n)
 }
 
 // modular exponentiation
-long long modpow(long long val, long long deg, long long mod)
+long long modpow(long long value, long long deg, long long mod)
 {
     if (!deg)
         return 1 % mod;
     if (deg & 1)
-        return modpow(val, deg - 1, mod) * val % mod;
-    long long res = modpow(val, deg >> 1, mod);
+        return modpow(value, deg - 1, mod) * value % mod;
+    long long res = modpow(value, deg >> 1, mod);
     return (res * res) % mod;
 }
 
@@ -147,7 +147,7 @@ ll fastexpo(ll a, ll b)
     }
 }
 
-ll popcount(ll n)
+ll popcnt(ll n)
 {
     ll c = 0;
     for (; n; ++c)
@@ -179,9 +179,36 @@ void solve()
 {
     ll n;
     cin >> n;
-    vp64 v;
-    for (ll i = 2;)
+    vp64 v = pf(n);
+    v64 ans;
+    v64 res(100, 1);
+    for (auto t : v)
+    {
+        ll cnt = t.se;
+        ll value = t.fi;
+        for (ll i = 0; i < t.se; i++)
+        {
+            res[i] *= value;
+        }
+    }
+    
+    for (auto t : res)
+    {
+        if (t == 1)
+        {
+            break;
+        }
+        ans.pb(t);
+    }
+    cout << ans.size() << ln;
+    sort(all(ans));
+    for (auto t : ans)
+    {
+        cout << t << " ";
+    }
+    cout << ln;
 }
+
 int main()
 {
     fast_cin();
