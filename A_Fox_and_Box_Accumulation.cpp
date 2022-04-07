@@ -179,22 +179,19 @@ void solve()
 {
     ll n;
     cin >> n;
-    map<string, ll> m;
-
-    while (n--)
+    ll arr[n];
+    forn(i, n)
     {
-        string temp;
-        cin >> temp;
-        m[temp]++;
-        if (m[temp] == 1)
-        {
-            cout << "OK" << ln;
-        }
-        else
-        {
-            cout << temp << (m[temp] - 1) << ln;
-        }
+        cin >> arr[i];
     }
+
+    ll cnt = count(al(arr, n), 0);
+    if (cnt == 0)
+    {
+        cout << 1 << ln;
+        return;
+    }
+    cout << cnt << ln;
 }
 int main()
 {
