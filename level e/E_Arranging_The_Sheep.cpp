@@ -177,49 +177,41 @@ bool pow2(ll x)
 
 void solve()
 {
-    int n, ans{0};
+    ll n;
+    cin >> n;
     string s;
-    cin >> n >> s;
-    v64 pos;
+    cin >> s;
+    ll sheep = 0, temp = 0, c = 0, i = 0, x = -1;
 
-    for (int i = 0; i < n; i++)
+    sheep = count(all(s), '*');
+    ll mid = (sheep + 1) / 2;
+
+    while (c < mid)
     {
         if (s[i] == '*')
         {
-            pos.pb(i);
+            c++;
+
+            if (c == mid)
+            {
+                x = i;
+            }
+        }
+        i++;
+    }
+
+    ll moves = 0;
+    c = 0;
+
+    forn(i, n)
+    {
+        if (s[i] == '*')
+        {
+            c++;
+            moves += abs(i - (x - mid + c));
         }
     }
-
-    if (pos.size() == 0)
-    {
-        cout << 0 << ln;
-        return;
-    }
-
-    n = pos.size();
-    v64 req(n);
-    req[n / 2] = pos[n / 2];
-    ll k = req[n / 2] - 1, idx = n / 2 - 1;
-
-    while (idx >= 0)
-    {
-        req[idx] = k;
-        idx--, k--;
-    }
-
-    idx = n / 2 + 1, k = req[n / 2] + 1;
-
-    while (idx < n)
-    {
-        req[idx] = k++;
-        idx++;
-    }
-
-    forn(i, pos.size())
-    {
-        ans += abs(pos[i] - req[i]);
-    }
-    cout << ans << ln;
+    cout << moves << ln;
 }
 int main()
 {

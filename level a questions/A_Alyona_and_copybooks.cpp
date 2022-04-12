@@ -55,40 +55,164 @@ double eps = 1e-12;
 #define al(arr, n) arr, arr + n
 #define sz(x) ((ll)(x).size())
 
-void solve()
+// function for prime factorization
+vector<pair<ll, ll>> pf(ll n)
 {
-    ll n, a, b, c;
-    cin >> n >> a >> b >> c;
-    ll k = n % 4;
-    if (k == 0)
+    vector<pair<ll, ll>> prime;
+    for (int i = 2; i <= sqrt(n); i++)
     {
-        cout << "0" << ln;
-        return;
+        if (n % i == 0)
+        {
+            int count = 0;
+            while (n % i == 0)
+            {
+                count++;
+                n = n / i;
+            }
+            prime.pb(mp(i, count));
+        }
     }
-    if (k == 1)
+    if (n > 1)
     {
-        cout << min({3 * a, c, b + a}) << ln;
-        return;
+        prime.pb(mp(n, 1));
     }
-    if (k == 2)
+    return prime;
+}
+
+// sum of digits of a number
+ll sumofno(ll n)
+{
+    ll sum = 0;
+    while (n != 0)
     {
-        cout << min({2 * c, b, 2 * a}) << ln;
-        return;
+        sum += n % 10;
+        n = n / 10;
     }
-    if (k == 3)
+    return sum;
+}
+
+// modular exponentiation
+long long modpow(long long val, long long deg, long long mod)
+{
+    if (!deg)
+        return 1 % mod;
+    if (deg & 1)
+        return modpow(val, deg - 1, mod) * val % mod;
+    long long res = modpow(val, deg >> 1, mod);
+    return (res * res) % mod;
+}
+
+const int N = 1e6 + 100;
+long long fact[N];
+// initialise the factorial
+void initfact()
+{
+    fact[0] = 1;
+    for (int i = 1; i < N; i++)
     {
-        cout << min({3 * c, b + c, a}) << ln;
-        return;
+        fact[i] = (fact[i - 1] * i);
+        fact[i] %= MOD;
     }
 }
 
+// formula for c
+ll C(ll n, ll i)
+{
+    ll res = fact[n];
+    ll div = fact[n - i] * fact[i];
+    div %= MOD;
+    div = modpow(div, MOD - 2, MOD);
+    return (res * div) % MOD;
+}
+
+// function for fast expo
+ll fastexpo(ll a, ll b)
+{
+    if (b == 0)
+    {
+        return 1;
+    }
+    if (a == 0)
+    {
+        return 0;
+    }
+    ll y = fastexpo(a, b / 2);
+    if (b % 2 == 0)
+    {
+        return y * y;
+    }
+    else
+    {
+        return a * y * y;
+    }
+}
+
+ll popcount(ll n)
+{
+    ll c = 0;
+    for (; n; ++c)
+        n &= n - 1;
+    return c;
+}
+
+ll ce(ll x, ll y)
+{
+    ll res = x / y;
+    if (x % y != 0)
+    {
+        res++;
+    }
+    return res;
+}
+
+bool pow2(ll x)
+{
+    ll res = x & (x - 1);
+    if (res == 0)
+    {
+        return true;
+    }
+    return false;
+}
+
+void solve()
+{
+    ll x, y;
+    cin >> x >> y;
+
+    if (x = 0 && y == 1)
+    {
+        cout << "YES" << ln;
+        return;
+    }
+
+    if (y > 1 && (x - y) % 2 == 1 && (x + 2) > y)
+    {
+        cout << "YES" << ln;
+    }
+    else
+    {
+        cout << "NO" << ln;
+    }
+}
 int main()
 {
     fast_cin();
-    // ll t=1;
+    ll t = 1;
     // cin >> t;
-    //for(int it=1;it<=t;it++) {
-    solve();
-    //}
+    for (int it = 1; it <= t; it++)
+    {
+        solve();
+    }
     return 0;
 }
+
+/*
+1. Check borderline constraints. Can a variable you are dividing by be 0?
+2. Use ll while using bitshifts
+3. Do not erase from set while iterating it
+4. Initialise everything
+5. Read the task carefully, is something unique, sorted, adjacent, guaranteed??
+6. DO NOT use if(!mp[x]) if you want to iterate the map later
+7. Are you using i in all loops? Are the i's conflicting?
+*/

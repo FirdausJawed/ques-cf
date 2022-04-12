@@ -177,68 +177,82 @@ bool pow2(ll x)
 
 void solve()
 {
-    map<ll, ll> m;
     ll n;
     cin >> n;
     ll arr[n];
+    map<ll, set<ll>> m;
     forn(i, n)
     {
         cin >> arr[i];
-        m[arr[i]]++;
+        m[arr[i]].insert(i + 1);
     }
 
-    if (m[4] == 0 || m[8] == 0 || m[15] == 0 ||
-        m[16] == 0 || m[23] == 0 || m[42] == 0)
+    ll t = m[4].size(), fcnt = 0;
+
+    while (t--)
     {
-        cout << n << ln;
-        return;
+        ll val = *m[4].begin();
+        m[4].erase(m[4].begin());
+
+        auto it8 = m[8].upper_bound(val);
+        if (it8 != m[8].end())
+        {
+            val = *it8;
+            m[8].erase(it8);
+        }
+        else
+        {
+            break;
+        }
+
+        auto it15 = m[15].upper_bound(val);
+        if (it15 != m[15].end())
+        {
+            val = *it15;
+            m[15].erase(it15);
+        }
+        else
+        {
+            break;
+        }
+
+        auto it16 = m[16].upper_bound(val);
+        if (it16 != m[16].end())
+        {
+            val = *it16;
+            m[16].erase(it16);
+        }
+        else
+        {
+            break;
+        }
+
+        auto it23 = m[23].upper_bound(val);
+        if (it23 != m[23].end())
+        {
+            val = *it23;
+            m[23].erase(it23);
+        }
+        else
+        {
+            break;
+        }
+
+        auto it42 = m[42].upper_bound(val);
+        if (it42 != m[42].end())
+        {
+            val = *it42;
+            m[42].erase(it42);
+        }
+        else
+        {
+            break;
+        }
+        fcnt++;
     }
 
-    forn(i, n)
-    {
-        if (arr[i] == 8)
-        {
-            if (m[4] < m[8])
-            {
-                m[8]--;
-            }
-        }
-
-        if (arr[i] == 15)
-        {
-            if (m[4] < m[15] || m[8] < m[15])
-            {
-                m[8]--;
-            }
-        }
-
-        if (arr[i] == 16)
-        {
-            if (m[4] < m[16] || m[8] < m[16] || m[15] < m[16])
-            {
-                m[16]--;
-            }
-        }
-
-        if (arr[i] == 23)
-        {
-            if (m[4] < m[23] || m[8] < m[23] || m[15] < m[23] || m[16] < m[23])
-            {
-                m[23]--;
-            }
-        }
-
-        if (arr[i] == 42)
-        {
-            if (m[4] < m[42] || m[8] < m[42] || m[15] < m[42] || m[16] < m[42] || m[23] < m[42])
-            {
-                m[42]--;
-            }
-        }
-    }
-    
-    ll res = n - m[42] * 6;
-    cout << res << ln;
+    ll ans = n - (6 * fcnt);
+    cout << ans << ln;
 }
 int main()
 {
